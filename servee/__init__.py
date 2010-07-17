@@ -7,3 +7,8 @@ Servee works best built on Pinax.  You can be picky about which components you w
 
 Servee is model-independent, and is designed not to get in the way of the site-building process, but to add a level of functionality and a minimal cost on top of an existing Django or Pinax site.
 """
+
+__description__ = "Servee is awesome"
+
+VERSION = (0, 5, 3)
+__version__ = '.'.join(map(str, VERSION))
