@@ -3,7 +3,7 @@ import copy
 from django import template
 from django.db.models import Q
 from django.template import Node, NodeList, Variable
-from servee.navigation.models import MenuItem
+from servee.contrib.navigation.models import MenuItem
 
 register = template.Library()
 

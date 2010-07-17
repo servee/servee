@@ -1,5 +1,5 @@
 from treebeard.admin import TreeAdmin
-from servee.navigation.models import MenuItem
+from servee.contrib.navigation.models import MenuItem
 from django.contrib import admin
 
 
