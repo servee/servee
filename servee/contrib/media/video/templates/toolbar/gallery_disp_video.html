@@ -1,0 +1,5 @@
+{% load thumbnail %}
+{% thumbnail object.object.still 60x40 as thumb %}
+<li id="{{ object.pk }}"><a href="#" data-id="{{ object.pk }}"><img src="{{ thumb.absolute_url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" /></a>
+<p><a href="#" class="delete">Remove</a></p>
+</li>

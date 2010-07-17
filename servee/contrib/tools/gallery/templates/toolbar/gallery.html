@@ -1,0 +1,216 @@
+<div id="srv_adminLarge">
+		<ul class="srv_galleryList">
+			{% for type in types %}
+			{% with type.name as name %}
+			<li><a href="#gallery_add_{{ name }}" title="{{ name }}" class="srv_gallery_add_{{ name }}">{{ name }}</a></li>
+			{% endwith %}
+			{% endfor %}
+		</ul>
+		{% for type in types %}
+		<ul id="srv_gallery_add_{{ type.name }}" name="{{ gallery_add_type }}" class="srv_gallery_filepane srv_filePane scroll srv_solidBox">
+			{% for object in type.instance.objects.all %}
+				{% with 'toolbar/gallery_list_'|add:type.name|add:'.html' as x %}{% include x %}{% endwith %}
+			{% endfor %}
+		</ul>
+		{% endfor %}
+		
+	<div id="srv_galleryEdit">
+		<div class="srv_ctrlHolder">
+    		<label for="editAnother">Edit an existing gallery</label>
+	        <select id="id_referred_from" class="srv_select" name="referred_from">
+				<option value="-1">New</option>
+				{% for gallery in galleries %}
+				<option value="{{ gallery.pk }}">{{ gallery.title }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="srv_ctrlHolder">
+    		<label for="id_gallery_title">Gallery Title</label>
+    		<input id="id_gallery_title" type="text" class="srv_textinput textInput" name="text_input" />
+    		<p class="formHint">Give the gallery a descriptive name for use in the site admin.</p>
+    	</div>
+    	<div id="srv_gallerypreview" class="srv_solidBox">
+			<ul id="srv_gallery_-1"></ul>
+    		{% for gallery in galleries %}
+			<ul id="srv_gallery_{{ gallery.pk }}">
+    			{% for object in gallery.items.all %}
+					{% with 'toolbar/gallery_disp_'|add:object.content_type.app_label|add:'.html' as x %}{% include x %}{% endwith %}
+				{% endfor %}
+    		</ul>
+			{% endfor %}
+    	</div>
+    	<!--<div class="srv_buttonHolder"><button type="submit" class="primaryAction">Create Gallery</button></div>-->
+	</div>
+</div>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.2.custom.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	current_gallery = -1;
+	function add_to_gallery(gallery, position, app_label, model, pk){
+		if(!gallery) gallery = current_gallery;
+		if(!position) position = $("ul#srv_gallery_" + current_gallery + " li").length + 1;
+		
+		$.ajax({
+			url: '{% url add_to_gallery %}',
+			data: {
+				gallery: gallery,
+				position: position,
+				app_label: app_label,
+				model: model,
+				pk: pk
+			},
+			type: 'POST',
+			dataType: 'json',
+			success: function(data,text){
+				if(DEBUG){
+					console.log('Added item to gallery:'+gallery+','+position+','+app_label+','+model+','+pk)
+				}
+			}
+		});
+	}
+	
+	function remove_from_gallery(gallery,pk){
+		if(!gallery) gallery = current_gallery;
+		$.ajax({
+			url: '{% url remove_from_gallery %}',
+			data: {
+				gallery: gallery,
+				pk: pk
+			},
+			type: 'POST',
+			dataType: 'json',
+			success: function(data,text){
+				if(DEBUG){
+					console.log('Removed item from gallery:'+gallery+','+pk)
+				}
+			}
+		});
+	}
+	
+	function update_gallery_order(gallery, order){
+		if(!gallery) gallery = current_gallery
+		$.ajax({
+			url: '{% url update_gallery_order %}',
+			data: {
+				gallery: gallery,
+				order: order
+			},
+			dataType: 'json',
+			type: 'post',
+			success: function(data,text){
+				if(DEBUG){
+					console.log("ReOrdered gallery"+gallery)
+				}
+			}
+		})
+	}
+	
+	function create_new_gallery(){
+		$.ajax({
+			url: '{% url create_gallery %}',
+			type: 'POST',
+			async: false,
+			dataType: 'json',
+			success: function(data,text){
+				if(DEBUG){
+					console.log('Created gallery:'+data.gallery.title)
+				}
+				current_gallery = data.gallery.pk;
+				$("div#srv_gallerypreview ul").hide();
+				$("ul#srv_gallery_-1").clone().attr({'id':'srv_gallery_'+data.gallery.pk}).appendTo('div#srv_gallerypreview').show();
+				$("ul#srv_gallery_-1").html('');
+				$('#id_referred_from option').attr({'selected':false});
+				$("#id_referred_from").append('<option value="'+data.gallery.pk+'" selected="true">'+data.gallery.title+'</option>');	
+			}
+		});
+	}
+	
+	function change_gallery_title(gallery, title){
+		if(!gallery) gallery = current_gallery
+		$.ajax({
+			url: '{% url change_gallery_title %}',
+			data: {
+				gallery: gallery,
+				title: title
+			},
+			dataType: 'json',
+			type: 'post',
+			success: function(data,text){
+				if(DEBUG){
+					console.log("Changed gallery title "+gallery+','+title)
+				}
+			}
+		})	
+	}
+
+	$("ul.srv_galleryList li a").click(function(e){
+		var clicked = this;
+		$("ul.srv_gallery_filepane").hide();
+		if (DEBUG){
+			console.log('Showing Gallery Options: ' +$(clicked).attr('class') )
+		}
+		$("ul#"+$(clicked).attr('class')).show();
+		e.preventDefault();
+		return false;
+	});
+	$("ul.srv_gallery_filepane li a").click(function(e){
+		var app_label, model, pk, small_thumb, small_thumb_width, small_thumb_height
+		if(current_gallery === -1){
+			create_new_gallery()
+		}
+		app_label = $(this).attr('data-applabel');
+		model = $(this).attr('data-model');
+		pk = $(this).attr('data-id');
+		add_to_gallery(null,null,app_label,model,pk);
+		small_thumb = $(this).attr('data-small-thumb');
+		small_thumb_width = $(this).attr('data-small-thumb-width');
+		small_thumb_height = $(this).attr('data-small-thumb-height');
+		
+		$("div#srv_gallerypreview ul#srv_gallery_" + current_gallery).append('<li><a href="#" data-id="'+pk+'"><img src="'+small_thumb+'" width="'+small_thumb_width+'" height="'+small_thumb_height+'" /></a><p><a href="#" class="delete">Remove</a></p></li>');
+		allow_sortable()
+	});
+	
+	$("div#srv_gallerypreview ul").hide();
+	$("div#srv_gallerypreview ul:first").show()
+	
+	$("select#id_referred_from").change(function(){
+		var change_to = this
+		if (current_gallery != $(change_to).val()){
+			if(DEBUG){
+				console.log('Changing to gallery ' + $(change_to).val())
+			}
+			current_gallery = $(change_to).val();
+			$("div#srv_gallerypreview ul").hide();
+			$("div#srv_gallerypreview ul#srv_gallery_" + current_gallery).show()
+			
+			$("#id_gallery_title").unbind('change');
+			$("#id_gallery_title").val($(change_to).children('option:selected').text());
+			$("#id_gallery_title").change(function(){
+				change_gallery_title(null,$(this).val())
+				$(change_to).children('option:selected').text($(this).val())
+			});
+		}
+	});
+	
+	$("div#srv_gallerypreview ul li a.delete").live('click',function(e){
+		var id;
+		id = $(this).parent().parent().children('a').attr('data-id');
+		remove_from_gallery(null,id);
+		$(this).parent().parent().remove()
+		
+		e.preventDefault();
+		return false;
+	});
+	function allow_sortable(){
+		$("div#srv_gallerypreview ul").sortable({
+			update: function(event,ui){
+				var order
+				order = $(this).sortable('toArray').toString()
+				update_gallery_order(null, order)
+			}
+		})
+	}
+	allow_sortable()
+});
+
+</script>

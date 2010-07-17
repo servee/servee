@@ -1,0 +1,12 @@
+{% load thumbnail %}
+<ul class="gallery"> 
+{% for item in object.items.all %}
+    {% thumbnail item.object.image 150x100 crop as thumb %}
+    {% thumbnail item.object.image 800x600 as big_thumb %}
+<li> 
+<a href="{{ big_thumb.absolute_url }}" title="Larger Version of {{ item.title }}" class="fancied" rel="fancied"> 
+<img src="{{ thumb.absolute_url }}" alt="{{ item.description }}" width="150" height="100" /> 
+</a> 
+</li>
+{% endfor %}
+</ul>

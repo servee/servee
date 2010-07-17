@@ -1,0 +1,77 @@
+{% load thumbnail uni_form_tags %}
+<ul id="srv_image_filePane" class="srv_solidBox srv_filePane scroll">
+  	{% for image in images %}
+		{% include "panels/add_image.html" %}
+	{% endfor %}
+</ul>
+<div id="" class="srv_solidBox srv_insertOptions scroll">
+<h4>Insert an image</h4>
+	<div id="srv_insert_image_display"></div>
+	<h5 id="srv_insert_image_title"></h5>
+	<p id="srv_insert_image_description"></p>
+	<p><select id="#srv_insert_image_template"><option>Auto</option></select></p>
+	<input type="hidden" name="srv_insert_image_pk" id="srv_insert_image_pk" value="0">
+	<input type="button" class="srv_button insert" id="srv_insert_image_action" value="Place image at Cursor">
+
+
+<!--<p>Narrow the list with tags:</p>
+
+<div id="tagCloud" class="clearfix">
+  <span class="tags">Tags:</span> <span id="clearTags" class="selected"><a>Show all
+  files</a></span> <span><a>instructions</a></span> 
+</div>-->
+
+    <form id="srv_upload_image" method="POST" enctype="multipart/form-data" action="{% url upload_image %}">
+	{% csrf_token %}
+	{{ form|as_uni_form }}
+	<input type="submit" class="srv_button insert" id="srv_upload_image_action" value="Upload">
+</form>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){	
+	$("form#srv_upload_image").ajaxForm({
+		dataType: 'json',
+		iframe: true,
+		success : function(data){
+			if(data.error.length == 0){
+				$("ul#srv_image_filePane").append(data.item);
+				if (DEBUG) console.log('appending '+data.item);
+			}
+			else {
+				if (DEBUG) console.log(error);
+				else for (error in data.error)	alert(error);
+			}
+		}
+	});
+	$("a[href=#srv_place_image]").live('click',function(e){
+		var chosen = this
+		$(chosen).parent().parent().children().removeClass('backgroundHighlight');
+		$(chosen).parent().addClass('backgroundHighlight');
+		$("#srv_insert_image_title").html($(chosen).children('p').html());
+		$("#srv_insert_image_description").html($(chosen).siblings('img').attr('alt'));
+		$("#srv_insert_image_pk").val($(chosen).attr('data-id'));
+		$("#srv_insert_image_display").html("<img src='"+$(chosen).attr('data-big-thumb')+"' width='"+$(chosen).attr('data-big-thumb-width')+"' height='"+$(chosen).attr('data-big-thumb-height')+"' />");
+		e.preventDefault();
+		return false;
+	});
+	$("input#srv_insert_image_action").click(function(e){
+		var template, pk;
+		pk = parseInt($("#srv_insert_image_pk").val())
+		if(pk > 0){
+			template = $("select#srv_insert_image_template").val();
+			if(template == 'auto') template = null;
+			srv_insert_image_by_pk(pk, template)
+		}
+		e.preventDefault();
+		return false;
+	});
+	function srv_insert_image_by_pk(pk, template){
+		var markup = '<inline type="image.image" id="'+pk+'"';
+		if(template){
+			markup += ' template="'+template+'"'
+		}
+		markup += '/>'
+		srv_wysiwyg_insert_html_at_cursor(markup)
+	}
+});
+</script>

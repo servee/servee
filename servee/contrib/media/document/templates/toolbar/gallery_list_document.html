@@ -1,0 +1,9 @@
+{% load thumbnail %}
+{% thumbnail object.document 75x75 as thumb %}
+{% thumbnail object.document 60x40 as small_thumb %}
+<li>
+	<a href="#srv_add_document_gallery" data-id="{{ object.pk }}" data-applabel="{{ type.app_label }}" data-model="{{ type.model }}" data-small-thumb="{{ small_thumb.absolute_url }}" data-small-thumb-width="{{ small_thumb.width }}" data-small-thumb-height="{{ small_thumb.height }}">
+		<img src="{{ thumb.absolute_url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" alt="{{ object.description }}" />
+	</a>
+	<p>{{ object.title }}</p>
+</li>
