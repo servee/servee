@@ -10,5 +10,5 @@ Servee is model-independent, and is designed not to get in the way of the site-b
 
 __description__ = "Servee is awesome"
 
-VERSION = (0, 5, 3)
+VERSION = (0, 5, '3nav_fix')
 __version__ = '.'.join(map(str, VERSION))
