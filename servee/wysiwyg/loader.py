@@ -64,7 +64,7 @@ class Wysiwyg(object):
         """
         Renders the overall Toolbar with panels inside.
         """
-        if settings.SRV_WYSIWYG_EDITOR:
+        if hasattr(settings, 'SRV_WYSIWYG_EDITOR'):
             SRV_WYSIWYG_EDITOR = settings.SRV_WYSIWYG_EDITOR
         else: 
             SRV_WYSIWYG_EDITOR = 'tinymce'
