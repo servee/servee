@@ -41,3 +41,7 @@ MIDDLEWARE_CLASSES
 Also Add this setting to settings.py
 SRV_WYSIWYG_EDITOR = 'tinymce'
 
+
+Now change your templates on pages you wish to edit to add frontend admin:
+
+[http://github.com/bartTC/django-frontendadmin]
