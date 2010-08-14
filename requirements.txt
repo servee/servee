@@ -15,6 +15,5 @@ django-staticfiles==0.2.0
 
 BeautifulSoup==3.0.8.1
 django-improved-inlines>=0.1.7a
-south==0.7.1
 django-treebeard==1.60
 django-tagging==0.3.1

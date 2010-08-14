@@ -1,0 +1,1 @@
+License is under consideration, will most likely be BSD or MIT licensed.
