@@ -18,7 +18,7 @@ INSTALLED_APPS = [
     
     #servee
     'servee',
-    'servee.inlines',
+    'improved_inlines',
     'servee.wysiwyg',
     'servee.wysiwyg.tinymce',
     'servee.toolbar',
