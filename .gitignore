@@ -1,2 +1,7 @@
 *.pyc
 .DS_Store
+build/
+build/*
+dist/
+dist/*
+django_servee.egg-info/*

@@ -2,9 +2,13 @@ The docs aren't built, this is an alpha version of servee and may contain many b
 
 First you should put servee in your environment:
 
-pip install -e git+git://github.com/servee/servee.git#egg=servee
+pip install -e git+git://github.com/servee/servee.git#egg=django-servee
 
-I don't think that pip is setup to read the other dependancies from there so navigate to your servee folder in your path now (<env>/src/servee?) and do pip install -r requirements.txt
+or download and
+
+./setup.py install
+
+I pip is not setup to read the other dependancies from there so navigate to your servee folder in your path now (<env>/src/servee, or wherever you downloaded from) and do pip install -r requirements.txt
 
 Then add servee to installed apps and add the two middleware packages.
 
@@ -41,6 +45,13 @@ MIDDLEWARE_CLASSES
 Also Add this setting to settings.py
 SRV_WYSIWYG_EDITOR = 'tinymce'
 
+Then syncdb and build_static
+
+It's important to add servee urls.
+url(r"^servee/", include("servee.urls")),
+
+Add to your base template
+<link rel="stylesheet" href="{{ STATIC_URL }}css/djAdmin.css" />
 
 Now change your templates on pages you wish to edit to add frontend admin:
 
