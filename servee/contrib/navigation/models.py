@@ -1,10 +1,16 @@
 from django.db import models
-from treebeard.ns_tree import NS_Node
+from treebeard.ns_tree import NS_Node, NS_NodeManager
 from django.contrib.sites.models import Site
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
+class MenuItemManager(NS_NodeManager):
+    """
+    Works with multi-site configuration
+    """
+    def get_query_set(self, *args, **kwargs):
+        return super(MenuItemManager, self).get_query_set(*args, **kwargs).filter(site=settings.SITE_ID)
 
 # Create your models here.
 class MenuItem(NS_Node):
@@ -14,7 +20,9 @@ class MenuItem(NS_Node):
     content_type = models.ForeignKey(ContentType, blank=True, null=True)
     object_id = models.IntegerField(blank=True, null=True)
     content_object = generic.GenericForeignKey('content_type', 'object_id')
-        
+    
+    objects = MenuItemManager()
+    
     def __unicode__(self):
         return u'%s' %(self.title)
         
