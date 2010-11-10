@@ -2,14 +2,16 @@
 		<ul class="srv_galleryList">
 			{% for type in types %}
 			{% with type.name as name %}
-			<li><a href="#gallery_add_{{ name }}" title="{{ name }}" class="srv_gallery_add_{{ name }}">{{ name }}</a></li>
+			<li><a href="#gallery_add_{{ name|slugify }}" title="{{ name }}" class="srv_gallery_add_{{ name|slugify }}">{{ name }}</a></li>
 			{% endwith %}
 			{% endfor %}
 		</ul>
 		{% for type in types %}
 		<ul id="srv_gallery_add_{{ type.name }}" name="{{ gallery_add_type }}" class="srv_gallery_filepane srv_filePane scroll srv_solidBox">
 			{% for object in type.instance.objects.all %}
-				{% with 'toolbar/gallery_list_'|add:type.name|add:'.html' as x %}{% include x %}{% endwith %}
+				{% with type.name|slugify as y %}
+				{% with 'toolbar/gallery_list_'|add:y|add:'.html' as x %}{% include x %}{% endwith %}
+                {% endwith %}
 			{% endfor %}
 			<li><a href="#switch_to_media" class="srv_switchToInsert">Add Some Media</a></li>
 		</ul>
@@ -35,7 +37,9 @@
     		{% for gallery in galleries %}
 			<ul id="srv_gallery_{{ gallery.pk }}">
     			{% for object in gallery.items.all %}
-					{% with 'toolbar/gallery_disp_'|add:object.content_type.app_label|add:'.html' as x %}{% include x %}{% endwith %}
+    			    {% with object.content_type.app_label|slugify as y %}
+					{% with 'toolbar/gallery_disp_'|add:y|add:'.html' as x %}{% include x %}{% endwith %}
+				    {% endwith %}
 				{% endfor %}
     		</ul>
 			{% endfor %}
