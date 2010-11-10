@@ -24,12 +24,12 @@
     <form id="srv_upload_image" method="POST" enctype="multipart/form-data" action="{% url upload_image %}">
 	{% csrf_token %}
 	{{ form|as_uni_form }}
-	<input type="submit" class="srv_button insert" id="srv_upload_image_action" value="Upload">
+	<!--<input type="submit" class="srv_button insert" id="srv_upload_image_action" value="Upload">-->
 </form>
 </div>
 <script type="text/javascript">
 $(document).ready(function(){	
-	$("form#srv_upload_image").ajaxForm({
+	/*$("form#srv_upload_image").ajaxForm({
 		dataType: 'json',
 		iframe: true,
 		success : function(data){
@@ -42,7 +42,28 @@ $(document).ready(function(){
 				else for (error in data.error)	alert(error);
 			}
 		}
-	});
+	});*/
+	
+	$("form#srv_upload_image input#id_image").uploadify({
+        'uploader'  : '{{STATIC_URL}}uploadify/uploadify.swf',
+        'script'    : '{% url upload_image %}',
+        'multi'		: true,
+        'cancelImg' : '{{STATIC_URL}}uploadify/cancel.png',
+        'auto'      : true,
+        'onComplete': function(e,id,f,r,d){
+            eval("var data="+r);
+            if(data.error.length == 0){
+				$("ul#srv_image_filePane").append(data.item);
+				if (DEBUG) console.log('appending '+data.item);
+			}
+			else {
+				if (DEBUG) console.log(error);
+				else for (error in data.error)	alert(error);
+			}
+        },
+        'fileDataName' : 'image'
+      });
+	
 	$("a[href=#srv_place_image]").live('click',function(e){
 		var chosen = this
 		$(chosen).parent().parent().children().removeClass('backgroundHighlight');

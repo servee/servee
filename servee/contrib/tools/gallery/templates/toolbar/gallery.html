@@ -11,6 +11,7 @@
 			{% for object in type.instance.objects.all %}
 				{% with 'toolbar/gallery_list_'|add:type.name|add:'.html' as x %}{% include x %}{% endwith %}
 			{% endfor %}
+			<li><a href="#switch_to_media" class="srv_switchToInsert">Add Some Media</a></li>
 		</ul>
 		{% endfor %}
 		
@@ -46,6 +47,11 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	current_gallery = -1;
+	
+	$("a.srv_switchToInsert").click(function(e){
+	    $("li.hideTools a").click();
+	    srv_toggle_adminBox('srv_insertMedia');
+    });
 	function add_to_gallery(gallery, position, app_label, model, pk){
 		if(!gallery) gallery = current_gallery;
 		if(!position) position = $("ul#srv_gallery_" + current_gallery + " li").length + 1;

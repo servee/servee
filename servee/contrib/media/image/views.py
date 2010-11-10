@@ -29,4 +29,6 @@ def upload_image(request):
     
     # return result
     resp = simplejson.dumps(ret)
+    print resp
+    print request.POST
     return HttpResponse(resp, mimetype='application/json')
