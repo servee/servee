@@ -7,7 +7,7 @@
 			{% endfor %}
 		</ul>
 		{% for type in types %}
-		<ul id="srv_gallery_add_{{ type.name }}" name="{{ gallery_add_type }}" class="srv_gallery_filepane srv_filePane scroll srv_solidBox">
+		<ul id="srv_gallery_add_{{ type.name|slugify }}" name="{{ gallery_add_type }}" class="srv_gallery_filepane srv_filePane scroll srv_solidBox">
 			{% for object in type.instance.objects.all %}
 				{% with type.name|slugify as y %}
 				{% with 'toolbar/gallery_list_'|add:y|add:'.html' as x %}{% include x %}{% endwith %}
