@@ -3,10 +3,11 @@
 $(document).ready(function(){
 
 	$('a.frontendadmin_edit').hover(
-	    function(){$(this).parent().css('outline', '4px solid #E9B007')},
-	    function(){$(this).parent().css('outline', '')}
+	    function(){$(this).parent().css({'-moz-box-shadow' : '0px 0px 26px #fcf9a6', '-webkit-box-shadow' : '0px 0px 26px #fcf9a6'})},
+	    function(){$(this).parent().css({'-moz-box-shadow' : ' ', '-webkit-box-shadow' : ' '})}
 	);
-
+	
+	
 	$('a.frontendadmin_edit').click(function(){
 		var $par = $(this).parent()
 	    $par.css('outline', '');
