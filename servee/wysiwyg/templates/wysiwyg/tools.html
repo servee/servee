@@ -155,7 +155,6 @@ $(document).ready(function(){
 		$("ul.srv_mediaList li a").click(function(e){
 			$("div.srv_insertPanel").hide();
 			$("ul.srv_mediaList li").removeClass('active');
-			console.log('Showing Panel: ' + $(this).attr('class'))
 			$("div#" +$(this).attr('class')).show();
 			$(this).parent().addClass('active');
 		});

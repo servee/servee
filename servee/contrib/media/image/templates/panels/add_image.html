@@ -1,1 +1,5 @@
-{% load thumbnail %}{% thumbnail image.image 75x75 as thumb %}{% thumbnail image.image 160x160 as big_thumb %}<li><a href="#srv_place_image" data-id="{{ image.pk }}" data-big-thumb="{{ big_thumb.absolute_url }}" data-big-thumb-width="{{ big_thumb.width }}" data-big-thumb-height="{{ big_thumb.height }}"><img src="{{ thumb.absolute_url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" alt="{{ image.description }}" /></a><p>{{ image.title }}</p></li>
+{% load thumbnail %}
+{% thumbnail image.image 75x75 as thumb %}
+{% thumbnail image.image 160x160 as big_thumb %}
+{% thumbnail image.image 400x300 as big_img %}
+<li><a href="#srv_place_image" data-id="{{ image.pk }}" data-big-img="{{ big_img.absolute_url }}" data-big-img-width="{{ big_img.width }}" data-big-img-height="{{ big_img.height }}" data-big-thumb="{{ big_thumb.absolute_url }}" data-big-thumb-width="{{ big_thumb.width }}" data-big-thumb-height="{{ big_thumb.height }}"><img src="{{ thumb.absolute_url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" alt="{{ image.description }}" /></a><p>{{ image.title }}</p></li>
