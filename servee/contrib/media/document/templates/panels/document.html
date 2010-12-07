@@ -93,9 +93,15 @@ $(document).ready(function(){
 		if(template){
 			markup += ' template="'+template+'"'
 		}
+		
+		text = 'Link to ' + $("li:has(a[href=#srv_place_document][data-id="+pk+"]) p").text();
+		
 		markup += ' style="display:inline;"';
+		markup += ' inserttext="';
+		markup += text;
+		markup += '"';
 		markup += '>';
-		markup += 'Link to ' + $("li:has(a[href=#srv_place_document][data-id="+pk+"]) p").text();
+		markup += text;
 		markup += '</inline>';
 		srv_wysiwyg_insert_html_at_cursor(markup)
 	}
