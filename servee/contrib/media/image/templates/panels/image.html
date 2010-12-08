@@ -97,7 +97,8 @@ $(document).ready(function(){
 		markup += 'height:'+$("a[href=#srv_place_image][data-id="+pk+"]").attr("data-big-img-height")+'px;'
 		markup += '"'
 		markup += '/>'
-		srv_wysiwyg_insert_html_at_cursor(markup)
+		srv_wysiwyg_insert_html_at_cursor(markup);
+		srv_hide_adminBox("srv_insertMedia");
 	}
 });
 </script>
