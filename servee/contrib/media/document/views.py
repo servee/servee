@@ -2,10 +2,10 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.views.decorators.csrf import csrf_exempt
 
-from servee.contrib.media.image.forms import DocumentUpload
+from servee.contrib.media.document.forms import DocumentUpload
 
 @csrf_exempt
-def upload_image(request):
+def upload_document(request):
     """
     This view accepts 5 values (gallery, position, app_label, model, and pk) which are POSTed.
     Checks the values and adds the item at the specified position.
