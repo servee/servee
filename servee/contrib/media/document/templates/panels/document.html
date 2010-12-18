@@ -15,7 +15,6 @@
 
 
 <form id="srv_upload_document" method="post" enctype="multipart/form-data" action="{% url upload_document %}">
-	{% csrf_token %}
 	{{ form|as_uni_form }}
 	<input type="submit" class="srv_button insert" id="srv_upload_document_action" value="Upload">
 </form>
@@ -34,7 +33,7 @@ $(document).ready(function(){
             $("form#srv_upload_document input[type=submit]").hide()
         },
         'onComplete': function(e,id,f,r,d){
-			$("ul#srv_document_filePane").append(r);
+			$("ul#srv_document_filePane").prepend(r).scrollTop();
         },
         onError: function(event,ID,fileObj,errorObj) {
             console.log(fileObj)
@@ -43,7 +42,7 @@ $(document).ready(function(){
         'fileDataName' : 'document'
       });
       
-	$("a[href=#srv_place_document]").click(function(e){
+	$("a[href=#srv_place_document]").live("click", function(e){
 		var chosen = this
 		$(chosen).parent().parent().children().removeClass('backgroundHighlight');
 		$(chosen).parent().addClass('backgroundHighlight');
