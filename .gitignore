@@ -5,3 +5,4 @@ build/*
 dist/
 dist/*
 django_servee.egg-info/*
+dev.db

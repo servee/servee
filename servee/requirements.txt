@@ -17,4 +17,4 @@ easy-thumbnails
 
 # Only needed for contrib.navigation
 django-treebeard>=1.60
-South>=0.8
+South>=0.7
