@@ -17,6 +17,7 @@ Contents:
    inlines
    menus
    toolbar
+   sample_projects
 
 Indices and tables
 ==================

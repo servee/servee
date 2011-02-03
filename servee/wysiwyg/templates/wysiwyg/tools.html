@@ -119,8 +119,6 @@
     </li>
   </ul>
 </div>
-<script type="text/javascript" src="{{STATIC_URL}}uploadify/swfobject.js"></script>
-<script type="text/javascript" src="{{STATIC_URL}}uploadify/jquery.uploadify.v2.1.4.min.js"></script>
 <script type="text/javascript">
 DEBUG = '{{ DEBUG }}';
 if (DEBUG == 'True')DEBUG = true;
@@ -155,6 +153,7 @@ $(document).ready(function(){
 		$("ul.srv_mediaList li a").click(function(e){
 			$("div.srv_insertPanel").hide();
 			$("ul.srv_mediaList li").removeClass('active');
+			console.log('Showing Panel: ' + $(this).attr('class'))
 			$("div#" +$(this).attr('class')).show();
 			$(this).parent().addClass('active');
 		});
@@ -206,7 +205,7 @@ srv_admin_boxes = {
 		changes: [
 			{selector:'#srv_insertMedia',box_width:500, to_the_left:0},
 			{selector:'.srv_insertOptions',to_the_left:16},
-			{selector:'#srv_insertMedia .srv_filePane',to_the_left:216},
+			{selector:'.srv_filePane',to_the_left:216},
 			{selector:'.srv_mediaList',to_the_left:368},
 		],
 	},

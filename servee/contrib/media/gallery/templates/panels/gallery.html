@@ -51,7 +51,6 @@ function srv_insert_gallery_by_pk(pk, template){
 		markup += ' template="'+template+'"'
 	}
 	markup += '/>'
-	srv_wysiwyg_insert_html_at_cursor(markup);
-	srv_hide_adminBox("srv_insertMedia");
+	srv_wysiwyg_insert_html_at_cursor(markup)
 }
 </script>

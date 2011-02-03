@@ -1,8 +1,6 @@
 from django.db import models
-from tagging.fields import TagField
 from django.conf import settings
 
-import tagging
 
 class Document(models.Model):
     """Document model"""
@@ -10,7 +8,6 @@ class Document(models.Model):
     document = models.FileField(upload_to="documents")
     description = models.TextField(blank=True, null=True)
     text = models.TextField(blank=True, null=True)
-    tags = TagField()
     uploaded = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
@@ -27,4 +24,6 @@ class Document(models.Model):
         return '%s%s' % (settings.MEDIA_URL, self.document)
 
     class Meta:
-        ordering = ['modified',]
+        ordering = ["modified",]
+        verbose_name = "contrib document"
+        verbose_name_plural = "contrib documents"

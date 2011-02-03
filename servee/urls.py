@@ -6,5 +6,4 @@ urlpatterns = patterns("",
     (r"^media/docs/", include('servee.contrib.media.document.urls')),
     (r"^media/images/", include('servee.contrib.media.image.urls')),
     (r"^media/video/", include('servee.contrib.media.video.urls')),
-    (r"^atd/", include('servee.contrib.afterthedeadline.urls')),
 )

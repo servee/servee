@@ -1,0 +1,56 @@
+
+/* RESET */
+/* ----------------------------------------- */
+
+/* Global reset */
+/* Based upon 'reset.css' in the Yahoo! User Interface Library: http://developer.yahoo.com/yui */
+*, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0 }
+table { border-collapse:collapse; border-spacing:0 }
+fieldset, img { border:0 }
+address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal }
+ol, ul, li { list-style:none }
+caption, th { text-align:left }
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal }
+q:before, q:after { content:''}
+
+/* Global reset-RESET */
+/* The below restores some sensible defaults */
+strong { font-weight: bold }
+em { font-style: italic }
+a img { border:none } /* Gets rid of IE's blue borders */
+
+
+#tAccess a.skipLink, #fAccess a {
+	background:#FFFFFF;
+	border:2px solid red;
+	font-weight:bold;
+}
+p#tAccess, 	p#fAccess {
+	margin:0;
+}
+
+
+body {
+    font: 12px/1.5 Arial, Verdana, sans-serif;
+    width: 500px;
+    margin: 0 auto;
+    color: #666;
+}
+
+a {
+    color: #fff;
+    text-decoration:underline;
+}
+
+a:focus, a:hover; a:active {
+    font-style: italic;
+}
+
+h1{ font-size:1.6em; font-weight:bold;}
+h2{ font-size:1.4em; font-weight:bold;}
+h3{ font-size:1.4em; font-weight:bold;}
+h4{ font-size:1.2em; font-weight:bold;}
+h5{ font-size:1.2em; font-weight:bold;}
+h6{ font-size:1.2em; font-weight:bold;}
+
+

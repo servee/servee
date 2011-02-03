@@ -18,31 +18,27 @@
 	{{ form|as_uni_form }}
 	<input type="submit" class="srv_button insert" id="srv_upload_document_action" value="Upload">
 </form>
+
 </div>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.form.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/ajaxupload.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("form#srv_upload_document input#id_document").uploadify({
-        'uploader'  : '{{STATIC_URL}}uploadify/uploadify.swf',
-        'script'    : '{% url upload_document %}',
-        'multi'		: true,
-        'cancelImg' : '{{STATIC_URL}}uploadify/cancel.png',
-        'auto'      : true,
-        'onInit': function(){
-            $("form#srv_upload_document input[type=submit]").hide()
-        },
-        'onComplete': function(e,id,f,r,d){
-			$("ul#srv_document_filePane").prepend(r).scrollTop();
-        },
-        onError: function(event,ID,fileObj,errorObj) {
-            console.log(fileObj)
-            console.log(errorObj)
-        },
-        'fileDataName' : 'document'
-      });
-      
-	$("a[href=#srv_place_document]").live("click", function(e){
+	$("form#srv_upload_document").ajaxForm({
+		dataType: 'json',
+		iframe: true,
+		success : function(data){
+			if(data.error.length == 0){
+				$("ul#srv_document_filePane").append(data.item);
+				if (DEBUG) console.log('appending '+data.item)
+			}
+			else {
+				if (DEBUG) console.log(error);
+				else for (error in data.error)	alert(error);
+			}
+		}
+	});
+	$("a[href=#srv_place_document]").click(function(e){
 		var chosen = this
 		$(chosen).parent().parent().children().removeClass('backgroundHighlight');
 		$(chosen).parent().addClass('backgroundHighlight');
@@ -69,18 +65,8 @@ $(document).ready(function(){
 		if(template){
 			markup += ' template="'+template+'"'
 		}
-		
-		text = 'Link to ' + $("li:has(a[href=#srv_place_document][data-id="+pk+"]) p").text();
-		
-		markup += ' style="display:inline;"';
-		markup += ' inserttext="';
-		markup += text;
-		markup += '"';
-		markup += '>';
-		markup += text;
-		markup += '</inline>';
-		srv_wysiwyg_insert_html_at_cursor(markup);
-		srv_hide_adminBox("srv_insertMedia");
+		markup += '/>'
+		srv_wysiwyg_insert_html_at_cursor(markup)
 	}
 })
 </script>

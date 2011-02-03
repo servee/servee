@@ -4,7 +4,6 @@ from django.contrib.contenttypes import generic
 from django.utils.translation import ugettext_lazy as _
 
 
-
 class Gallery(models.Model):
     """Gallery model"""
     title = models.CharField(verbose_name=_('title'), max_length=255, blank=True, null=True)

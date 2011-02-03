@@ -13,6 +13,7 @@
 	<p><select id="#srv_insert_video_template"><option>Auto</option></select></p>
 	<input type="hidden" name="srv_insert_video_pk" id="srv_insert_video_pk" value="0">
 	<input type="button" class="srv_button insert" id="srv_insert_video_action" value="Place image at Cursor">
+
 <form id="srv_upload_video" method="POST" enctype="multipart/form-data" action="{% url upload_video %}">
 	{{ form|as_uni_form }}
 	<input type="submit" class="srv_button insert" id="srv_upload_image_action" value="Upload">
@@ -20,26 +21,21 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("form#srv_upload_video input#id_video").uploadify({
-        'uploader'  : '{{STATIC_URL}}uploadify/uploadify.swf',
-        'script'    : '{% url upload_video %}',
-        'multi'		: true,
-        'cancelImg' : '{{STATIC_URL}}uploadify/cancel.png',
-        'auto'      : true,
-        'onInit': function(){
-            $("form#srv_upload_video input[type=submit]").hide()
-        },
-        'onComplete': function(e,id,f,r,d){
-			$("ul#srv_video_filePane").prepend(r).scrollTop();
-        },
-        onError: function(event,ID,fileObj,errorObj) {
-            console.log(fileObj)
-            console.log(errorObj)
-        },
-        'fileDataName' : 'video'
-      });
-      
-	$("a[href=#srv_place_video]").live("click", function(e){
+	$("form#srv_upload_video").ajaxForm({
+		dataType: 'json',
+		iframe: true,
+		success : function(data){
+			if(data.error.length == 0){
+				$("ul#srv_video_filePane").append(data.item);
+				if (DEBUG) console.log('appending '+data.item)
+			}
+			else {
+				if (DEBUG) console.log(error);
+				else for (error in data.error)	alert(error);
+			}
+		}
+	});
+	$("a[href=#srv_place_video]").click(function(e){
 		var chosen = this
 		$(chosen).parent().parent().children().removeClass('backgroundHighlight');
 		$(chosen).parent().addClass('backgroundHighlight');
@@ -68,7 +64,6 @@ function srv_insert_video_by_pk(pk, template){
 		markup += ' template="'+template+'"';
 	}
 	markup += '/>'
-	srv_wysiwyg_insert_html_at_cursor(markup);
-	srv_hide_adminBox("srv_insertMedia");
+	srv_wysiwyg_insert_html_at_cursor(markup)
 }
 </script>

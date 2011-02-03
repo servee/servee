@@ -1,8 +1,6 @@
 from django.db import models
-from tagging.fields import TagField
 from django.conf import settings
 
-import tagging
 
 class Video(models.Model):
     """Video model"""
@@ -10,7 +8,6 @@ class Video(models.Model):
     still = models.ImageField(upload_to="videos/stills")
     video = models.FileField(upload_to="videos")
     description = models.TextField(blank=True, null=True)
-    tags = TagField()
     uploaded = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
@@ -27,4 +24,6 @@ class Video(models.Model):
         return '%s%s' % (settings.MEDIA_URL, self.video)
 
     class Meta:
-        ordering = ['modified',]
+        ordering = ["modified",]
+        verbose_name = "contrib video"
+        verbose_name_plural = "contrib videos"

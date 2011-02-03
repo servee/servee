@@ -1,15 +1,12 @@
 from django.db import models
-from tagging.fields import TagField
 from django.conf import settings
 
-import tagging
 
 class Image(models.Model):
     """Image model"""
     title = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to="images")
     description = models.TextField(blank=True, null=True)
-    tags = TagField()
     uploaded = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
@@ -26,4 +23,6 @@ class Image(models.Model):
         return '%s%s' % (settings.MEDIA_URL, self.image)
 
     class Meta:
+        verbose_name = "contrib image"
+        verbose_name_plural = "contrib images"
         ordering = ['modified',]
