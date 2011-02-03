@@ -14,7 +14,7 @@ This is a bare django project + flatpages + required settings and installed apps
 
 To build it, these instructions assume you have virtualenv + virtualenv wrapper installed.
 
-Make a virtualenv:
+Make a virtualenv::
 
     mkvirtualenv servee
     cd ~/Path/to/servee/example_projects/bare_necessities
