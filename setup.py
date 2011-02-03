@@ -4,7 +4,7 @@ setup(
     name='django-servee',
     version=__import__('servee').__version__,
     description=__import__('servee').__about__,
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
     # Get more strings from http://www.python.org/pypi?:action=list_classifiers
     author='Kelly Creative Tech - Issac Kelly',
     author_email='issac@kellycreativetech.com',
