@@ -15,10 +15,7 @@ margin:0;
 
 /*-----admin toolbar styles ----*/
 div.srv_adminBox, div#srv_wysiwyg_tools, div#srv_adminLarge{
-background-color:#fff;
-background-color: rgba(255,255,255,0.95);
-background-image: -moz-linear-gradient(top, rgba(255,255,255,0.95), rgba(238,238,238,0.95)); /* FF3.6 */
-background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgba(255,255,255,0.95)),color-stop(1, rgba(238,238,238,0.95))); /* Saf4+, Chrome */
+background: rgba(255,255,255,0.9);
 -moz-box-shadow:1px 1px 10px rgba(0,0,0,0.5);
 -webkit-box-shadow:1px 1px 10px rgba(0,0,0,0.5);
 box-shadow:1px 1px 10px rgba(0,0,0,0.5);
@@ -50,7 +47,6 @@ padding:0;
 margin:0;
 width:167px;
 border-bottom:1px solid #fff;
-background:none transparent;
 }
 div.srv_adminBox li:last{
 border-bottom:0 none;
@@ -71,6 +67,7 @@ border:0 none;
 div.srv_adminBox li a span{
 font: lighter 16px/18px Helvetica Neue,Helvetica,Arial sans-serif;
 letter-spacing: -.3px;
+
 }
 
 div.srv_adminBox li.hideTools a, div#srv_show a span{
@@ -80,14 +77,14 @@ font-size:11px;
 div.srv_adminBox li.hideTools a{
 text-align:right;
 padding:0;
-display: block;
-width:157px;
 }
-div.srv_adminBox li.hideTools a:hover, div.srv_adminBox li.hideTools:hover{
+div.srv_adminBox li.hideTools a:hover{
 background:none;
 }
-div#srv_CSSstyles li:hover, div.srv_adminBox .srv_filePane li:hover, div#srv_gallerypreview ul li:hover, div.srv_adminBox li:hover, ul.srv_gallery_filepane li:hover {
-background-color:#ccc;
+div#srv_CSSstyles li:hover, .srv_filePane li:hover, div#srv_gallerypreview ul li:hover {
+background-image: -moz-linear-gradient(top, #fff, #ccc); /* FF3.6 */
+background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #fff),color-stop(1, #ccc)); /* Saf4+, Chrome */
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fff', EndColorStr='#ccc')"; /* IE8 */
 color:#000;
 }
 div.srv_adminBox li.selected a{
@@ -100,26 +97,6 @@ color:#000;
 input.srv_button, p.submit input.submit, p.submit input.cancel{
 width:auto;
 padding:3px 8px;
-margin:0 0 6px 0;
-font: 12px/12px Helvetica Neue,Helvetica,Arial sans-serif;
-outline:0 none;
-border:1px solid #999;
-/*background-image: -moz-linear-gradient(top, #00b221, #01971d); 
-background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #00b221),color-stop(1, #01971d));
--ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#00b221', EndColorStr='#01971d')"; 
-color:#fff;*/
-background-image: -moz-linear-gradient(top, #fff, #ccc); 
-background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #fff),color-stop(1, #ccc)); 
--ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fff', EndColorStr='#ccc')"; 
-color:#555;
--moz-border-radius: 0px;
--webkit-border-radius: 0px;
-border-radius:0px;
-text-shadow:0 1px 1px rgba(0, 0, 0, 0.3)
-}
-input.srv_button:hover, p.submit input.submit:hover, p.submit input.cancel:hover{
-width:auto;
-padding:3px 8px;
 margin-bottom:6px;
 font: 12px/12px Helvetica Neue,Helvetica,Arial sans-serif;
 outline:0 none;
@@ -127,11 +104,6 @@ border:1px solid #999;
 background-image: -moz-linear-gradient(top, #fff, #ccc); /* FF3.6 */
 background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #fff),color-stop(1, #ccc)); /* Saf4+, Chrome */
 -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fff', EndColorStr='#ccc')"; /* IE8 */
-color:#555;
-text-shadow:0 1px rgba(0,0,0, 0.33), 0 0 5px rgba(255, 255, 255, 0.67);
--moz-border-radius: 0px;
--webkit-border-radius: 0px;
-border-radius:0px;
 }
 input.fileinput{
 width:200px;
@@ -203,7 +175,7 @@ height:auto;
 margin:0;
 }
 
-div.srv_adminBox .srv_filePane li, ul.srv_gallery_filepane li{
+div.srv_adminBox .srv_filePane li{
 margin:0 0 8px 0;
 padding:4px 0 0 0;
 list-style:none;
@@ -214,7 +186,7 @@ background:transparent none;
 border:0 none;
 width:auto;
 }
-div.srv_adminBox .srv_filePane li.backgroundHighlight, .srv_filePane li.backgroundHighlight:hover, .ul.srv_gallery_filepane li.backgroundHighlight, .ul.srv_gallery_filepane li.backgroundHighlight:hover{
+.srv_filePane li.backgroundHighlight, .srv_filePane li.backgroundHighlight:hover{
 border-top: 1px solid #5084f5;
 border-bottom: 1px solid #0f3689;
 background-image: -moz-linear-gradient(top, #3167db, #1046b9); /* FF3.6 */
@@ -228,12 +200,11 @@ background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #31
 box-shadow:0px 1px 3px rgba(0,0,0,0.3);
 }
 .srv_filePane li.backgroundHighlight p{color:#fff;}
-.srv_filePane li p, ul.srv_gallery_filepane li p{
+.srv_filePane li p{
 font: 10px/9px Helvetica Neue,Helvetica,Arial sans-serif;
 color:#333;
 text-align:center;
 margin:0 0 9px 0;
-padding:0px 4px;
 }
 
 .srv_insertOptions{
@@ -246,17 +217,7 @@ width:168px;
 padding:8px;
 overflow:auto;
 }
-.srv_insertOptions select {
-width:168px;
-background: #fff;
--moz-border-radius: 0px;
--webkit-border-radius: 0px;
-border-radius:0px;
-}
-.srv_insertOptions label {
-width:168px;
-text-align: left;
-}
+
 ul.srv_mediaList, ul.srv_galleryList{
 top:16px;
 left:368px;
@@ -279,7 +240,6 @@ padding:0;
 margin:0;
 background:0 none;
 border:0 none;
-color:#333;
 }
 ul.srv_mediaList li p,
 ul.srv_galleryList li p{
@@ -405,7 +365,7 @@ z-index:5001;
 }
 div#srv_code_edit textarea{
 bottom:64px;
-height:90%;
+height:auto;
 left:16px;
 left:-750px;
 margin:0;
@@ -414,28 +374,20 @@ overflow-y:auto;
 overflow-x:hidden;
 position:fixed;
 top:16px;
-width:706px;
-min-height:488px;
-font: 12px/16px "Lucida Console", Monaco, "Courier New", mono;
-color:#555;
-white-space: pre;
--moz-border-radius: 0px;
--webkit-border-radius: 0px;
-border-radius:0px;
-background:#eaeaea;
-border:1px solid #cdcdcd;
-border-bottom:1px solid #f9f9f9;
-border-right:1px solid #f9f9f9;
-padding:6px;
+width:718px;
 }
 div#srv_code_edit input{
 bottom:16px;
+height:32;
 left:16px;
 left:-250px;
 margin:0;
+padding:0;
 overflow-y:auto;
 overflow-x:hidden;
 position:fixed;
+width:218px;
+background:red;
 }
 
 /*-------paste dialog-------*/
@@ -482,10 +434,10 @@ background:red;
 /*-------link dialog-------*/
 div#srv_link{
 left:0;
-left:-950px;
+left:-850px;
 top:0;
 bottom:0;
-width:450px;
+width:250px;
 position: fixed;
 background: rgba(255,255,255,0.9);
 -moz-box-shadow:1px 1px 10px rgba(0,0,0,0.5);
@@ -497,35 +449,14 @@ div#srv_link form{
 bottom:48px;
 height:auto;
 left:16px;
-left:-600px;
+left:-500px;
 margin:0;
 padding:0;
 overflow-y:auto;
 overflow-x:hidden;
 position:fixed;
 top:16px;
-width:418px;
-}
-div#srv_link label{
-width:40px;
-float:left;
-padding:6px 10px 0 0;
-}
-div#srv_link input.textInput{
-width:320px;
-float:left;
-margin-bottom:4px;
-}
-div#srv_link input.srv_button{
-width:auto;
-margin-left:50px;
-font-weight: normal;
-}
-
-div#srv_link p.formHint{
-float:none;
-position: static;
-width:380px;
+width:218;
 }
 div#srv_link form fieldset{
     left:-300px;
@@ -533,10 +464,6 @@ div#srv_link form fieldset{
 div#srv_link form fieldset div{
     left:-300px;
 }
-div.srv_ctrlHolder{
-clear:both;
-}
-
 /*-------srv_wysiwyg_tools ----*/
 div#srv_wysiwyg_tools{
 border:0 none;
@@ -567,7 +494,6 @@ height:20px;
 border-bottom:0 none;
 float:left;
 margin:3px;
-background:none transparent;
 }
 div#srv_wysiwyg_tools a{
 width:20px;
@@ -620,7 +546,7 @@ div#srv_wysiwyg_tools a.srv_spell:hover			{background-position: -540px -80px;}
 
 /*-----inline editor styles ----*/
 
-body a.frontendadmin.frontendadmin_edit, a.frontendadmin.frontendadmin_delete, a.frontendadmin.frontendadmin_add {
+body a.frontendadmin.frontendadmin_edit{
 background:url(../images/edit.png) no-repeat 3px 2px #012e8f;
 font: 10px/9px Helvetica,Arial,sans-serif;
 color:#fff;
@@ -630,14 +556,9 @@ display:inline-block;
 -moz-border-radius:4px;
 -webkit-border-radius:4px;
 border-radius:4px;
-padding:4px 4px 4px 20px;
-opacity:0.5;
-border-bottom:0 none;
 }
-body a.frontendadmin.frontendadmin_edit:hover, a.frontendadmin.frontendadmin_delete:hover, a.frontendadmin.frontendadmin_add:hover {
+body a.frontendadmin.frontendadmin_edit:hover{
 background:url(../images/edit.png) no-repeat 3px 2px #1146ba;
-border-bottom:0 none;
-opacity:1.0;
 }
 
 body fieldset.frontendadmin p, body fieldset.frontendadmin{
@@ -645,7 +566,7 @@ background: none transparent;
 border:0 none;
 padding:0;
 }
-body fieldset.frontendadmin p input[type="text"], body fieldset.frontendadmin p input[type="password"], body fieldset.frontendadmin p textarea, {
+body fieldset.frontendadmin p input[type="text"], body fieldset.frontendadmin p input[type="password"], body fieldset.frontendadmin p textarea{
 border:1px solid #ccc;
 border-bottom:1px solid #eee;
 padding:4px;
@@ -668,7 +589,10 @@ border:0 none;
 body .defaultSkin tr.mceLast{
 display: none;
 }
+fieldset.frontendadmin input#id_template_name{
+width:300px;
 
+}
 
 /*------- styles for Gallery insert-----*/
 
@@ -678,9 +602,8 @@ top:0;
 bottom:0;
 right:179px;
 width:700px;
-display: none;
 }
-#srv_adminLarge ul.srv_galleryList, ul.srv_gallery_filepane, #srv_adminLarge div#srv_galleryEdit{
+#srv_adminLarge ul.srv_galleryList, #srv_adminLarge ul.srv_filePane, #srv_adminLarge div#srv_galleryEdit{
 top:16px;
 bottom:16px;
 position:fixed;
@@ -702,25 +625,24 @@ opacity:0.8;
 #srv_adminLarge ul.srv_galleryList li a:hover{
 opacity:1.0;
 }
-ul.srv_galleryList li a.srv_gallery_add_document, ul.srv_mediaList li a.srv_wysiwyg_insert_Document_panel{
+ul.srv_galleryList li a.srv_gallery_add_document, li a.srv_wysiwyg_insert_Document_panel{
 background:url(../images/docIcon.png) no-repeat top right;
 }
-ul.srv_galleryList li a.srv_gallery_add_video, ul.srv_mediaList li a.srv_wysiwyg_insert_Video_panel{
+ul.srv_galleryList li a.srv_gallery_add_video, li a.srv_wysiwyg_insert_Video_panel{
 background:url(../images/videoIcon.png) no-repeat top right;
 }
-ul.srv_galleryList li a.srv_gallery_add_image, ul.srv_mediaList li a.srv_wysiwyg_insert_Image_panel{
+ul.srv_galleryList li a.srv_gallery_add_image, li a.srv_wysiwyg_insert_Image_panel{
 background:url(../images/imageIcon.png) no-repeat top right;
 }
-ul.srv_mediaList li a.srv_wysiwyg_insert_Gallery_panel{
+li a.srv_wysiwyg_insert_Gallery_panel{
 background:url(../images/galleryIcon.png) no-repeat top right;
 }
 
 
 
-ul.srv_gallery_filepane{
+#srv_adminLarge ul.srv_filePane{
 right:311px;
 width:150px;
-bottom:0px;
 }
 
 #srv_adminLarge div#srv_galleryEdit{
@@ -757,7 +679,6 @@ cursor: move;
 }
 div#srv_gallerypreview ul li a{
 border: 0 none;
-cursor: move;
 }
 div#srv_gallerypreview p{
 width:12px;
@@ -778,19 +699,11 @@ background: url(../images/delete.png) 0px 0px no-repeat;
 
 /*------ form styles for uniForm markup------*/
 
-#srv_upload_image label{
-font: 11px/18px Helvetica Neue,Helvetica,Arial sans-serif;
-margin-top:56px;
-display: block;
-}
-
 div.srv_ctrlHolder label{
 font: 11px/18px Helvetica Neue,Helvetica,Arial sans-serif;
 width:140px;
 display: inline-block;
 text-align:right;
-float:none;
-padding:0;
 }
 div.srv_ctrlHolder input, div.srv_ctrlHolder select{
 font: normal 16px/18px Helvetica Neue,Helvetica,Arial sans-serif;
@@ -799,31 +712,9 @@ color:#555;
 border:1px solid #ccc;
 padding:4px;
 width:246px;
--moz-border-radius: 0px;
--webkit-border-radius: 0px;
-border-radius:0;
-margin-bottom:0;
-}
-
-div.ctrlHolder input, div.ctrlHolder select{
-background:#fff;
--moz-border-radius: 0px;
--webkit-border-radius: 0px;
-border-radius:0px;
-font: normal 13px/16px Helvetica Neue,Helvetica,Arial sans-serif;
-padding:3px;
-}
-div.ctrlHolder select{
-font: normal 13px/16px Helvetica Neue,Helvetica,Arial sans-serif;
-}
-div.ctrlHolder.checkbox{
-margin-bottom:18px;
 }
 div.srv_ctrlHolder select{
 width:256px;
--moz-border-radius: 0px;
--webkit-border-radius: 0px;
-border-radius:0;
 }
 div.srv_ctrlHolder{
 margin-bottom:4px;
@@ -868,243 +759,4 @@ div.srv_buttonHolder button.primaryAction:active{
 background-image: -moz-linear-gradient(top, #0b6f03, #109c06); /* FF3.6 */
 background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #0b6f03),color-stop(1, #109c06)); /* Saf4+, Chrome */
 -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#0b6f03', EndColorStr='#109c06')"; /* IE8 */
-}
-
-
-/*-------- front-end admin form styles -----*/
-
-/* Buttons */
-
-a.frontendadmin {
-  font-size: 12px;
-  font-weight: bold;
-  background-position: 0 50%;
-  background-repeat: no-repeat;
-  padding: 4px;
-  padding-left: 20px;
-}
-
-a.frontendadmin.frontendadmin_edit {
-  background-image: url(../../pinax/img/silk/icons/page_white_edit.png);
-}
-
-a.frontendadmin.frontendadmin_add {
-  background:url(../images/edit.png) no-repeat 3px -38px #018f15;
-}
-a.frontendadmin.frontendadmin_add:hover {
-  background:url(../images/edit.png) no-repeat 3px -38px #11ba11;
-}
-a.frontendadmin.frontendadmin_delete {
-  background:url(../images/edit.png) no-repeat 3px -21px #8f0101;
-}
-a.frontendadmin.frontendadmin_delete:hover {
-  background:url(../images/edit.png) no-repeat 3px -21px #ba1111;
-}
-
-p.image a.frontendadmin{
-    position: absolute;
-}
-
-/* Edit form */
-/*--
-fieldset.frontendadmin {
-  margin: 0;
-  padding: 10px 10px;
-  border: 1px dotted #6498cc;
-  font-size: 12px;
-  background-color: white;
-}
-
-fieldset.frontendadmin legend {
-  font:lighter 24px/27px "Helvetica Neue",Helvetica,Arial sans-serif;
-  color: #666;
-  padding: 0;
-  margin-bottom:18px;
-  display: block;
-  width:100%;
-  border-bottom:1px solid #ccc;
-}
-
-fieldset.frontendadmin img.preview {
-  float: left;
-  margin-right: 0.4em;
-  border: 0.1em solid #4a6379;
-}
-
-fieldset.frontendadmin p {
-  background-color: #e7eff6;
-  margin: 0.8em 0;
-  padding: 5px 10px;
-  clear: both;
-}
-
-fieldset.frontendadmin label {
-  font-size: 0.9em;
-  color: #333333;
-  display: block;
-  margin-bottom: 3px;
-  width:140px;
-}
-
-fieldset.frontendadmin p input[type=text],
-fieldset.frontendadmin p input[type=password],
-fieldset.frontendadmin p textarea,
-fieldset.frontendadmin p select
-{
-  width: 98%;
-  border:1px solid #ccc;
-  border-top:1px solid #aaa;
-  background:transparent none;
-}
-
-fieldset.frontendadmin p textarea {
-  height: 25em;
-}
-
-fieldset.frontendadmin p span.help {
-  font-size: 0.9em;
-  display: block;
-}
-
-fieldset.frontendadmin ul.errorlist {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-fieldset.frontendadmin ul.errorlist li {
-  margin: 5px 0 2px 0;
-  padding: 5px 10px;
-  color: White;
-  background-color: #f74a4a;
-}
-
-fieldset.frontendadmin span.help,
-fieldset.frontendadmin span.preview
-{
-  display: block;
-  font-size: 0.95em;
-  line-height: 1.2em;
-  margin-top: 3px;
-}
-
-fieldset.frontendadmin p.formHint{
-font: italic 10px/12px Helvetica Neue,Helvetica,Arial sans-serif;
-text-align:left;
-margin:-5px 0 17px 150px;
-position: relative;
-}
---*/
-span.mceEditor{margin:0px 0 9px 0px;display: block;}
-
-
-/*---- price change form -----*/
-div#container-change-price label{
-text-align:left;
-margin:0;
-width:100%;
-}
-
-div#container-change-price p.formHint{
-margin:0 0 18px 0;
-}
-div#container-change-price input#id_price{
-width:160px;
-margin-left:10px;
-}
-
-/*--- nav editor styles 8-29-10 --*/
-
-#srv_navEditor{
-top:0;
-bottom:0;
-left:0;
-right:180px;
--moz-box-shadow: 0 0 0 rgba(0,0,0,0.0);
--webkit-box-shadow: 0 0 0 rgba(0,0,0,0.0);
-box-shadow: 0 0 0 rgba(0,0,0,0.0);
-}
-#srv_navEditor #pageInfo{
-position: fixed;
-top:16px;
-left:16px;
-bottom:16px;
-overflow: auto;
-width:370px;
-}
-#srv_navEditor #ArchBox{
-position: fixed;
-top:16px;
-left:402px;
-bottom:16px;
-width:200px;
-}
-#srv_navEditor #OrphanBox{
-position: fixed;
-top:16px;
-left:618px;
-bottom:16px;
-width:200px;
-}
-
-#srv_navEditor #ArchBox .srv_solidBox, #srv_navEditor #OrphanBox .srv_solidBox{
-bottom:0px;
-top:48px;
-width:180px;
-position: absolute;
-overflow: auto;
-padding:9px;
-}
-
-#pageInfo div.srv_ctrlHolder label{
-width:120px;
-}
-
-#pageInfo div.srv_ctrlHolder input{
-width:233px;
-}
-.frontendadmin input[type="checkbox"],.frontendadmin input[type="radio"]{width:13px;}
-#pageInfo div.srv_ctrlHolder select{
-width:243px;
-} 
-
-#pageInfo div.srv_ctrlHolder{
-margin-top:9px;
-}
-
-
-
-/*--------- uploadify ------------*/
-
-.uploadifyQueueItem {
-	font: 10px Helvetica, Arial, sans-serif;
-	border: 1px solid #ddd;
-	background-color: #eee;
-	margin-top: 5px;
-	padding: 4px;
-	width: 91%;
-}
-.uploadifyError {
-	border: 2px solid #FBCBBC !important;
-	background-color: #FDE5DD !important;
-}
-.uploadifyQueueItem .cancel {
-	float: right;
-}
-.uploadifyQueueItem .cancel a{
-	border-bottom:0 none;
-}
-.uploadifyProgress {
-	background-color: #FFFFFF;
-	border-top: 1px solid #808080;
-	border-left: 1px solid #808080;
-	border-right: 1px solid #C5C5C5;
-	border-bottom: 1px solid #C5C5C5;
-	margin-top: 10px;
-	width: 100%;
-}
-.uploadifyProgressBar {
-	background-color: #1046B9;
-	width: 1px;
-	height: 3px;
 }
