@@ -9,8 +9,8 @@ easy-thumbnails
 # The changes in both uniform and frontendadmin are both
 # Templates only, and it's possible that we can just have a "servee templates"
 # Package, as long as it loads before frontendadmin and uni-form in INSTALLED_APPS
--e git+git@github.com:issackelly/django-uni-form.git#egg=django-uni-form
--e git+git@github.com:issackelly/django-frontendadmin.git#egg=frontendadmin
+-e git+http://github.com/issackelly/django-uni-form.git#egg=django-uni-form
+-e git+http://github.com/issackelly/django-frontendadmin.git#egg=frontendadmin
 
 #django-staticfiles>=1.0
 -e git+https://github.com/jezdez/django-staticfiles.git#egg=staticfiles
