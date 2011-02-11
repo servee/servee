@@ -14,8 +14,11 @@
 	<input type="button" class="srv_button insert" id="srv_insert_image_action" value="Place image at Cursor">
 
     <form id="srv_upload_image" method="POST" enctype="multipart/form-data" action="{% url upload_image %}">
+    {% csrf_token %}
 	{{ form|as_uni_form }}
-	<input type="submit" class="srv_button insert" id="srv_upload_image_action" value="Upload">
+	<div class="buttonHolder">
+	    <input type="submit" class="srv_button insert button" id="srv_upload_image_action" value="Upload">
+    </div>
 </form>
 </div>
 <script type="text/javascript">
@@ -35,7 +38,7 @@ $(document).ready(function(){
 		}
 	});
 	$("a[href=#srv_place_image]").live('click',function(e){
-		var chosen = this
+		var chosen = this;
 		$(chosen).parent().parent().children().removeClass('backgroundHighlight');
 		$(chosen).parent().addClass('backgroundHighlight');
 		$("#srv_insert_image_title").html($(chosen).children('p').html());
@@ -47,22 +50,22 @@ $(document).ready(function(){
 	});
 	$("input#srv_insert_image_action").click(function(e){
 		var template, pk;
-		pk = parseInt($("#srv_insert_image_pk").val())
+		pk = parseInt($("#srv_insert_image_pk").val(), 10);
 		if(pk > 0){
 			template = $("select#srv_insert_image_template").val();
 			if(template == 'auto') template = null;
-			srv_insert_image_by_pk(pk, template)
+			srv_insert_image_by_pk(pk, template);
 		}
 		e.preventDefault();
 		return false;
 	});
 	function srv_insert_image_by_pk(pk, template){
-		var markup = '<inline type="image.image" id="'+pk+'"';
+		var markup = '<img data-inline-type="image.image" data-inline-id="'+pk+'" class="data-inline-replace" src="{{ STATIC_URL }}/images/imageIcon.png';
 		if(template){
-			markup += ' template="'+template+'"'
+			markup += ' data-inline-template="'+template;
 		}
-		markup += '/>'
-		srv_wysiwyg_insert_html_at_cursor(markup)
+		markup += '/>';
+		srv_wysiwyg_insert_html_at_cursor(markup);
 	}
 });
 </script>
