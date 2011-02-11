@@ -2,14 +2,18 @@ tinyMCEPopup.requireLangPack();
 
 var SearchReplaceDialog = {
 	init : function(ed) {
-		var f = document.forms[0], m = tinyMCEPopup.getWindowArg("mode");
+		var t = this, f = document.forms[0], m = tinyMCEPopup.getWindowArg("mode");
 
-		this.switchMode(m);
+		t.switchMode(m);
 
 		f[m + '_panel_searchstring'].value = tinyMCEPopup.getWindowArg("search_string");
 
 		// Focus input field
 		f[m + '_panel_searchstring'].focus();
+		
+		mcTabs.onChange.add(function(tab_id, panel_id) {
+			t.switchMode(tab_id.substring(0, tab_id.indexOf('_')));
+		});
 	},
 
 	switchMode : function(m) {
@@ -41,6 +45,10 @@ var SearchReplaceDialog = {
 		b = f[m + '_panel_backwardsu'].checked;
 		ca = f[m + '_panel_casesensitivebox'].checked;
 		rs = f['replace_panel_replacestring'].value;
+
+		if (tinymce.isIE) {
+			r = ed.getDoc().selection.createRange();
+		}
 
 		if (s == '')
 			return;
@@ -105,6 +113,10 @@ var SearchReplaceDialog = {
 
 		se.collapse(b);
 		r = se.getRng();
+
+		if (tinymce.isIE) {
+			r = ed.getDoc().selection.createRange();
+		}
 
 		// Whats the point
 		if (!s)

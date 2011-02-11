@@ -12,7 +12,7 @@ function insertTable() {
 	tinyMCEPopup.restoreSelection();
 
 	if (!AutoValidator.validate(formObj)) {
-		tinyMCEPopup.alert(inst.getLang('invalid_data'));
+		tinyMCEPopup.alert(AutoValidator.getErrorMessages(formObj).join('. ') + '.');
 		return false;
 	}
 
@@ -21,7 +21,7 @@ function insertTable() {
 	// Get form data
 	cols = formObj.elements['cols'].value;
 	rows = formObj.elements['rows'].value;
-	border = formObj.elements['border'].value != "" ? formObj.elements['border'].value  : 0;
+	border = formObj.elements['border'].value != "" ? formObj.elements['border'].value : 0;
 	cellpadding = formObj.elements['cellpadding'].value != "" ? formObj.elements['cellpadding'].value : "";
 	cellspacing = formObj.elements['cellspacing'].value != "" ? formObj.elements['cellspacing'].value : "";
 	align = getSelectValue(formObj, "align");
@@ -82,7 +82,7 @@ function insertTable() {
 			capEl = elm.ownerDocument.createElement('caption');
 
 			if (!tinymce.isIE)
-				capEl.innerHTML = '<br _mce_bogus="1"/>';
+				capEl.innerHTML = '<br data-mce-bogus="1"/>';
 
 			elm.insertBefore(capEl, elm.firstChild);
 		}
@@ -151,7 +151,7 @@ function insertTable() {
 	html += makeAttrib('border', border);
 	html += makeAttrib('cellpadding', cellpadding);
 	html += makeAttrib('cellspacing', cellspacing);
-	html += makeAttrib('_mce_new', '1');
+	html += makeAttrib('data-mce-new', '1');
 
 	if (width && inst.settings.inline_styles) {
 		if (style)
@@ -187,7 +187,7 @@ function insertTable() {
 
 	if (caption) {
 		if (!tinymce.isIE)
-			html += '<caption><br _mce_bogus="1"/></caption>';
+			html += '<caption><br data-mce-bogus="1"/></caption>';
 		else
 			html += '<caption></caption>';
 	}
@@ -197,7 +197,7 @@ function insertTable() {
 
 		for (var x=0; x<cols; x++) {
 			if (!tinymce.isIE)
-				html += '<td><br _mce_bogus="1"/></td>';
+				html += '<td><br data-mce-bogus="1"/></td>';
 			else
 				html += '<td></td>';
 		}
@@ -231,13 +231,18 @@ function insertTable() {
 	} else
 		inst.execCommand('mceInsertContent', false, html);
 
-	tinymce.each(dom.select('table[_mce_new]'), function(node) {
+	tinymce.each(dom.select('table[data-mce-new]'), function(node) {
 		var td = dom.select('td', node);
 
-		inst.selection.select(td[0], true);
-		inst.selection.collapse();
+		try {
+			// IE9 might fail to do this selection
+			inst.selection.select(td[0], true);
+			inst.selection.collapse();
+		} catch (ex) {
+			// Ignore
+		}
 
-		dom.setAttrib(node, '_mce_new', '');
+		dom.setAttrib(node, 'data-mce-new', '');
 	});
 
 	inst.addVisual();
@@ -279,7 +284,7 @@ function init() {
 
 	var cols = 2, rows = 2, border = tinyMCEPopup.getParam('table_default_border', '0'), cellpadding = tinyMCEPopup.getParam('table_default_cellpadding', ''), cellspacing = tinyMCEPopup.getParam('table_default_cellspacing', '');
 	var align = "", width = "", height = "", bordercolor = "", bgcolor = "", className = "";
-	var id = "", summary = "", style = "", dir = "", lang = "", background = "", bgcolor = "", bordercolor = "", rules, frame;
+	var id = "", summary = "", style = "", dir = "", lang = "", background = "", bgcolor = "", bordercolor = "", rules = "", frame = "";
 	var inst = tinyMCEPopup.editor, dom = inst.dom;
 	var formObj = document.forms[0];
 	var elm = dom.getParent(inst.selection.getNode(), "table");
@@ -316,7 +321,7 @@ function init() {
 		style = dom.serializeStyle(st);
 		dir = dom.getAttrib(elm, 'dir');
 		lang = dom.getAttrib(elm, 'lang');
-		background = getStyle(elm, 'background', 'backgroundImage').replace(new RegExp("url\\('?([^']*)'?\\)", 'gi'), "$1");
+		background = getStyle(elm, 'background', 'backgroundImage').replace(new RegExp("url\\(['\"]?([^'\"]*)['\"]?\\)", 'gi'), "$1");
 		formObj.caption.checked = elm.getElementsByTagName('caption').length > 0;
 
 		orgTableWidth = width;
