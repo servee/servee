@@ -1,3 +1,3 @@
 {% load thumbnail %}
 {% thumbnail object.image 200x300 as img %}
-<img src='{{ img.absolute_url }}' width="{{ img.width }}" height="{{ img.height }}" alt="{{ object.title }}" class="float-right" />
+<img src='{{ img.url }}' width="{{ img.width }}" height="{{ img.height }}" alt="{{ object.title }}" class="float-right" />
