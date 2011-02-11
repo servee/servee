@@ -9,10 +9,10 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         
         # Adding field 'MenuItem.content_type'
-        db.add_column('navigation_menuitem', 'content_type', self.gf('django.db.models.fields.related.ForeignKey')(default='', to=orm['contenttypes.ContentType'], blank=True), keep_default=False)
+        db.add_column('navigation_menuitem', 'content_type', self.gf('django.db.models.fields.related.ForeignKey')(default=0, to=orm['contenttypes.ContentType'], blank=True), keep_default=False)
 
         # Adding field 'MenuItem.object_id'
-        db.add_column('navigation_menuitem', 'object_id', self.gf('django.db.models.fields.PositiveIntegerField')(default='', blank=True), keep_default=False)
+        db.add_column('navigation_menuitem', 'object_id', self.gf('django.db.models.fields.PositiveIntegerField')(default=0, blank=True), keep_default=False)
 
 
     def backwards(self, orm):
