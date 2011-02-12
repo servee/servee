@@ -14,20 +14,29 @@
 	<input type="hidden" name="srv_insert_video_pk" id="srv_insert_video_pk" value="0">
 	<input type="button" class="srv_button insert" id="srv_insert_video_action" value="Place image at Cursor">
 
-<form id="srv_upload_video" method="POST" enctype="multipart/form-data" action="{% url upload_video %}">
-	{{ form|as_uni_form }}
-	<input type="submit" class="srv_button insert" id="srv_upload_image_action" value="Upload">
-</form>
+    <form id="srv_upload_video" method="POST" enctype="multipart/form-data" action="{% url upload_video %}">
+    	{% csrf_token %}
+    	{{ form|as_uni_form }}
+    	<input type="submit" class="srv_button insert" id="srv_upload_image_action" value="Upload">
+    </form>
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("form#srv_upload_video").ajaxForm({
-		dataType: 'json',
-		iframe: true,
-		success : function(data){
+	// uploadify
+	$("form#srv_upload_video input[type=file]").uploadify({
+		swf: "{{ STATIC_URL }}uploadify/uploadify.swf",
+        uploader: $("form#srv_upload_video").attr("action"),
+        cancelImage: "{{ STATIC_URL }}uploadify/uploadify-cancel.png",
+        auto: true,
+        debug: DEBUG,
+        buttonImage: "{{ STATIC_URL }}images/buttonBG.png",
+        fileObjName: "video",
+		onUploadSuccess: function(file, response){
+			data = jQuery.parseJSON(response);
+			if (DEBUG) console.log(data);
 			if(data.error.length == 0){
 				$("ul#srv_video_filePane").append(data.item);
-				if (DEBUG) console.log('appending '+data.item)
+				if (DEBUG) console.log('appending '+data.item);
 			}
 			else {
 				if (DEBUG) console.log(error);
@@ -35,8 +44,11 @@ $(document).ready(function(){
 			}
 		}
 	});
-	$("a[href=#srv_place_video]").click(function(e){
-		var chosen = this
+	$("input#srv_upload_video_action").hide();
+	
+	
+	$("a[href=#srv_place_video]").live("click", function(e){
+		var chosen = this;
 		$(chosen).parent().parent().children().removeClass('backgroundHighlight');
 		$(chosen).parent().addClass('backgroundHighlight');
 		$("#srv_insert_video_title").html($(chosen).siblings('p').html());
@@ -48,22 +60,24 @@ $(document).ready(function(){
 	});
 	$("input#srv_insert_video_action").click(function(e){
 		var template, pk;
-		pk = parseInt($("#srv_insert_video_pk").val())
+		pk = parseInt($("#srv_insert_video_pk").val(), 10);
 		if(pk > 0){
 			template = $("select#srv_insert_video_template").val();
 			if(template == 'auto') template = null;
-			srv_insert_video_by_pk(pk, template)
+			srv_insert_video_by_pk(pk, template);
 		}
 		e.preventDefault();
 		return false;
 	});
 });
 function srv_insert_video_by_pk(pk, template){
-	var markup = '<inline type="video.video" id="'+pk+'"';
+	var markup = '<video data-inline-type="video.video" data-inline-id="'+pk+'"';
 	if(template){
-		markup += ' template="'+template+'"';
+		markup += ' data-inline-template="'+template+'"';
 	}
-	markup += '/>'
-	srv_wysiwyg_insert_html_at_cursor(markup)
+	markup += '>';
+	markup += "Your video will be rendered automatically.";
+	markup += '</video>';
+	srv_wysiwyg_insert_html_at_cursor(markup);
 }
 </script>

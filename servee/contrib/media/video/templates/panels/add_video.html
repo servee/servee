@@ -1,9 +1,1 @@
-{% load thumbnail %}
-{% thumbnail video.still 75x75 as thumb %}
-{% thumbnail video.still 160x160 as big_thumb %}
-<li>
-	<a href="#srv_place_video" data-id="{{ video.pk }}" data-big-thumb="{{ big_thumb.url }}" data-big-thumb-width="{{ big_thumb.width }}" data-big-thumb-height="{{ big_thumb.height }}">
-		<img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" alt="{{ video.description }}" />
-	</a>
-	<p>{{ video.title }}</p>
-</li>
+{% load thumbnail %}{% thumbnail video.still 75x75 as thumb %}{% thumbnail video.still 160x160 as big_thumb %}<li><a href="#srv_place_video" data-id="{{ video.pk }}" data-big-thumb="{{ big_thumb.url }}" data-big-thumb-width="{{ big_thumb.width }}" data-big-thumb-height="{{ big_thumb.height }}"><img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" alt="{{ video.description }}" /></a><p>{{ video.title }}</p></li>

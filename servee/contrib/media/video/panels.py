@@ -1,6 +1,7 @@
 from servee.wysiwyg.panels import InsertPanel
 from django.template.loader import render_to_string
 from servee.contrib.media.video.models import Video
+from servee.contrib.media.video.forms import VideoUpload
 
 class VideoPanel(InsertPanel):
     
@@ -15,7 +16,8 @@ class VideoPanel(InsertPanel):
         
     def content(self):
         videos = Video.objects.all()
-        return render_to_string('panels/video.html', dict(videos=videos))
+        form = VideoUpload()
+        return render_to_string('panels/video.html', dict(videos=videos, form=form))
 
     def url(self):
         return '#insert_video'

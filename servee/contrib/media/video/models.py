@@ -17,7 +17,7 @@ class Video(models.Model):
     def save(self, *args, **kwargs):
         if not self.title:
             self.title = self.video.name
-        super(Image, self).save(*args, **kwargs) # Call the "real" save() method.
+        super(Video, self).save(*args, **kwargs) # Call the "real" save() method.
 
     @property
     def url(self):

@@ -16,16 +16,10 @@
 	<p><select id="#srv_insert_gallery_template"><option>Auto</option></select></p>
 	<input type="hidden" name="srv_insert_gallery_pk" id="srv_insert_gallery_pk" value="0">
 	<input type="button" class="srv_button insert" id="srv_insert_gallery_action" value="Place image at Cursor">
-<!--<p>Narrow the list with tags:</p>
-
-<div id="tagCloud" class="clearfix">
-  <span class="tags">Tags:</span> <span id="clearTags" class="selected"><a>Show all
-  files</a></span> <span><a>instructions</a></span> 
-</div>-->
 </div>
 <script type="text/javascript">
-$("a[href=#srv_place_gallery]").click(function(e){
-	var chosen = this
+$("a[href=#srv_place_gallery]").live("click", function(e){
+	var chosen = this;
 	$(chosen).parent().parent().children().removeClass('backgroundHighlight');
 	$(chosen).parent().addClass('backgroundHighlight');
 	$("#srv_insert_gallery_title").html( $(chosen).children('h5').html() );
@@ -36,21 +30,23 @@ $("a[href=#srv_place_gallery]").click(function(e){
 });
 $("input#srv_insert_gallery_action").click(function(e){
 	var template, pk;
-	pk = parseInt($("#srv_insert_gallery_pk").val())
+	pk = parseInt($("#srv_insert_gallery_pk").val(), 10);
 	if(pk > 0){
 		template = $("select#srv_insert_gallery_template").val();
 		if(template == 'auto') template = null;
-		srv_insert_gallery_by_pk(pk, template)
+		srv_insert_gallery_by_pk(pk, template);
 	}
 	e.preventDefault();
 	return false;
 });
 function srv_insert_gallery_by_pk(pk, template){
-	var markup = '<inline type="gallery.gallery" id="'+pk+'"';
+	var markup = '<object class="inline-replace" data-inline-type="gallery.gallery" data-inline-id="'+pk+'"';
 	if(template){
-		markup += ' template="'+template+'"'
+		markup += ' data-inline-template="'+template+'"';
 	}
-	markup += '/>'
-	srv_wysiwyg_insert_html_at_cursor(markup)
+	markup += '>';
+	markup += "This will get rendered to a Gallery.";
+	markup += '</object>';
+	srv_wysiwyg_insert_html_at_cursor(markup);
 }
 </script>

@@ -14,23 +14,38 @@
 	<input type="button" class="srv_button insert" id="srv_insert_document_action" value="Place image at Cursor">
 
 
-<form id="srv_upload_document" method="post" enctype="multipart/form-data" action="{% url upload_document %}">
+<form id="srv_upload_document" method="post" enctype="multipart/form-data" class="servee uniForm" action="{% url upload_document %}">
+	{% csrf_token %}
 	{{ form|as_uni_form }}
-	<input type="submit" class="srv_button insert" id="srv_upload_document_action" value="Upload">
+	<div class="buttonHolder">
+	    <input type="submit" class="srv_button insert" id="srv_upload_document_action" class="button" value="Upload">
+	</div>
 </form>
 
 </div>
+
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.form.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/ajaxupload.js"></script>
+
+<script type="text/javascript" src="{{ STATIC_URL }}uploadify/swfobject.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}uploadify/jquery.uploadify.3.0.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("form#srv_upload_document").ajaxForm({
-		dataType: 'json',
-		iframe: true,
-		success : function(data){
+	// uploadify
+	$("form#srv_upload_document input[type=file]").uploadify({
+		swf: "{{ STATIC_URL }}uploadify/uploadify.swf",
+        uploader: $("form#srv_upload_document").attr("action"),
+        cancelImage: "{{ STATIC_URL }}uploadify/uploadify-cancel.png",
+        auto: true,
+        debug: DEBUG,
+        buttonImage: "{{ STATIC_URL }}images/buttonBG.png",
+        fileObjName: "document",
+		onUploadSuccess: function(file, response){
+			data = jQuery.parseJSON(response);
+			if (DEBUG) console.log(data);
 			if(data.error.length == 0){
 				$("ul#srv_document_filePane").append(data.item);
-				if (DEBUG) console.log('appending '+data.item)
+				if (DEBUG) console.log('appending '+data.item);
 			}
 			else {
 				if (DEBUG) console.log(error);
@@ -38,8 +53,11 @@ $(document).ready(function(){
 			}
 		}
 	});
-	$("a[href=#srv_place_document]").click(function(e){
-		var chosen = this
+	$("input#srv_upload_document_action").hide();
+	
+	
+	$("a[href=#srv_place_document]").live("click", function(e){
+		var chosen = this;
 		$(chosen).parent().parent().children().removeClass('backgroundHighlight');
 		$(chosen).parent().addClass('backgroundHighlight');
 		$("#srv_insert_document_title").html($(chosen).children('p').html());
@@ -51,22 +69,24 @@ $(document).ready(function(){
 	});
 	$("input#srv_insert_document_action").click(function(e){
 		var template, pk;
-		pk = parseInt($("#srv_insert_document_pk").val())
+		pk = parseInt($("#srv_insert_document_pk").val(), 10);
 		if(pk > 0){
 			template = $("select#srv_insert_document_template").val();
 			if(template == 'auto') template = null;
-			srv_insert_document_by_pk(pk, template)
+			srv_insert_document_by_pk(pk, template);
 		}
 		e.preventDefault();
 		return false;
 	});
 	function srv_insert_document_by_pk(pk, template){
-		var markup = '<inline type="document.document" id="'+pk+'"';
+		var markup = '<a class="inline-replace document" data-inline-type="document.document" data-inline-id="'+pk+'"';
 		if(template){
-			markup += ' template="'+template+'"'
+			markup += ' data-inline-template="'+template+'"';
 		}
-		markup += '/>'
-		srv_wysiwyg_insert_html_at_cursor(markup)
+		markup += '>';
+		markup += $("#srv_insert_document_title").html();
+		markup += '</a>';
+		srv_wysiwyg_insert_html_at_cursor(markup);
 	}
-})
+});
 </script>
