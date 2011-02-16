@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.template.loader import render_to_string
 from servee.contrib.media.document.forms import DocumentUpload
 from servee.contrib.media.document.models import Document
@@ -19,7 +20,7 @@ class DocumentPanel(InsertPanel):
         form = DocumentUpload()
         
         context = self.context.copy()
-        context.update(dict(documents=documents, form=form))
+        context.update(dict(documents=documents, form=form, STATIC_URL=settings.STATIC_URL))
         return render_to_string('panels/document.html', context)
 
     def url(self):

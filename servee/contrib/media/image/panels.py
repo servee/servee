@@ -1,5 +1,6 @@
-from servee.wysiwyg.panels import InsertPanel
+from django.conf import settings
 from django.template.loader import render_to_string
+from servee.wysiwyg.panels import InsertPanel
 from servee.contrib.media.image.forms import ImageUpload
 from servee.contrib.media.image.models import Image
 
@@ -19,7 +20,7 @@ class ImagePanel(InsertPanel):
         form = ImageUpload()
         
         context = self.context.copy()
-        context.update(dict(images=images, form=form))
+        context.update(dict(images=images, form=form, STATIC_URL=settings.STATIC_URL))
         
         return render_to_string('panels/image.html', context)
 
