@@ -28,7 +28,6 @@ $(document).ready(function(){
         uploader: $("form#srv_upload_video").attr("action"),
         cancelImage: "{{ STATIC_URL }}uploadify/uploadify-cancel.png",
         auto: true,
-        debug: DEBUG,
         buttonImage: "{{ STATIC_URL }}images/buttonBG.png",
         fileObjName: "video",
 		onUploadSuccess: function(file, response){

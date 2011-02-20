@@ -29,7 +29,6 @@ $(document).ready(function(){
         uploader: $("form#srv_upload_image").attr("action"),
         cancelImage: "{{ STATIC_URL }}uploadify/uploadify-cancel.png",
         auto: true,
-        debug: DEBUG,
         buttonImage: "{{ STATIC_URL }}images/buttonBG.png",
         fileObjName: "image",
 		onUploadSuccess: function(file, response){

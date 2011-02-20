@@ -107,13 +107,14 @@ INSTALLED_APPS = [
     "django.contrib.flatpages",
     
     # servee dependancies
-    "frontendadmin",
-    "staticfiles",
+    #"frontendadmin",
+    #"staticfiles",
     "easy_thumbnails",
     "uni_form",
 
     # servee
     "servee",
+    "servee.frontendadmin",
     "improved_inlines",
     "servee.wysiwyg",
     "servee.wysiwyg.tinymce",
@@ -127,4 +128,7 @@ INSTALLED_APPS = [
 
     # toolbars
     "servee.contrib.tools.gallery",
+    
+    # site
+    "servee_extensions", # small app that I use to write servee forms/registrations
 ]
