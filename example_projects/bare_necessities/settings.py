@@ -1,6 +1,7 @@
 # Django settings for bare_necessities project.
 import os
 
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -110,7 +111,6 @@ INSTALLED_APPS = [
     
     # servee dependancies
     "frontendadmin",
-    "staticfiles",
     "easy_thumbnails",
     "uni_form",
     "improved_inlines",

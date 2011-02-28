@@ -1,6 +1,6 @@
 The docs aren't built, this is an alpha version of servee and may contain many bugs.
 
-Servee requires Django 1.3 or later.
+The development version of Servee requires Django 1.3 or later.
 
 First you should put servee in your environment:
 
@@ -11,11 +11,11 @@ or download and
 
     ./setup.py install
 
-or if you want to hack on the code, create a symlink in your site-packages:
+or if you want to hack on the code, create a symlink in your site-packages
+    
+    ./setup.py develop
 
-   ./setup.py develop
-
-I pip is not setup to read the other dependancies from there so navigate to your servee folder in your path now (<env>/src/servee, or wherever you downloaded from) and do pip install -r requirements.txt
+If pip is not setup to read the other dependancies from there so navigate to your servee folder in your path now (<env>/src/servee, or wherever you downloaded from) and do pip install -r requirements.txt
 
 Then add servee to installed apps and add the two middleware packages.
 
