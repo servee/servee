@@ -100,21 +100,23 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.admin",
     "django.contrib.admindocs",
+
     
     # We're going to assume flatpages is
     # Installed, and that is the app that 
     # you want to be editable.
     "django.contrib.flatpages",
+
     
     # servee dependancies
     "frontendadmin",
     "staticfiles",
     "easy_thumbnails",
     "uni_form",
+    "improved_inlines",
 
     # servee
     "servee",
-    "improved_inlines",
     "servee.wysiwyg",
     "servee.wysiwyg.tinymce",
     "servee.toolbar",

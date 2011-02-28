@@ -24,4 +24,13 @@ setup(
         'Programming Language :: Python',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
+    
+    dependency_links = [
+           "http://www.djangoproject.com/download/1.3-beta-1/tarball/#egg=django-1.3-beta-1"
+       ],
+    
+    install_requires=['django>=1.3-beta-1', 'django-frontendadmin>=0.4', 'django-staticfiles>=1.0b1',
+                'easy-thumbnails>=1.0-alpha-15', 'django-uni-form>=0.7.0', 'django-improved-inlines>=0.2',
+                'beautifulsoup>=3.2.0',
+                ],
 )
