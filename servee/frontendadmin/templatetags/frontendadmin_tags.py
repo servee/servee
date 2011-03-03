@@ -9,6 +9,13 @@ from django.utils.translation import ugettext_lazy as _
 
 register = template.Library()
 
+def check_permission(user, action_name, app_label, model_name):
+    """
+    Check for proper permissions. action_name may be either add, change or delete.
+    """
+    p = '%s.%s_%s' % (app_label, action_name, model_name)
+    return user and user.is_active and user.has_perm(p)
+
 class AddObject(Tag):
     name = "frontendadmin_add"
 
@@ -22,13 +29,10 @@ class AddObject(Tag):
             raise template.TemplateSyntaxError, "'%s' argument must be a queryset" % queryset_instance
 
         user = context["request"].user
-        if not user:
-            return ""
-
         app_label = queryset_instance.model._meta.app_label
         model_name = queryset_instance.model._meta.module_name
 
-        if not user.has_perm("%s.add" % app_label):
+        if not check_permission(user, "add", app_label, model_name):
             return ""
 
         if not label:
@@ -56,13 +60,10 @@ class ChangeObject(Tag):
             raise template.TemplateSyntaxError, "'%s' argument must be a model-instance" % model_instance
 
         user = context["request"].user
-        if not user:
-            return ""
-
         app_label = model_instance._meta.app_label
         model_name = model_instance._meta.module_name
 
-        if not user.has_perm("%s.change" % app_label, model_instance):
+        if not check_permission(user, "change", app_label, model_name):
             return ""
 
         if not label:
@@ -90,13 +91,10 @@ class DeleteObject(Tag):
             raise template.TemplateSyntaxError, "'%s' argument must be a model-instance" % model_instance
 
         user = context["request"].user
-        if not user:
-            return ""
-
         app_label = model_instance._meta.app_label
         model_name = model_instance._meta.module_name
 
-        if not user.has_perm("%s.delete" % app_label, model_instance):
+        if not check_permission(user, "delete", app_label, model_name):
             return ""
 
         if not label:
