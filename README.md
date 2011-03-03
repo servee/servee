@@ -1,4 +1,8 @@
-The docs aren't built, this is an alpha version of servee and may contain many bugs.
+* On Freenode #servee
+* Docs at [[http://django-servee.readthedocs.org/en/latest/index.html|Read The Docs]]
+
+
+This is an alpha version of servee and may contain many bugs.
 
 First you should put servee in your environment:
 
