@@ -27,7 +27,7 @@ def menu_pages(menuitem):
 
     A simple menu can be created like this:
 
-    {% load sitemanagertags %}
+    {% load navigation %}
     {% with page|currentmenu:2 as selectedmenu %}    
     <ul id="nav">
       <li><a href="/"{% if page.is_root %} class="current"{% endif %}>{{ page.get_root.title }}</a></li>
