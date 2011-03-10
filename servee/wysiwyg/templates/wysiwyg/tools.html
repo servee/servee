@@ -22,33 +22,15 @@
 
 <div id="srv_insertMedia" class="srv_adminBox">
   <ul class="srv_mediaList">
-{% for panel in panels %}
-	<li>
-		{% if panel.has_content %}
-			<a href="{{ panel.url|default:"#" }}" title="{{ panel.title }}" class="{{ panel.dom_id }}">
-		{% else %}
-		    <div class="contentless">
-		{% endif %}
-		{{ panel.nav_title }}
-		{% with panel.nav_subtitle as subtitle %}
-			{% if subtitle %}<br /><small>{{ subtitle }}</small>{% endif %}
-		{% endwith %}
-		{% if panel.has_content %}
+    {% for class in insert_classes %}
+    	<li>
+			<a href="{{ class.render_url }}" title="{{ class.title }}" class="{{ base }}">
+		    {{ class.nav_title }}
 			</a>
-		{% else %}
-		    </div>
-		{% endif %}
-	</li>
-{% endfor %}
+    	</li>
+    {% endfor %}
   </ul>
 
-{% for panel in panels %}
-	<div id="{{ panel.dom_id }}" class="srv_insertPanel">
-		<div class="srv_insertContent">
-		        {{ panel.content|safe }}
-		</div>
-	</div>
-{% endfor %}
 </div><!--end srv_insertMedia -->
 
 <div id="srv_code_edit" class="srv_adminBox">
@@ -108,9 +90,7 @@
       <p><a href="#" class="f-block" title="Paragraph">Paragraph</a></p>
     </li>
     <li>
-      <pre>
-	<a href="#" class="f-block" title="Pre">Preformatted Text</a>
-</pre>
+      <pre><a href="#" class="f-block" title="Pre">Preformatted Text</a></pre>
     </li>
     <li>
       <blockquote>
@@ -120,14 +100,23 @@
   </ul>
 </div>
 <script type="text/javascript">
+
 DEBUG = '{{ DEBUG }}';
-if (DEBUG == 'True')DEBUG = true;
+//A quick save to change from python bool to js bool
+if (DEBUG == 'True') DEBUG = true;
 else DEBUG = false;
+
+
 if(typeof(console) == 'undefined'){
-console = {}
-console._logs = []
-console.log = function(h){ this._logs.push(h); }
+    //Console doesn't exist in some browsers, we'll fake it.
+    console = {}
+    console._logs = []
+    console.log = function(h){ this._logs.push(h); }
+    console.warn = function(h){ this._logs.push(h); }
+    console.error = function(h){ this._logs.push(h); }
 }
+
+
 $(document).ready(function(){
 	
 	//CODE DIALOG
@@ -137,28 +126,28 @@ $(document).ready(function(){
 		e.preventDefault()
 		return false;
 	});
-		$("#srv_code_edit_form").submit(function(e){
-			srv_hide_adminBox('srv_code_edit');
-			srv_set_content($("#srv_code_edit_text").val())
-			e.preventDefault();
-			return false;
-		});
+	$("#srv_code_edit_form").submit(function(e){
+		srv_hide_adminBox('srv_code_edit');
+		srv_set_content($("#srv_code_edit_text").val())
+		e.preventDefault();
+		return false;
+	});
 		
 	//INSERT DIALOG
-	$('li.srv_insert a').click(function(e){
+	/*$('li.srv_insert a').click(function(e){
 		srv_toggle_adminBox('srv_insertMedia');
 		e.preventDefault();
 		return false;
 	});
-		$("ul.srv_mediaList li a").click(function(e){
-			$("div.srv_insertPanel").hide();
-			$("ul.srv_mediaList li").removeClass('active');
-			console.log('Showing Panel: ' + $(this).attr('class'))
-			$("div#" +$(this).attr('class')).show();
-			$(this).parent().addClass('active');
-		});
-		$("ul.srv_mediaList li a:first").click();
-		
+	$("ul.srv_mediaList li a").click(function(e){
+		$("div.srv_insertPanel").hide();
+		$("ul.srv_mediaList li").removeClass('active');
+		console.log('Showing Panel: ' + $(this).attr('class'))
+		$("div#" +$(this).attr('class')).show();
+		$(this).parent().addClass('active');
+	});
+	$("ul.srv_mediaList li a:first").click();
+	*/
 		
 	//StyleChooser
 	$('li.srv_styles a').click(function(e){
@@ -174,12 +163,12 @@ $(document).ready(function(){
 		e.preventDefault();
 		return false;
 	});
-		$("#srv_paste_form").submit(function(e){
-			srv_paste_unclean($("#srv_paste_text").val());
-			srv_hide_adminBox('srv_paste');
-			e.preventDefault();
-			return false;
-		});
+	$("#srv_paste_form").submit(function(e){
+		srv_paste_unclean($("#srv_paste_text").val());
+		srv_hide_adminBox('srv_paste');
+		e.preventDefault();
+		return false;
+	});
 		
 	$("a.srv_link").click(function(e){
 		srv_toggle_adminBox('srv_link');
@@ -191,13 +180,15 @@ $(document).ready(function(){
 		e.preventDefault();
 		return false;
 	});
-		$("#srv_link_form").submit(function(e){
-			srv_put_link()
-			srv_hide_adminBox('srv_link');
-			e.preventDefault();
-			return false;
-		});
+	$("#srv_link_form").submit(function(e){
+		srv_put_link()
+		srv_hide_adminBox('srv_link');
+		e.preventDefault();
+		return false;
+	});
 });
+
+//This object defines the widths for our animations
 srv_admin_boxes = {
 	srv_insertMedia: {
 		shown: false,
@@ -247,7 +238,13 @@ srv_admin_boxes = {
 		]
 	}
 }
+
+
+
 function srv_toggle_adminBox(ab){
+    /**
+    Animation Toggle
+    **/
 	var which_box = srv_admin_boxes[ab]
 	if (which_box.shown){
 		srv_hide_adminBox(ab)
@@ -257,6 +254,9 @@ function srv_toggle_adminBox(ab){
 	}
 }
 function srv_hide_adminBox(ab,move_wysiwyg){
+    /**
+    Animation Hide
+    **/
 	var which_box = srv_admin_boxes[ab]
 	move_wysiwyg = (typeof move_wysiwyg == 'undefined') ? true : move_wysiwyg;	
 	srv_admin_boxes[ab].shown = false;
@@ -276,6 +276,9 @@ function srv_hide_adminBox(ab,move_wysiwyg){
 	}	
 }
 function srv_show_adminBox(ab){
+    /**
+    Animation Show Sidebar
+    **/
 	var which_box = srv_admin_boxes[ab]
 	
 	//toggle

@@ -5,7 +5,7 @@ from django.contrib.admin.options import HORIZONTAL, VERTICAL
 from servee.frontendadmin.options import ServeeModelAdmin
 from servee.frontendadmin.options import StackedInline, TabularInline
 from servee.frontendadmin.sites import ServeeAdminSite, site
-
+from servee.frontendadmin.insert import ModelInsert
 
 def autodiscover():
     """

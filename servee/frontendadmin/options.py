@@ -59,6 +59,25 @@ class ServeeModelAdmin(ModelAdmin):
             "admin/%s/object_history.html" % app_label,
             "admin/object_history.html",
         ]
+    
+    def change_view(self, *args, **kwargs):
+        """
+        Add the insert_classes to the template context.
+        """
+        if not kwargs.get("extra_context"):
+            kwargs["extra_context"] = {}
+        kwargs["extra_context"].update({"insert_classes": self.admin_site.insert_classes})
+        return super(ServeeModelAdmin, self).change_view(*args, **kwargs)
+    
+    def add_view(self, *args, **kwargs):
+        """
+        Add the insert_classes to the template context.
+        """
+        if not kwargs.get("extra_context"):
+            kwargs["extra_context"] = {}
+        kwargs["extra_context"].update({"insert_classes": self.admin_site.insert_classes})
+        return super(ServeeModelAdmin, self).add_view(*args, **kwargs)
+
 
 class ServeeStackedInline(StackedInline):
     template = 'servee/edit_inline/stacked.html'
