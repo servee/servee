@@ -1,6 +1,25 @@
 from django.contrib.admin.sites import AdminSite
 
 class ServeeAdminSite(AdminSite):
+    """
+    Like AdminSite, but the registered ModelAdmin classes are expected to be used
+    by frontend administrators, content editors, etc.
+    """
+    
+    insert_classes = []
+    toolbar_classes = []
+    
+    def register_insert(self, class_registered):
+        """
+        ...
+        """
+        self.insert_classes.append(class_registered)
+    
+    def register_toolbar(self, class_registered):
+        """
+        ...
+        """
+        self.toolbar_classes.append(class_registered)
     
     def __init__(self, *args, **kwargs):
         super(ServeeAdminSite, self).__init__(*args, **kwargs)

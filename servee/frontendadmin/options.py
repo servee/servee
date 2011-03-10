@@ -1,11 +1,17 @@
 from django.contrib.admin.options import ModelAdmin, StackedInline, TabularInline
 
 class ServeeModelAdmin(ModelAdmin):
-    
+    """
+    ServeeModelAdmin is just like the normal ModelAdmin, but with a larger pool of default
+    templates.  First it uses the template specifically registered with the ModelAdmin (normal behavior)
+    the difference is the fallback, where normally it would check admin/...  it first checks servee/...
+    """
+        
     def __init__(self, *args, **kwargs):
         super(ServeeModelAdmin, self).__init__(*args, **kwargs)
         opts = self.model._meta
         app_label = opts.app_label
+        
         
         self.change_form_template =  [
             "servee/%s/%s/change_form.html" % (app_label, opts.object_name.lower()),
