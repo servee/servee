@@ -5,6 +5,7 @@ django-improved-inlines>=0.2.1
 
 PIL
 easy-thumbnails
+django-classy-tags
 
 # The changes in both uniform and frontendadmin are both
 # Templates only, and it's possible that we can just have a "servee templates"

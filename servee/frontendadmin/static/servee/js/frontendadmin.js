@@ -38,4 +38,36 @@ $(document).ready(function(){
 	    });
 	    return false;
 	});
+
+	/**************************
+	 * Insert Tools 
+	 **************************/
+	// Clicking of 1st tier, building of 2nd tier
+	$(".srv_mediaList li a").live("click", function(e){
+		$.ajax({
+            url: $(this).attr("href"),
+            success: function(data, text){
+                console.log(data);
+                $(".srv_mediaList").after(data);
+                srv_show_adminBox('srv_insertMedia');
+            }
+        });
+		e.preventDefault();
+		return false;
+	});
+	
+	// Clicking of 2nd tier, building of 3rd tier
+	$(".srv_filePane li a").live("click", function(e){
+		$.ajax({
+            url: $(this).attr("href"),
+            success: function(data, text){
+                console.log(data);
+                $(".srv_filePane").after(data);
+                srv_show_adminBox('srv_insertMedia');
+            }
+        });
+		e.preventDefault();
+		return false;
+	});
+	
 });
