@@ -1,5 +1,7 @@
+{% load insert_tags %}
+
 <ul id="srv_{{ insert.base_url }}_filePane" class="srv_solidBox srv_filePane scroll">
     {% for object in insert.items %}
-        <li><a href="{% insert_render_url insert object.pk %}"><img src="{{ object.image.url }}" /></a></li>
+        <li><a href="{% insert_detail_url insert object.pk %}"><img src="{{ object.image.url }}" /></a></li>
 	{% endfor %}
 </div>
