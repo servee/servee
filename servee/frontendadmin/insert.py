@@ -206,6 +206,13 @@ class ModelInsert(BaseInsert):
         return render_to_response(self.item_list_template, {"insert": self},
             context_instance=RequestContext(request))
     
+    def detail_url(self, object_id):
+        return reverse("%s:%s_%s_detail" % (
+            self.admin_site.name,
+            self.model._meta.app_label,
+            self.model._meta.module_name
+        ), args=(object_id,))
+
     def detail_view(self, request, object_id):
         obj = self.get_object(unquote(object_id))
         

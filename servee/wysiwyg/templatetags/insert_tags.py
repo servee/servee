@@ -20,3 +20,19 @@ class InsertRenderUrl(Tag):
         return insert.render_url(obj)
     
 register.tag(InsertRenderUrl)
+
+class InsertDetailUrl(Tag):
+    """
+    Pass an insert and an object and get the insert.render_url(object)
+    """
+    name = "insert_detail_url"
+    
+    options = Options(
+        Argument('insert', required=True),
+        Argument('obj', required=True)
+    )
+    
+    def render_tag(self, context, insert, obj):
+        return insert.detail_url(obj)
+    
+register.tag(InsertDetailUrl)
