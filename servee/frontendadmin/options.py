@@ -12,7 +12,6 @@ class ServeeModelAdmin(ModelAdmin):
         opts = self.model._meta
         app_label = opts.app_label
         
-        
         self.change_form_template =  [
             "servee/%s/%s/change_form.html" % (app_label, opts.object_name.lower()),
             "servee/%s/change_form.html" % app_label,

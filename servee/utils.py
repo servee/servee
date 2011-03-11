@@ -1,4 +1,4 @@
-
+import re
 
 def space_out_camel_case(stringAsCamelCase):
     """Adds spaces to a camel case string.  Failure to space out string returns the original string.
@@ -10,4 +10,4 @@ def space_out_camel_case(stringAsCamelCase):
         return None
 
     pattern = re.compile('([A-Z][A-Z][a-z])|([a-z][A-Z])')
-    return pattern.sub(lambda m: m.group()[:1] + " " + m.group()[1:], stringAsCamelCase):
+    return pattern.sub(lambda m: m.group()[:1] + " " + m.group()[1:], stringAsCamelCase)

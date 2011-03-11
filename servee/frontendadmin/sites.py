@@ -19,7 +19,7 @@ class ServeeAdminSite(AdminSite):
             http://example.com/admin/somepath
         * `view` is any view function you can imagine.
         * `name` is an optional pretty name for the list of custom views. If
-            empty, we'll guess based on view.__name__.
+            empty, we'll guess based on view.__class__.__name__.
         """
         self.custom_views.append((path, view, name))
     
@@ -29,11 +29,11 @@ class ServeeAdminSite(AdminSite):
         """
         insert_class = class_registered(self)
         
-        if self.insert_classes[insert_class.base_url]:
+        if self.insert_classes.get(insert_class.base_url()):
             raise AlreadyRegistered("An insert with the base_url (lowercase classname) of %s is already registered" % insert_class.base_url)
         
         # Add to registry of instantiated models
-        self.insert_classes[insert_class.base_url] = insert_class
+        self.insert_classes[insert_class.base_url()] = insert_class
     
     
     #def register_toolbar(self, class_registered):
@@ -57,7 +57,7 @@ class ServeeAdminSite(AdminSite):
         # Inserts
         for insert_model_lookup, insert in self.insert_classes.iteritems():
             urls += patterns("",
-                (r"^%s/%s/" % (insert.model.app_label, insert.model.module_name), include(insert.urls))
+                (r"^insert/%s/%s/" % (insert.model._meta.app_label, insert.model._meta.module_name), include(insert.urls))
             )
         
         return urls

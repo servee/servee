@@ -22,20 +22,19 @@
 
 <div id="srv_insertMedia" class="srv_adminBox">
   <ul class="srv_mediaList">
-    {% for class in insert_classes %}
+    {% for slug, class in insert_classes.iteritems %}
     	<li>
-			<a href="{{ class.render_url }}" title="{{ class.title }}" class="{{ base }}">
+			<a href="{{ class.list_url }}" title="{{ class.title }}" class="{{ class.base_url }}">
 		    {{ class.nav_title }}
 			</a>
     	</li>
     {% endfor %}
   </ul>
-
 </div><!--end srv_insertMedia -->
 
 <div id="srv_code_edit" class="srv_adminBox">
 	<form id="srv_code_edit_form">
-	<textarea id="srv_code_edit_text"></textarea>
+	<textarea id="srv_code_edit_text" class="no_wysiwyg"></textarea>
 	<input type="submit" class="srv_button" id="srv_code_edit_action" value="Update"/>
 	</form>
 </div>
@@ -134,7 +133,7 @@ $(document).ready(function(){
 	});
 		
 	//INSERT DIALOG
-	/*$('li.srv_insert a').click(function(e){
+	$('li.srv_insert a').click(function(e){
 		srv_toggle_adminBox('srv_insertMedia');
 		e.preventDefault();
 		return false;
@@ -142,12 +141,12 @@ $(document).ready(function(){
 	$("ul.srv_mediaList li a").click(function(e){
 		$("div.srv_insertPanel").hide();
 		$("ul.srv_mediaList li").removeClass('active');
-		console.log('Showing Panel: ' + $(this).attr('class'))
-		$("div#" +$(this).attr('class')).show();
+		//console.log('Showing Panel: ' + $(this).attr('class'))
+		//$("div#" +$(this).attr('class')).show();
 		$(this).parent().addClass('active');
 	});
 	$("ul.srv_mediaList li a:first").click();
-	*/
+	
 		
 	//StyleChooser
 	$('li.srv_styles a').click(function(e){

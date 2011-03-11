@@ -6,6 +6,10 @@
 {% block extrahead %}{{ block.super }}
 {% url 'servee:jsi18n' as jsi18nurl %}
 <script type="text/javascript" src="{{ jsi18nurl }}"></script>
+
+<script type="text/javascript" src="{{ STATIC_URL }}tinymce/jscripts/tiny_mce/jquery.tinymce.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}servee/js/tinymce.js"></script>
+
 {{ media }}
 {% endblock %}
 
@@ -35,7 +39,7 @@
   </ul>
 {% endif %}{% endif %}
 {% endblock %}
-<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %}
+<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form" class="uniForm frontendadmin">{% csrf_token %}{% block form_top %}{% endblock %}
 <div>
 {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
 {% if save_on_top %}{% submit_row %}{% endif %}
@@ -73,5 +77,5 @@
 {% endblock %}
 
 {% block wysiwyg %}
-{% include "templates/wysiwyg/tools.html" %}
+{% include "wysiwyg/tools.html" %}
 {% endblock %}

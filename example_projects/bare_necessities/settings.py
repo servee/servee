@@ -48,8 +48,8 @@ MIDDLEWARE_CLASSES = (
     "django.contrib.messages.middleware.MessageMiddleware",
 
 
-    "servee.wysiwyg.middleware.WysiwygMiddleware",
-    "servee.toolbar.middleware.ToolbarMiddleware",
+    #"servee.wysiwyg.middleware.WysiwygMiddleware",
+    #"servee.toolbar.middleware.ToolbarMiddleware",
     
     # Flatpage Fallback middleware must go AFTER servee
     # Middleware if you are using it.

@@ -32,13 +32,13 @@ class BaseInsert(object):
         """
         Should not be overwritten, also used as a slug
         """
-        return self.__name__.lower()
+        return self.__class__.__name__.lower()
     
     def nav_title(self):
-        return space_out_camel_case(self.__name__)
+        return space_out_camel_case(self.__class__.__name__)
     
     def title(self):
-        return self.nav_title
+        return space_out_camel_case(self.__class__.__name__)
     
     def items(self):
         return NotImplementedError
@@ -79,23 +79,28 @@ class ModelInsert(BaseInsert):
         self.model should be set before calling super(<NewClass>, self).__init__...
         """
         self.item_panel_template = [
-            "servee/wysiwyg/insert/%s/%s/_panel.html" % (self.model.app_label, self.model.module_name),
-            "servee/wysiwyg/insert/%s/_panel.html" % (self.model.app_label),            
+            "servee/wysiwyg/insert/%s/%s/_panel.html" % (self.model._meta.app_label, self.model._meta.module_name),
+            "servee/wysiwyg/insert/%s/_panel.html" % (self.model._meta.app_label),            
             "servee/wysiwyg/insert/_panelt.html",
         ]
         self.item_display_template = [
-            "servee/wysiwyg/insert/%s/%s/_list.html" % (self.model.app_label, self.model.module_name),
-            "servee/wysiwyg/insert/%s/_list.html" % (self.model.app_label),            
+            "servee/wysiwyg/insert/%s/%s/_list.html" % (self.model._meta.app_label, self.model._meta.module_name),
+            "servee/wysiwyg/insert/%s/_list.html" % (self.model._meta.app_label),            
             "servee/wysiwyg/insert/_item_list.html",
         ]
         self.item_detail_template = [
-            "servee/wysiwyg/insert/%s/%s/_detail.html" % (self.model.app_label, self.model.module_name),
-            "servee/wysiwyg/insert/%s/_detail.html" % (self.model.app_label),            
+            "servee/wysiwyg/insert/%s/%s/_detail.html" % (self.model._meta.app_label, self.model._meta.module_name),
+            "servee/wysiwyg/insert/%s/_detail.html" % (self.model._meta.app_label),            
             "servee/wysiwyg/insert/_item_detail.html",
         ]
+        self.item_list_template  = [
+            "servee/wysiwyg/insert/%s/%s/_list.html" % (self.model._meta.app_label, self.model._meta.module_name),
+            "servee/wysiwyg/insert/%s/_list.html" % (self.model._meta.app_label),            
+            "servee/wysiwyg/insert/_item_list.html",
+        ]
         self.item_render_template  = [
-            "servee/wysiwyg/insert/%s/%s/_render.html" % (self.model.app_label, self.model.module_name),
-            "servee/wysiwyg/insert/%s/_render.html" % (self.model.app_label),            
+            "servee/wysiwyg/insert/%s/%s/_render.html" % (self.model._meta.app_label, self.model._meta.module_name),
+            "servee/wysiwyg/insert/%s/_render.html" % (self.model._meta.app_label),            
             "servee/wysiwyg/insert/_item_render.html",
         ]
         super(ModelInsert, self).__init__(*args, **kwargs)
@@ -109,7 +114,7 @@ class ModelInsert(BaseInsert):
         model = self.model
         try:
             object_id = model._meta.pk.to_python(object_id)
-            return self.queryset.get(pk=object_id)
+            return self.queryset().get(pk=object_id)
         except (model.DoesNotExist, ValidationError):
             return None
     
@@ -142,9 +147,12 @@ class ModelInsert(BaseInsert):
     
     def get_items(self):
         """
-        Ideally, this will be a method that will also take a request, for pagination, or filtering
+        Ideally, this will be a method that will also sort, for pagination, or filtering
         """
         return self.items()
+    
+    def nav_title(self):
+        return self.model._meta.module_name.title()
     
     def get_urls(self):
         """
@@ -156,7 +164,7 @@ class ModelInsert(BaseInsert):
                 return self.admin_site.admin_view(view)(*args, **kwargs)
             return update_wrapper(wrapper, view)
         
-        info = (self.model.app_label, self.model.module_name)
+        info = (self.model._meta.app_label, self.model._meta.module_name)
         
         return patterns("",
             url(r"^panel/$",
@@ -187,6 +195,13 @@ class ModelInsert(BaseInsert):
         return render_to_response(self.item_panel_template, {"insert": self},
             context_instance=RequestContext(request))
 
+    def list_url(self):
+        return reverse("%s:%s_%s_list" % (
+            self.admin_site.name,
+            self.model._meta.app_label,
+            self.model._meta.module_name
+        ))
+                
     def list_view(self, request):
         return render_to_response(self.item_list_template, {"insert": self},
             context_instance=RequestContext(request))
@@ -197,12 +212,12 @@ class ModelInsert(BaseInsert):
         return render_to_response(self.item_detail_template, {"insert": self, "object": obj},
             context_instance=RequestContext(request))
     
-    def render_url(self):
-        return reverse("%s:%s_%s_render", (
+    def render_url(self, object_id):
+        return reverse("%s:%s_%s_render" % (
             self.admin_site.name,
-            self.model.app_label,
-            self.model.module_name
-        ))
+            self.model._meta.app_label,
+            self.model._meta.module_name
+        ), args=(object_id,))
         
     def render_view(self, request, object_id):
         obj = self.get_object(unquote(object_id))
