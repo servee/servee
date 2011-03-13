@@ -1,0 +1,68 @@
+{% load thumbnail uni_form_tags %}
+<h4>Insert an image</h4>
+	<div id="srv_insert_image_display">
+	   {% thumbnail object.image 165x200 as thumb %}
+	   <img src="{{ thumb.url }}" />
+	</div>
+	<h5 id="srv_insert_image_title">{{ object.title }}</h5>
+	<p id="srv_insert_image_description"></p>
+	<input type="hidden" name="srv_insert_image_pk" id="srv_insert_image_pk" value="{{ object.pk }}">
+	<input type="button" class="srv_button insert" id="srv_insert_image_action" value="Place image at Cursor">
+
+    <form id="srv_upload_image" method="POST" enctype="multipart/form-data" class="servee uniform" action="{% url upload_image %}">
+        {% csrf_token %}
+        {{ form|as_uni_form }}
+        <div class="buttonHolder">
+            <input type="submit" class="srv_button insert button" id="srv_upload_image_action" value="Upload">
+        </div>
+    </form>
+<script type="text/javascript" src="{{ STATIC_URL }}uploadify/swfobject.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}uploadify/jquery.uploadify.3.0.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	// uploadify
+	/*$("form#srv_upload_image input[type=file]").uploadify({
+		swf: "{{ STATIC_URL }}uploadify/uploadify.swf",
+        uploader: $("form#srv_upload_image").attr("action"),
+        cancelImage: "{{ STATIC_URL }}uploadify/uploadify-cancel.png",
+        auto: true,
+        //buttonImage: "{{ STATIC_URL }}images/buttonBG.png",
+        fileObjName: "image",
+		onUploadSuccess: function(file, response){
+			data = jQuery.parseJSON(response);
+			if(data.error.length == 0){
+				$("ul#srv_image_filePane").append(data.item);
+				if (DEBUG) console.log('appending '+data.item);
+			}
+			else {
+				if (DEBUG) console.log(error);
+				else for (error in data.error)	alert(error);
+			}
+		}
+	});
+	$("input#srv_upload_image_action").hide();*/
+    
+	$("input#srv_insert_image_action").click(function(e){
+		var template, pk;
+		pk = parseInt($("#srv_insert_image_pk").val(), 10);
+		if(pk > 0){
+			//@@TODO fix template, totally not implemented.
+			template = null;
+			srv_insert_image_by_pk(pk, template);
+		}
+		e.preventDefault();
+		return false;
+	});
+	function srv_insert_image_by_pk(pk, template){
+		var markup = '<img data-inline-type="image.image" data-inline-id="'+pk+'" class="inline-replace" src="';
+		markup += $("#srv_insert_image_display img").attr("src");
+		markup += '"';
+		if(template){
+			markup += ' data-inline-template="'+template+'"';
+		}
+		markup += '/>';
+		srv_hide_adminBox("srv_insertMedia");
+		srv_wysiwyg_insert_html_at_cursor(markup);
+	}
+});
+</script>

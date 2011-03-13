@@ -69,10 +69,7 @@ function load_wysiwyg($par){
 }
 
 function srv_wysiwyg_insert_html_at_cursor(h){
-	if(DEBUG){
-		console.log('Adding to raw html at cursor: '+h)
-	}
-	tinyMCE.execCommand('mceInsertContent',false,h);
+	tinyMCE.execCommand('mceInsertContent', false, h);
 	return;
 }
 function srv_get_content(){

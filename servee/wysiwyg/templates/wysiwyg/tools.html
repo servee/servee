@@ -24,7 +24,7 @@
   <ul class="srv_mediaList">
     {% for slug, class in insert_classes.iteritems %}
     	<li>
-			<a href="{{ class.list_url }}" title="{{ class.title }}" class="{{ class.base_url }}">
+			<a href="{{ class.list_url }}" title="{{ class.title }}" data-slug="{{ class.base_url }}" class="{{ class.base_url }}">
 		    {{ class.nav_title }}
 			</a>
     	</li>
@@ -240,24 +240,25 @@ srv_admin_boxes = {
 }
 
 
-
 function srv_toggle_adminBox(ab){
     /**
     Animation Toggle
     **/
-	var which_box = srv_admin_boxes[ab]
+	var which_box = srv_admin_boxes[ab];
 	if (which_box.shown){
-		srv_hide_adminBox(ab)
+		srv_hide_adminBox(ab);
 	}
 	else{
-		srv_show_adminBox(ab)
+		srv_show_adminBox(ab);
 	}
 }
-function srv_hide_adminBox(ab,move_wysiwyg){
+
+
+function srv_hide_adminBox(ab, move_wysiwyg){
     /**
     Animation Hide
     **/
-	var which_box = srv_admin_boxes[ab]
+	var which_box = srv_admin_boxes[ab];
 	move_wysiwyg = (typeof move_wysiwyg == 'undefined') ? true : move_wysiwyg;	
 	srv_admin_boxes[ab].shown = false;
 	
@@ -266,42 +267,51 @@ function srv_hide_adminBox(ab,move_wysiwyg){
 		$('#srv_wysiwyg_tools').animate({
 		  left: 0
 		}, 'fast');
-		if(DEBUG) console.log('moving wysiwyg to 0')
+		if(DEBUG) console.log('moving wysiwyg to 0');
 	}
 	
 	//setup the animations
 	for (var change in which_box.changes){
-		$(which_box.changes[change].selector).stop(true,true)
-		$(which_box.changes[change].selector).animate({left:(-1 * which_box.changes[0].box_width)},'fast')
-	}	
+		$(which_box.changes[change].selector).stop(true,true);
+		$(which_box.changes[change].selector).animate({left:(-1 * which_box.changes[0].box_width)},'fast');
+	}
 }
+
+
 function srv_show_adminBox(ab){
     /**
     Animation Show Sidebar
     **/
-	var which_box = srv_admin_boxes[ab]
+	var which_box = srv_admin_boxes[ab];
 	
-	//toggle
+	// toggle
 	srv_admin_boxes[ab].shown = true;
 	
-	//hide the others
+	// hide the others
 	for(var b in srv_admin_boxes){
 		if (srv_admin_boxes[b] != which_box){
-			if(DEBUG) console.log('hiding '+srv_admin_boxes[b].ident)
-			srv_hide_adminBox(srv_admin_boxes[b].ident,false)
+			if(DEBUG) console.log('hiding '+srv_admin_boxes[b].ident);
+			srv_hide_adminBox(srv_admin_boxes[b].ident,false);
 		}
 	}
 	
-	//match the tools
+	// match the tools
 	$('#srv_wysiwyg_tools').animate({
 	  left: which_box.changes[0].box_width
 	}, 'fast');
-	if(DEBUG) console.log('moving wysiwyg to '+which_box.changes[0].box_width)
+	if(DEBUG) console.log('moving wysiwyg to '+which_box.changes[0].box_width);
 	
-	//setup animations
+	// setup animations
 	for (var change in which_box.changes){
-		$(which_box.changes[change].selector).stop(true,true)
-		$(which_box.changes[change].selector).animate({left:which_box.changes[change].to_the_left},'fast')
+		$(which_box.changes[change].selector).stop(true,true);
+		$(which_box.changes[change].selector).animate({left:which_box.changes[change].to_the_left},'fast');
+	}
+}
+
+
+function srv_hide_all_adminBox(){
+    for(var b in srv_admin_boxes){
+		srv_hide_adminBox(srv_admin_boxes[b].ident,false);
 	}
 }
 </script>

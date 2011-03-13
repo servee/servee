@@ -44,11 +44,25 @@ $(document).ready(function(){
 	 **************************/
 	// Clicking of 1st tier, building of 2nd tier
 	$(".srv_mediaList li a").live("click", function(e){
+		var $link = $(this);
+		
+		
+		//@@ TODO currentInsert is a global object.  This is lame,
+		//servee should have only one global object.
+		currentInsert = $link.attr("data-slug");
+		
 		$.ajax({
-            url: $(this).attr("href"),
+            url: $link.attr("href"),
             success: function(data, text){
                 console.log(data);
-                $(".srv_mediaList").after(data);
+                $(".srv_filePane").remove();
+                $(".srv_insertOptions").remove();
+                $(".srv_mediaList").after(
+                    "<div id='srv_"+currentInsert+"_filePane'class='srv_filePane'>"
+                    + data
+                    + "</div>"
+                );
+                //Once the dom is rebuilt, slide it in.
                 srv_show_adminBox('srv_insertMedia');
             }
         });
@@ -58,11 +72,18 @@ $(document).ready(function(){
 	
 	// Clicking of 2nd tier, building of 3rd tier
 	$(".srv_filePane li a").live("click", function(e){
+		var $link = $(this);
 		$.ajax({
-            url: $(this).attr("href"),
+            url: $link.attr("href"),
             success: function(data, text){
                 console.log(data);
-                $(".srv_filePane").after(data);
+                $(".srv_insertOptions").remove();
+                $(".srv_filePane").after(
+                    "<div id='srv_"+ currentInsert +"_insertOptions' class='srv_insertOptions'>"
+                    + data
+                    + "</div>"
+                );
+                //Once the dom is rebuilt, slide it in.
                 srv_show_adminBox('srv_insertMedia');
             }
         });
