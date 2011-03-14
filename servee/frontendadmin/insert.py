@@ -1,3 +1,4 @@
+from django.forms.models import modelform_factory
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
@@ -7,6 +8,9 @@ from django.template import RequestContext
 from django.template.loader import get_template
 from django.shortcuts import render_to_response
 from django.utils.functional import update_wrapper
+from django.views.decorators.csrf import csrf_exempt
+
+from servee.frontendadmin.forms import AddForm
 from servee.utils import space_out_camel_case
 
 class BaseInsert(object):
@@ -24,7 +28,12 @@ class BaseInsert(object):
     ModelInsert is what you should use if you are creating an Insert from a Django Model, otherwise use BaseInsert and extend from there.
     
     """
-    def __init__(self, admin_site):
+    def __init__(self, admin_site, add_form=None):
+        
+        self.add_form = add_form
+        if not self.add_form:
+            self.add_form = AddForm
+        
         self.admin_site = admin_site
     
     
@@ -73,6 +82,7 @@ class ModelInsert(BaseInsert):
     """
     ordering = None
     model = None
+    add_form = None
     
     def __init__(self, *args, **kwargs):
         """
@@ -103,6 +113,12 @@ class ModelInsert(BaseInsert):
             "servee/wysiwyg/insert/%s/_render.html" % (self.model._meta.app_label),            
             "servee/wysiwyg/insert/_item_render.html",
         ]
+        self.item_add_template  = [
+            "servee/wysiwyg/insert/%s/%s/_add.html" % (self.model._meta.app_label, self.model._meta.module_name),
+            "servee/wysiwyg/insert/%s/_add.html" % (self.model._meta.app_label),            
+            "servee/wysiwyg/insert/_item_add.html",
+        ]
+        
         super(ModelInsert, self).__init__(*args, **kwargs)
     
     def get_object(self, object_id):
@@ -169,22 +185,22 @@ class ModelInsert(BaseInsert):
         return patterns("",
             url(r"^panel/$",
                 wrap(self.panel_view),
-                name="%s_%s_panel" % info),
+                name="insert_%s_%s_panel" % info),
             url(r"^list/$",
                 wrap(self.list_view),
-                name="%s_%s_list" % info),
-            #url(r"^add_minimal/$",
-            #    wrap(self.add_view),
-            #    name="%s_%s_add" % info),
+                name="insert_%s_%s_list" % info),
+            url(r"^add_minimal/$",
+                self.add_view,
+                name="insert_%s_%s_add" % info),
             url(r"^(.+)/detail/$",
                 wrap(self.detail_view),
-                name="%s_%s_detail" % info),
+                name="insert_%s_%s_detail" % info),
             url(r"^(.+)/render/$",
                 wrap(self.render_view),
-                name="%s_%s_render" % info),
+                name="insert_%s_%s_render" % info),
             url(r"^(.+)/delete/$",
                 wrap(self.delete_view),
-                name="%s_%s_delete" % info),
+                name="insert_%s_%s_delete" % info),
         )
     
     @property
@@ -196,7 +212,7 @@ class ModelInsert(BaseInsert):
             context_instance=RequestContext(request))
 
     def list_url(self):
-        return reverse("%s:%s_%s_list" % (
+        return reverse("%s:insert_%s_%s_list" % (
             self.admin_site.name,
             self.model._meta.app_label,
             self.model._meta.module_name
@@ -207,7 +223,7 @@ class ModelInsert(BaseInsert):
             context_instance=RequestContext(request))
     
     def detail_url(self, object_id):
-        return reverse("%s:%s_%s_detail" % (
+        return reverse("%s:insert_%s_%s_detail" % (
             self.admin_site.name,
             self.model._meta.app_label,
             self.model._meta.module_name
@@ -216,11 +232,17 @@ class ModelInsert(BaseInsert):
     def detail_view(self, request, object_id):
         obj = self.get_object(unquote(object_id))
         
-        return render_to_response(self.item_detail_template, {"insert": self, "object": obj},
-            context_instance=RequestContext(request))
+        form = self.get_minimal_add_form()
+        form()
+        
+        return render_to_response(self.item_detail_template, {
+                "insert": self,
+                "object": obj,
+                "form": form(),
+            }, context_instance=RequestContext(request))
     
     def render_url(self, object_id):
-        return reverse("%s:%s_%s_render" % (
+        return reverse("%s:insert_%s_%s_render" % (
             self.admin_site.name,
             self.model._meta.app_label,
             self.model._meta.module_name
@@ -231,6 +253,45 @@ class ModelInsert(BaseInsert):
         
         return render_to_response(self.item_render_template, {"insert": self, "object": obj},
             context_instance=RequestContext(request))
+    
+    def get_minimal_add_form(self):
+        """
+        This is the most basic form that can be used to save the model.
+        Useful for adding an instance quickly.
+        
+        It will _only_ pull required fields.
+        """
+        
+        # Get all the required fields and make a modelform for it.
+        exclude_fields = []
+        
+        for field in self.model._meta.fields:
+            if field.blank:
+                exclude_fields.append(field.name)
+        
+        instance_form = modelform_factory(self.model, form=self.add_form,
+            exclude=exclude_fields)
+        
+        return instance_form
+    
+    @csrf_exempt
+    def add_view(self, request):
+        """
+        new_instance is the created instance of self.model or none, depending on if form.is_valid.
+        Passed, for consistancy's sake to the template as "object"
+        """
+        instance_form = self.get_minimal_add_form()
+        form = instance_form(request.POST, request.FILES)
+        
+        new_instance = None
+        if form.is_valid():
+            new_instance = form.save()
+        
+        return render_to_response(self.item_add_template, {
+                "insert": self,
+                "form": form,
+                "object": new_instance
+            }, context_instance=RequestContext(request))
     
     def delete_view(self, request, object_id):
         """

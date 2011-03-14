@@ -1,4 +1,4 @@
-{% load thumbnail uni_form_tags %}
+{% load thumbnail uni_form_tags insert_tags %}
 <h4>Insert an image</h4>
 	<div id="srv_insert_image_display">
 	   {% thumbnail object.image 165x200 as thumb %}
@@ -9,7 +9,7 @@
 	<input type="hidden" name="srv_insert_image_pk" id="srv_insert_image_pk" value="{{ object.pk }}">
 	<input type="button" class="srv_button insert" id="srv_insert_image_action" value="Place image at Cursor">
 
-    <form id="srv_upload_image" method="POST" enctype="multipart/form-data" class="servee uniform" action="{% url upload_image %}">
+    <form id="srv_upload_image" method="POST" enctype="multipart/form-data" class="servee uniform" action="{% url servee:insert_image_image_add %}">
         {% csrf_token %}
         {{ form|as_uni_form }}
         <div class="buttonHolder">
@@ -21,26 +21,24 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	// uploadify
-	/*$("form#srv_upload_image input[type=file]").uploadify({
+	/**/
+	$("form#srv_upload_image input[type=file]").uploadify({
 		swf: "{{ STATIC_URL }}uploadify/uploadify.swf",
         uploader: $("form#srv_upload_image").attr("action"),
         cancelImage: "{{ STATIC_URL }}uploadify/uploadify-cancel.png",
         auto: true,
-        //buttonImage: "{{ STATIC_URL }}images/buttonBG.png",
+        buttonImage: "{{ STATIC_URL }}images/buttonBG.png",
         fileObjName: "image",
+        checkExisting: false,
+        postData: {
+            "csrfmiddlewaretoken": $("form#srv_upload_image [name=csrfmiddlewaretoken]").val()
+        },
 		onUploadSuccess: function(file, response){
-			data = jQuery.parseJSON(response);
-			if(data.error.length == 0){
-				$("ul#srv_image_filePane").append(data.item);
-				if (DEBUG) console.log('appending '+data.item);
-			}
-			else {
-				if (DEBUG) console.log(error);
-				else for (error in data.error)	alert(error);
-			}
+			$("div#srv_imageinsert_filePane ul").prepend(response);
 		}
 	});
-	$("input#srv_upload_image_action").hide();*/
+	$("input#srv_upload_image_action").hide();
+	/**/
     
 	$("input#srv_insert_image_action").click(function(e){
 		var template, pk;
