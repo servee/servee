@@ -30,10 +30,17 @@ background:#979797
 border:0 none;
 }
 
+/* -- small drop shadows --*/
+.srv_filePane li img, #srv_insertMedia img{
+-moz-box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+-webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
 /* ------------ new CSS Styles dialog ------- */
 #srv_CSSstyles{
 left:0;
-left:-150px;
+left:-151px;
 top:0;
 bottom:0;
 width:150px;
@@ -42,13 +49,13 @@ position: fixed;
 #srv_CSSstyles ul{
 top:0px;
 bottom:0;
-left:-150px;
+left:-151px;
 margin:0;
 padding:0;
 overflow-y:auto;
 overflow-x:hidden;
 position:fixed;
-width:160px;
+width:150px;
 }
 div#srv_CSSstyles ul li{
 padding:8px;
@@ -82,8 +89,8 @@ padding:0;
 top:0px;
 bottom:0px;
 left:0px;
-left:-340px;
-width:340px;
+left:-322px;
+width:320px;
 position: fixed;
 }
 #srv_insertMedia img, #srv_insertMedia img a{
@@ -91,25 +98,52 @@ border:0 none;
 outline:0 none;
 }
 
-/*--then...-*/
+/*----- then ---*/
 .srv_mediaList{
 top:0px;
 left:-340px;
-width:340px;
+width:300px;
 position:fixed;
 list-style:none;
 margin:0;
-padding:0;
-height:66px;
+padding:5px 0 0 20px;
+height:61px;
 border-bottom:1px solid #909090;
 background-image: -moz-linear-gradient(top, #d4d4d4, #c4c4c4); /* FF3.6 */
 background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #d4d4d4),color-stop(1, #c4c4c4)); /* Saf4+, Chrome */
 -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#d4d4d4', EndColorStr='#c4c4c4')"; /* IE8 */
 }
 
-li.imageinsert{
-
+.srv_mediaList li{
+width:59px;
+height:66px;
+background:none transparent;
+list-style:none;
 }
+.srv_mediaList li a{
+opacity: 0.5;
+width:59px;
+height:22px;
+display:block;
+text-align: center;
+color:#000;
+padding-top:39px;
+font-size:11px;
+-moz-text-shadow: 0px 1px 0px rgba(255,255,255,0.8);
+-webkit-text-shadow:0px 1px 0px rgba(255,255,255,0.8);
+text-shadow: 0px 1px 0px rgba(255,255,255,0.8);
+}
+.srv_mediaList li.active a{
+opacity: 1.0;
+}
+.srv_mediaList li.active{
+background: url(../images/srv-icons.png) 0px -573px no-repeat;
+}
+.srv_mediaList li a.imageinsert{
+background: url(../images/imageIcon.png) top left no-repeat;
+}
+
+/*-- then ---*/
 .srv_filePane {
 overflow:auto;
 top:67px;
@@ -121,6 +155,40 @@ height:auto;
 margin:0;
 background: #aaa;
 border-right:1px solid #909090;
+}
+
+.srv_filePane ul{
+list-style: none;
+margin:0;
+padding:18px 0 0 0;
+}
+.srv_filePane li{
+width:120px;
+text-align: center;
+}
+
+.srv_insertOptions{
+position:fixed;
+left:-200px;
+top:67px;
+width:180px;
+padding:10px;
+bottom:0;
+overflow:auto;
+}
+
+#srv_insert_image_display{
+width:100%;
+text-align: center;
+}
+
+.srv_insertOptions label {
+width:168px;
+text-align: left;
+}
+div.srv_insertPanel{
+    margin:0;
+    padding:0;
 }
 
 
@@ -151,30 +219,30 @@ position: absolute;
 /*--------text editor icons ----------*/ 
 
 #srv_wysiwyg_tools ul li{
-width:24px;
+width:26px;
 height:24px;
 border-bottom:0 none;
-margin:2px;
+margin:2px 2px 2px 0;
+padding:0;
 background:none transparent;
 }
 #srv_wysiwyg_tools a{
-width:20px;
-height:20px;
+width:100%;
+height:100%;
 background-image: url(/site_media/static/images/srv-icons.png);
 display:block;
 overflow: hidden;
 text-indent:-9999px;
-padding:2px;
-border:0 none;
 border:1px solid transparent;
+border-left:0 none;
 }
 
 #srv_wysiwyg_tools a:hover{
 background-color:#e1e1e1;
 -moz-border-radius: 2px;
 -webkit-border-radius: 2px;
-border-radius:2px;
 border:1px solid #bbbbbc;
+border-left:0 none;
 }
 	
 #srv_wysiwyg_tools a.srv_bold, #srv_wysiwyg_tools a.srv_bold.active				{background-position: 0 -133px;}

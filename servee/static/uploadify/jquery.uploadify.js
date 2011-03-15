@@ -76,7 +76,7 @@ if(jQuery)(
 						transparent     : true,
 						uploadLimit     : 999,
 						uploaderType    : 'html5', // the other option is 'flash'
-						width           : 120,
+						width           : 101,
 						
 						// Events
 						skipDefault      : [],

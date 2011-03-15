@@ -8,11 +8,14 @@ transition: all 0.15s ease;
 /* -- open everything ---*/
 #srv_wysiwyg_tools.out, 
 #srv_CSSstyles.out, #srv_CSSstyles.out ul, 
-#srv_insertMedia.out, #srv_insertMedia.out .srv_mediaList, #srv_insertMedia.out .srv_mediaList, #srv_insertMedia.out .srv_filePane
+#srv_insertMedia.out, #srv_insertMedia.out .srv_mediaList, #srv_insertMedia.out .srv_mediaList, #srv_insertMedia.out .srv_filePane, #srv_insertMedia.out.srv_insertOptions
 {
 left:0px;
 }
 
+#srv_insertMedia.out .srv_insertOptions{
+left:120px;
+}
 
 
 
@@ -23,5 +26,5 @@ left:0px;
 left:150px;
 }
 #srv_wysiwyg_tools.out.srv_insertMedia{
-left:340px;
+left:322px;
 }
