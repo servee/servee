@@ -1,108 +1,110 @@
-<div class="srv_adminBox srv_wysiwyg_tools" id="srv_wysiwyg_tools">
-    <ul>
-		<hr />
-        <li><a href="#" class="srv_bold" title="Bold">Bold</a></li>
-        <li><a href="#" class="srv_italic" title="Italic (Ctrl+I)">Italic</a></li>
-        <li><a href="#" class="srv_underline" title="Underline (Ctrl+U)">Underline</a></li>
-        <li class="srv_styles"><a href="#" class="srv_style">Styles</a></li>
-		<li><a href="#" class="srv_bullet" title="Unordered list">Unordered List</a></li>
-        <li><a href="#" class="srv_number" title="Ordered list">Numbered List</a></li>
-        <li><a href="#" class="srv_blockquote" title="Blockquote">Blockquote</a></li>
-        <li><a href="#" class="srv_hr" title="Insert horizontal ruler">Horizontal Rule</a></li>
-        <hr />
-        <li><a href="#" class="srv_undo" title="Undo (Ctrl+Z)">Undo</a></li>
-        <li><a href="#" class="srv_redo" title="Redo (Ctrl+Y)">Redo</a></li>
-		<hr />
-        <li><a href="#" class="srv_link" title="Insert Link">Link</a></li>
-        <li><a href="#" class="srv_unlink" title="Unlink">Unlink</a></li>
-		<hr />
-        <li><a href="#" class="srv_spell" title="Spelling and Grammar Check">Spelling</a></li>
-        <li><a href="#" class="srv_code" title="Edit HTML Source">Edit Source</a></li>
-        <li class="srv_insert"><a href="#" class="srv_insert">Insert</a></li>
-		<hr />
-
-    </ul>
-</div>
-
-<div id="srv_insertMedia" class="srv_adminBox">
-  <ul class="srv_mediaList">
-    {% for slug, class in insert_classes.iteritems %}
-    	<li>
-			<a href="{{ class.list_url }}" title="{{ class.title }}" data-slug="{{ class.base_url }}" class="{{ class.base_url }}">
-		    {{ class.nav_title }}
-			</a>
-    	</li>
-    {% endfor %}
-  </ul>
-
-</div><!--end srv_insertMedia -->
-
-<div id="srv_code_edit" class="srv_adminBox">
-	<form id="srv_code_edit_form">
-	<textarea id="srv_code_edit_text" class="no_wysiwyg"></textarea>
-	<input type="submit" class="srv_button" id="srv_code_edit_action" value="Update"/>
-	</form>
-</div>
-
-<div id="srv_link" class="srv_adminBox">
-	<form id="srv_link_form" class="uniForm">
-	  <fieldset>
-	    <div class="srv_ctrlHolder">
-	      <label for="">URL</label>
-	      <input type="text" id="srv_link_url" value="http://" size="35" class="textInput">
-	    </div>
-
-	    <div class="srv_ctrlHolder">
-	      <label for="">Title</label>
-	      <input type="text" id="srv_link_title" size="35" class="textInput">
-	      <p class="formHint">Link Text, if none selected</p>
-	    </div>
-	    <div class="srv_buttonHolder"><input type="submit" class="srv_button primaryAction" value="Add/Edit Link" /></div>
+	<div class="srv_adminBox srv_wysiwyg_tools" id="srv_wysiwyg_tools">
+	    <ul>
+			<hr />
+	        <li><a href="#" class="srv_bold" title="Bold">Bold</a></li>
+	        <li><a href="#" class="srv_italic" title="Italic (Ctrl+I)">Italic</a></li>
+	        <li><a href="#" class="srv_underline" title="Underline (Ctrl+U)">Underline</a></li>
+	        <li class="srv_styles"><a href="#" class="srv_style">Styles</a></li>
+			<li><a href="#" class="srv_bullet" title="Unordered list">Unordered List</a></li>
+	        <li><a href="#" class="srv_number" title="Ordered list">Numbered List</a></li>
+	        <li><a href="#" class="srv_blockquote" title="Blockquote">Blockquote</a></li>
+	        <li><a href="#" class="srv_hr" title="Insert horizontal ruler">Horizontal Rule</a></li>
+	        <hr />
+	        <li><a href="#" class="srv_undo" title="Undo (Ctrl+Z)">Undo</a></li>
+	        <li><a href="#" class="srv_redo" title="Redo (Ctrl+Y)">Redo</a></li>
+			<hr />
+	        <li><a href="#" class="srv_link" title="Insert Link">Link</a></li>
+	        <li><a href="#" class="srv_unlink" title="Unlink">Unlink</a></li>
+			<hr />
+	        <li><a href="#" class="srv_spell" title="Spelling and Grammar Check">Spelling</a></li>
+	        <li><a href="#" class="srv_code" title="Edit HTML Source">Edit Source</a></li>
+	        <li class="srv_insert"><a href="#" class="srv_insert">Insert</a></li>
+			<hr />
 	
-	  </fieldset>
-	</form>
-</div>
+	    </ul>
+	</div>
+	
+	<div id="srv_insertMedia" class="srv_adminBox">
+	  
+	  <ul class="srv_mediaList">
+	    {% for slug, class in insert_classes.iteritems %}
+	    	<li>
+				<a href="{{ class.list_url }}" title="{{ class.title }}" data-slug="{{ class.base_url }}" class="{{ class.base_url }}">
+			    {{ class.nav_title }}
+				</a>
+	    	</li>
+	    {% endfor %}
+	  </ul>
+	
+	</div><!--end srv_insertMedia -->
+	
+	<div id="srv_code_edit" class="srv_adminBox">
+		<form id="srv_code_edit_form">
+		<textarea id="srv_code_edit_text" class="no_wysiwyg"></textarea>
+		<input type="submit" class="srv_button" id="srv_code_edit_action" value="Update"/>
+		</form>
+	</div>
+	
+	<div id="srv_link" class="srv_adminBox">
+		<form id="srv_link_form" class="uniForm">
+		  <fieldset>
+		    <div class="srv_ctrlHolder">
+		      <label for="">URL</label>
+		      <input type="text" id="srv_link_url" value="http://" size="35" class="textInput">
+		    </div>
+	
+		    <div class="srv_ctrlHolder">
+		      <label for="">Title</label>
+		      <input type="text" id="srv_link_title" size="35" class="textInput">
+		      <p class="formHint">Link Text, if none selected</p>
+		    </div>
+		    <div class="srv_buttonHolder"><input type="submit" class="srv_button primaryAction" value="Add/Edit Link" /></div>
+		
+		  </fieldset>
+		</form>
+	</div>
+	
+	<div id="srv_paste" class="srv_adminBox">
+		<form id="srv_paste_form">
+		<textarea id="srv_paste_text"></textarea>
+		<input type="submit" class="srv_button" id="srv_paste_action" value="Paste"/>
+		</form>
+	</div>
+	
+	<div id="srv_CSSstyles" class="srv_adminBox">
+	  <ul class="srv_solidBox">
+	    <li>
+	      <h1><a href="#" class="f-block" title="Heading 1">Heading 1</a></h1>
+	    </li>
+	    <li>
+	      <h2><a href="#" class="f-block" title="Heading 2">Heading 2</a></h2>
+	    </li>
+	    <li>
+	      <h3><a href="#" class="f-block" title="Heading 3">Heading 3</a></h3>
+	    </li>
+	    <li>
+	      <h4><a href="#" class="f-block" title="Heading 4">Heading 4</a></h4>
+	    </li>
+	    <li>
+	      <h5><a href="#" class="f-block" title="Heading 5">Heading 5</a></h5>
+	    </li>
+	    <li>
+	      <h6><a href="#" class="f-block" title="Heading 6">Heading 6</a></h6>
+	    </li>
+	    <li>
+	      <p><a href="#" class="f-block" title="Paragraph">Paragraph</a></p>
+	    </li>
+	    <li>
+	      <pre><a href="#" class="f-block" title="Pre">Preformatted Text</a></pre>
+	    </li>
+	    <li>
+	      <blockquote>
+	        <a href="#" class="f-block" title="Blockquote">Blockquote</a>
+	      </blockquote>
+	    </li>
+	  </ul>
+	</div>
 
-<div id="srv_paste" class="srv_adminBox">
-	<form id="srv_paste_form">
-	<textarea id="srv_paste_text"></textarea>
-	<input type="submit" class="srv_button" id="srv_paste_action" value="Paste"/>
-	</form>
-</div>
-
-<div id="srv_CSSstyles" class="srv_adminBox">
-  <ul class="srv_solidBox">
-    <li>
-      <h1><a href="#" class="f-block" title="Heading 1">Heading 1</a></h1>
-    </li>
-    <li>
-      <h2><a href="#" class="f-block" title="Heading 2">Heading 2</a></h2>
-    </li>
-    <li>
-      <h3><a href="#" class="f-block" title="Heading 3">Heading 3</a></h3>
-    </li>
-    <li>
-      <h4><a href="#" class="f-block" title="Heading 4">Heading 4</a></h4>
-    </li>
-    <li>
-      <h5><a href="#" class="f-block" title="Heading 5">Heading 5</a></h5>
-    </li>
-    <li>
-      <h6><a href="#" class="f-block" title="Heading 6">Heading 6</a></h6>
-    </li>
-    <li>
-      <p><a href="#" class="f-block" title="Paragraph">Paragraph</a></p>
-    </li>
-    <li>
-      <pre><a href="#" class="f-block" title="Pre">Preformatted Text</a></pre>
-    </li>
-    <li>
-      <blockquote>
-        <a href="#" class="f-block" title="Blockquote">Blockquote</a>
-      </blockquote>
-    </li>
-  </ul>
-</div>
 <script type="text/javascript">
 
 DEBUG = '{{ DEBUG }}';
@@ -149,7 +151,6 @@ $(document).ready(function(){
 		//$("div#" +$(this).attr('class')).show();
 		$(this).parent().addClass('active');
 	});
-	//$("ul.srv_mediaList li a:first").click();
 
 	
 	//StyleChooser
@@ -261,22 +262,11 @@ function srv_hide_adminBox(ab, move_wysiwyg){
     /**
     Animation Hide
     **/
-	var which_box = srv_admin_boxes[ab];
-	move_wysiwyg = (typeof move_wysiwyg == 'undefined') ? true : move_wysiwyg;	
+	$("#"+ab).removeClass("out");
+	$("#srv_wysiwyg_tools").removeClass(ab);
 	srv_admin_boxes[ab].shown = false;
-
-	//Match the tools
 	if(move_wysiwyg){
-		$('#srv_wysiwyg_tools').animate({
-		  left: 0
-		}, 'fast');
-		if(DEBUG) console.log('moving wysiwyg to 0');
-	}
-
-	//setup the animations
-	for (var change in which_box.changes){
-		$(which_box.changes[change].selector).stop(true,true);
-		$(which_box.changes[change].selector).animate({left:(-1 * which_box.changes[0].box_width)},'fast');
+		//remove the sho class from the wysiwyg toolbar
 	}
 }
 
@@ -285,30 +275,9 @@ function srv_show_adminBox(ab){
     /**
     Animation Show Sidebar
     **/
-	var which_box = srv_admin_boxes[ab];
-
-	// toggle
-	srv_admin_boxes[ab].shown = true;
-
-	// hide the others
-	for(var b in srv_admin_boxes){
-		if (srv_admin_boxes[b] != which_box){
-			if(DEBUG) console.log('hiding '+srv_admin_boxes[b].ident);
-			srv_hide_adminBox(srv_admin_boxes[b].ident,false);
-		}
-	}
-
-	// match the tools
-	$('#srv_wysiwyg_tools').animate({
-	  left: which_box.changes[0].box_width
-	}, 'fast');
-	if(DEBUG) console.log('moving wysiwyg to '+which_box.changes[0].box_width);
-
-	// setup animations
-	for (var change in which_box.changes){
-		$(which_box.changes[change].selector).stop(true,true);
-		$(which_box.changes[change].selector).animate({left:which_box.changes[change].to_the_left},'fast');
-	}
+    srv_admin_boxes[ab].shown = true;
+	$("#"+ab).addClass("out");
+	$("#srv_wysiwyg_tools").addClass(ab);
 }
 
 

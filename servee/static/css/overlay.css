@@ -1,4 +1,9 @@
 /*-----overall admin toolbar skin ----*/
+#srv_wrap{
+position: fixed;
+width:30px;
+left:0;
+}
 .srv_adminBox{
 background:#c3c3c3;
 border-right:1px solid #909090;
@@ -28,26 +33,28 @@ border:0 none;
 /* ------------ new CSS Styles dialog ------- */
 #srv_CSSstyles{
 left:0;
-left:-350px;
+left:-150px;
 top:0;
 bottom:0;
-width:250px;
+width:150px;
 position: fixed;
 }
 #srv_CSSstyles ul{
 top:0px;
 bottom:0;
-left:-250px;
+left:-150px;
 margin:0;
 padding:0;
 overflow-y:auto;
 overflow-x:hidden;
 position:fixed;
-width:250px;
+width:160px;
 }
 div#srv_CSSstyles ul li{
 padding:8px;
-width:202px;
+width:130px;
+overflow: hidden;
+white-space: nowrap;
 
 }
 div#srv_CSSstyles ul li, div#srv_CSSstyles a, div#srv_CSSstyles a:link, div#srv_CSSstyles a:hover {
@@ -69,11 +76,52 @@ margin:0;
 padding:0;
 }
 
+/* ------------ new Insert dialog ------- */
 
+#srv_insertMedia{
+top:0px;
+bottom:0px;
+left:0px;
+left:-340px;
+width:340px;
+position: fixed;
+}
+#srv_insertMedia img, #srv_insertMedia img a{
+border:0 none;
+outline:0 none;
+}
 
+/*--then...-*/
+.srv_mediaList{
+top:0px;
+left:-340px;
+width:340px;
+position:fixed;
+list-style:none;
+margin:0;
+padding:0;
+height:66px;
+border-bottom:1px solid #909090;
+background-image: -moz-linear-gradient(top, #d4d4d4, #c4c4c4); /* FF3.6 */
+background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #d4d4d4),color-stop(1, #c4c4c4)); /* Saf4+, Chrome */
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#d4d4d4', EndColorStr='#c4c4c4')"; /* IE8 */
+}
 
+li.imageinsert{
 
-
+}
+.srv_filePane {
+overflow:auto;
+top:67px;
+bottom:0px;
+left:-340px;
+width:120px;
+position:fixed;
+height:auto;
+margin:0;
+background: #aaa;
+border-right:1px solid #909090;
+}
 
 
 
