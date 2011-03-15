@@ -24,7 +24,7 @@ class AddObject(Tag):
         Argument('label', required=False, resolve=False)
     )
 
-    def render_tag(self, context, model_instance, label=None):
+    def render_tag(self, context, queryset_instance, label=None):
         if not isinstance(queryset_instance, QuerySet):
             raise template.TemplateSyntaxError, "'%s' argument must be a queryset" % queryset_instance
 
@@ -39,12 +39,8 @@ class AddObject(Tag):
             label = _("Add")
 
         return '<a class="frontendadmin frontendadmin_add" href="%s">%s</a>' % (
-            reverse("servee:%s_%s_add" % (
-                    app_label,
-                    model_name,
-                ), args=[model_instance.pk,]
-            ),
-            label
+            reverse("servee:%s_%s_add" % (app_label, model_name,)),
+            unicode(label)
         )
 
 class ChangeObject(Tag):
@@ -75,7 +71,7 @@ class ChangeObject(Tag):
                     model_name,
                 ), args=[model_instance.pk,]
             ),
-            label
+            unicode(label)
         )
 
 class DeleteObject(Tag):
@@ -106,7 +102,7 @@ class DeleteObject(Tag):
                     model_name,
                 ), args=[model_instance.pk,]
             ),
-            label
+            unicode(label)
         )
 
 register.tag(AddObject)
