@@ -3,7 +3,9 @@ from django.conf import settings
 
 
 class Image(models.Model):
-    """Image model"""
+    """
+    Image model
+    """
     title = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to="images")
     description = models.TextField(blank=True, null=True)

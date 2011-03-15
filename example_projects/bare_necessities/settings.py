@@ -46,15 +46,7 @@ MIDDLEWARE_CLASSES = (
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-
-
-    #"servee.wysiwyg.middleware.WysiwygMiddleware",
-    #"servee.toolbar.middleware.ToolbarMiddleware",
-    
-    # Flatpage Fallback middleware must go AFTER servee
-    # Middleware if you are using it.
-    "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",    
-
+    "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
 )
 
 ROOT_URLCONF = "bare_necessities.urls"
@@ -107,27 +99,25 @@ INSTALLED_APPS = [
     "django.contrib.flatpages",
     
     # servee dependancies
-    #"frontendadmin",
-    #"staticfiles",
     "easy_thumbnails",
+    "improved_inlines",
     "uni_form",
 
     # servee
     "servee",
     "servee.frontendadmin",
-    "improved_inlines",
     "servee.wysiwyg",
+    
+    # tinymce is currently the only
+    # supported wysiwyg backend.
+    # I'd like to support a "none (plain html)" backend
+    # and also possibly a markdown backend.
+    # There are other cool editors poping up as well,
+    # Aloha, Dojo, and classics like FCK.  Please contribute.
     "servee.wysiwyg.tinymce",
-    "servee.toolbar",
 
     # media
     "servee.contrib.media.image",
-    "servee.contrib.media.video",
-    "servee.contrib.media.document",
-    "servee.contrib.media.gallery",
-
-    # toolbars
-    "servee.contrib.tools.gallery",
     
     # site
     "servee_extensions", # small app that I use to write servee forms/registrations

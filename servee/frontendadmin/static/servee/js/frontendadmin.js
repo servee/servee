@@ -7,9 +7,9 @@ $(document).ready(function(){
 	    function(){$(this).parent().css('outline', '4px solid #8C1717');},
 	    function(){$(this).parent().css('outline', '');}
 	);
-	
-	
-	
+
+
+
 	$('a.frontendadmin_add').click(function(){
 		var $base, $par = $(this).parent();
 	    $par.css('outline', '');
@@ -23,8 +23,8 @@ $(document).ready(function(){
 	    });
 	    return false;
 	});
-	
-	
+
+
 	$('a.frontendadmin_edit').click(function(){
 		var $base, $par = $(this).parent();
 	    $par.css('outline', '');
@@ -45,12 +45,12 @@ $(document).ready(function(){
 	// Clicking of 1st tier, building of 2nd tier
 	$(".srv_mediaList li a").live("click", function(e){
 		var $link = $(this);
-		
-		
+	
+	
 		//@@ TODO currentInsert is a global object.  This is lame,
 		//servee should have only one global object.
 		currentInsert = $link.attr("data-slug");
-		
+	
 		$.ajax({
             url: $link.attr("href"),
             success: function(data, text){
@@ -69,7 +69,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		return false;
 	});
-	
+
 	// Clicking of 2nd tier, building of 3rd tier
 	$(".srv_filePane li a").live("click", function(e){
 		var $link = $(this);
@@ -90,5 +90,5 @@ $(document).ready(function(){
 		e.preventDefault();
 		return false;
 	});
-	
+
 });

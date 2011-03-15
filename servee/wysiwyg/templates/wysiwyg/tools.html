@@ -116,9 +116,8 @@ if(typeof(console) == 'undefined'){
     console.error = function(h){ this._logs.push(h); }
 }
 
-
 $(document).ready(function(){
-	
+
 	//CODE DIALOG
 	$("a.srv_code").click(function(e){
 		srv_toggle_adminBox('srv_code_edit');
@@ -132,7 +131,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		return false;
 	});
-		
+	
 	//INSERT DIALOG
 	$('li.srv_insert a').click(function(e){
 		srv_toggle_adminBox('srv_insertMedia');
@@ -147,8 +146,8 @@ $(document).ready(function(){
 		$(this).parent().addClass('active');
 	});
 	//$("ul.srv_mediaList li a:first").click();
+
 	
-		
 	//StyleChooser
 	$('li.srv_styles a').click(function(e){
      	srv_toggle_adminBox('srv_CSSstyles');
@@ -169,14 +168,14 @@ $(document).ready(function(){
 		e.preventDefault();
 		return false;
 	});
-		
+	
 	$("a.srv_link").click(function(e){
 		srv_toggle_adminBox('srv_link');
 		$("#srv_link_url").val(srv_get_link_url());
 		$("#srv_link_text").val(srv_get_link_text());
-		
+	
 		//get window status
-		
+	
 		e.preventDefault();
 		return false;
 	});
@@ -261,7 +260,7 @@ function srv_hide_adminBox(ab, move_wysiwyg){
 	var which_box = srv_admin_boxes[ab];
 	move_wysiwyg = (typeof move_wysiwyg == 'undefined') ? true : move_wysiwyg;	
 	srv_admin_boxes[ab].shown = false;
-	
+
 	//Match the tools
 	if(move_wysiwyg){
 		$('#srv_wysiwyg_tools').animate({
@@ -269,7 +268,7 @@ function srv_hide_adminBox(ab, move_wysiwyg){
 		}, 'fast');
 		if(DEBUG) console.log('moving wysiwyg to 0');
 	}
-	
+
 	//setup the animations
 	for (var change in which_box.changes){
 		$(which_box.changes[change].selector).stop(true,true);
@@ -283,10 +282,10 @@ function srv_show_adminBox(ab){
     Animation Show Sidebar
     **/
 	var which_box = srv_admin_boxes[ab];
-	
+
 	// toggle
 	srv_admin_boxes[ab].shown = true;
-	
+
 	// hide the others
 	for(var b in srv_admin_boxes){
 		if (srv_admin_boxes[b] != which_box){
@@ -294,13 +293,13 @@ function srv_show_adminBox(ab){
 			srv_hide_adminBox(srv_admin_boxes[b].ident,false);
 		}
 	}
-	
+
 	// match the tools
 	$('#srv_wysiwyg_tools').animate({
 	  left: which_box.changes[0].box_width
 	}, 'fast');
 	if(DEBUG) console.log('moving wysiwyg to '+which_box.changes[0].box_width);
-	
+
 	// setup animations
 	for (var change in which_box.changes){
 		$(which_box.changes[change].selector).stop(true,true);

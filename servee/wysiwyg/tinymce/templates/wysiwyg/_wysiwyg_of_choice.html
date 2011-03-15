@@ -1,2 +1,7 @@
 <script type="text/javascript" src="{{ STATIC_URL }}tinymce/jscripts/tiny_mce/jquery.tinymce.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}servee/wysiwyg/js/tinymce.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    load_wysiwyg($("form.frontendadmin")); 
+});
+</script>

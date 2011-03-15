@@ -67,7 +67,7 @@
             addText: "{% blocktrans with inline_admin_formset.opts.verbose_name|title as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}",
             formCssClass: "dynamic-{{ inline_admin_formset.formset.prefix }}",
             deleteCssClass: "inline-deletelink",
-            deleteText: "{% trans "Remove" %}",
+            deleteText: "{% trans 'Remove' %}",
             emptyCssClass: "empty-form",
             removed: updateInlineLabel,
             added: (function(row) {

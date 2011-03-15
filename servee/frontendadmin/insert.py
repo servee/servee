@@ -242,6 +242,9 @@ class ModelInsert(BaseInsert):
             }, context_instance=RequestContext(request))
     
     def render_url(self, object_id):
+        """
+        Render_url is useful, because we can't really dynamically get the reverse.
+        """
         return reverse("%s:insert_%s_%s_render" % (
             self.admin_site.name,
             self.model._meta.app_label,
@@ -279,6 +282,11 @@ class ModelInsert(BaseInsert):
         """
         new_instance is the created instance of self.model or none, depending on if form.is_valid.
         Passed, for consistancy's sake to the template as "object"
+        
+        This view is csrf_exempt, which aparently conflicts with django's admin_view wrapper.
+        This is problematic, as it exposes this view to anybody who knows the URL. @@TODO
+        
+        Uploadify doesn't properly pass the csrf_token.
         """
         instance_form = self.get_minimal_add_form()
         form = instance_form(request.POST, request.FILES)

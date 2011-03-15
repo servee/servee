@@ -9,7 +9,6 @@ frontendadmin.autodiscover()
 urlpatterns = patterns("",
     (r"^admin/doc/", include("django.contrib.admindocs.urls")),
     (r"^admin/", include(admin.site.urls)),
-    (r"^servee/", include("servee.urls")),
     (r"^servee/", include(frontendadmin.site.urls)),
 )
 

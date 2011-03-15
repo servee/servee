@@ -6,11 +6,8 @@
 {% block extrahead %}{{ block.super }}
 {% url 'servee:jsi18n' as jsi18nurl %}
 <script type="text/javascript" src="{{ jsi18nurl }}"></script>
-
-<script type="text/javascript" src="{{ STATIC_URL }}tinymce/jscripts/tiny_mce/jquery.tinymce.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}servee/js/tinymce.js"></script>
-
 {{ media }}
+
 {% endblock %}
 
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />{% endblock %}

@@ -141,7 +141,7 @@ function srv_setAllAttribs(elm)
 		inst.dom.setAttrib(elm, 'target', '_blank');
 	}
 }
-               
+            
 $("a.srv_bold").click(function(e){
 	tinyMCE.activeEditor.execCommand("Bold");
 	e.preventDefault();
