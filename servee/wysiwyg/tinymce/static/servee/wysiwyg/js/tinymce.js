@@ -43,9 +43,7 @@ function load_wysiwyg($par){
 				$(ed.getWin()).focus(function(e) {
 					
 					if((parseInt($("#srv_wysiwyg_tools").css('left').slice(0,$("#srv_wysiwyg_tools").css('left').length-2))) < 0){
-						$('#srv_wysiwyg_tools').animate({
-						  left: 0
-						}, 'fast');
+						$('#srv_wysiwyg_tools').addClass('out');
 					}
 			    });
 				/*$(ed.getWin()).blur(function(e) {

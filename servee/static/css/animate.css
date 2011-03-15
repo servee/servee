@@ -1,0 +1,27 @@
+.srv_adminBox, .srv_adminBox div, .srv_adminBox ul{
+-webkit-transition: all 0.15s ease;
+-moz-transition: all 0.15s ease;
+-o-transition: all 0.15s ease;
+transition: all 0.15s ease;
+}
+
+/* -- open everything ---*/
+#srv_wysiwyg_tools.out, 
+#srv_CSSstyles.out, #srv_CSSstyles.out ul, 
+#srv_insertMedia.out, #srv_insertMedia.out .srv_mediaList, #srv_insertMedia.out .srv_mediaList, #srv_insertMedia.out .srv_filePane
+{
+left:0px;
+}
+
+
+
+
+
+/* -- shuffle the tinyMCE toolbar around ---*/
+
+#srv_wysiwyg_tools.out.srv_CSSstyles{
+left:150px;
+}
+#srv_wysiwyg_tools.out.srv_insertMedia{
+left:340px;
+}

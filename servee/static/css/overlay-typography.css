@@ -1,0 +1,11 @@
+#srv_adminLarge a, ul#srv_adminList a{
+border-bottom:0 none;
+}
+
+div.srv_adminBox h4{
+color: #333;
+font: lighter 20px/26px Helvetica Neue,Helvetica,Arial sans-serif;
+border-bottom:1px solid #ccc;
+padding: 6px 0;
+margin:0;
+}

@@ -148,30 +148,9 @@ color:#000;
 }
 
 /* ------------ new insert media dialog ------- */
-#srv_insertMedia{
-top:0px;
-bottom:0px;
-left:0px;
-left:-550px;
-width:500px;
-position: fixed;
-}
-#srv_insertMedia img{
-border:0 none;
-outline:0 none;
-}
 
-div.srv_adminBox .srv_filePane {
-overflow:auto;
-top:16px;
-bottom:16px;
-left:216px;
-left:-500px;
-width:150px;
-position:fixed;
-height:auto;
-margin:0;
-}
+
+
 
 div.srv_adminBox .srv_filePane li, ul.srv_gallery_filepane li{
 margin:0 0 8px 0;
@@ -227,18 +206,7 @@ border-radius:0px;
 width:168px;
 text-align: left;
 }
-ul.srv_mediaList, ul.srv_galleryList{
-top:16px;
-left:368px;
-left:-500px;
-width:136px;
-position:fixed;
-list-style:none;
-margin:0;
-padding:0;
-overflow:auto;
-bottom:16px;
-}
+
 
 ul.srv_mediaList li, ul.srv_mediaList li p, ul.srv_mediaList li a, ul.srv_mediaList li a:hover,
 ul.srv_galleryList li, ul.srv_galleryList li p, ul.srv_galleryList li a, ul.srv_galleryList li a:hover
