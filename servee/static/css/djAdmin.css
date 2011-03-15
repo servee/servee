@@ -1,8 +1,5 @@
 @import url(formOverrides.css);
 
-/*------ universal styles -----*/
-a, a:link{outline:0 none;}
-
 #srv_adminLarge a, ul#srv_adminList a{
 border-bottom:0 none;
 }
@@ -16,16 +13,6 @@ margin:0;
 }
 
 /*-----admin toolbar styles ----*/
-div.srv_adminBox, div#srv_wysiwyg_tools, div#srv_adminLarge{
-background:#fff;
-background: -moz-linear-gradient(top, rgba(255,255,255,0.95), rgba(238,238,238,0.95)); /* FF3.6 */
-background: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgba(255,255,255,0.95)),color-stop(1, rgba(238,238,238,0.95))); /* Saf4+, Chrome */
--moz-box-shadow:1px 1px 10px rgba(0,0,0,0.5);
--webkit-box-shadow:1px 1px 10px rgba(0,0,0,0.5);
-box-shadow:1px 1px 10px rgba(0,0,0,0.5);
-position:fixed;
-z-index:5000;
-}
 
 div#srv_adminBar, div.drillRight1{
 padding:18px 7px 0 13px;
@@ -39,7 +26,7 @@ div#srv_adminBar.adminOut1{
 right:-180px;
 }
 
-/*-----admin toolbar list styles ----*/
+/*-----admin toolbar list styles -
 
 div.srv_adminBox ul{
 list-style:none;
@@ -96,6 +83,7 @@ background:#ddd;
 color:#000;
 }
 
+---*/
 /*-----admin button styles ----*/
 
 input.srv_button, p.submit input.submit, p.submit input.cancel{
@@ -160,16 +148,6 @@ color:#000;
 }
 
 /* ------------ new insert media dialog ------- */
-
-.srv_solidBox{
-background:#ddd;
-background: -moz-linear-gradient(top, #ddd, #ccc); /* FF3.6 */
-background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #ddd),color-stop(1, #ccc)); /* Saf4+, Chrome */
-border:1px solid #cdcdcd;
-border-bottom:1px solid #f9f9f9;
-border-right:1px solid #f9f9f9;
-}
-
 #srv_insertMedia{
 top:0px;
 bottom:0px;
@@ -329,58 +307,6 @@ color:#555;
 font: 11px/12px Helvetica Neue,Helvetica,Arial sans-serif;
 }
 
-/* ------------ new CSS Styles dialog ------- */
-
-div#srv_CSSstyles{
-left:0;
-left:-350px;
-top:0;
-bottom:0;
-width:250px;
-position: fixed;
-background: rgba(255,255,255,0.9);
--moz-box-shadow:1px 1px 10px rgba(0,0,0,0.5);
--webkit-box-shadow:1px 1px 10px rgba(0,0,0,0.5);
-box-shadow:1px 1px 10px rgba(0,0,0,0.5);
-z-index:5000;
-}
-div#srv_CSSstyles ul{
-bottom:16px;
-height:auto;
-left:16px;
-left:-250px;
-margin:0;
-padding:0;
-overflow-y:auto;
-overflow-x:hidden;
-position:fixed;
-top:16px;
-width:218px;
-}
-div#srv_CSSstyles ul li{
-padding:8px;
-width:202px;
-}
-div#srv_CSSstyles ul li, div#srv_CSSstyles a, div#srv_CSSstyles a:link, div#srv_CSSstyles a:hover {
-background:none transparent;
-font-family:inherit;
-font-weight:inherit;
-font-style:inherit;
-font-size:inherit;
-width:inherit;
-border-bottom:0 none;
-outline:0 none;
-color:inherit;
-list-style:none;
-text-decoration:none;
-margin:0;
-}
-
-div#srv_CSSstyles h1, div#srv_CSSstyles h2, div#srv_CSSstyles h3, div#srv_CSSstyles h4, div#srv_CSSstyles h5, div#srv_CSSstyles h6, div#srv_CSSstyles p, div#srv_CSSstyles blockquote, div#srv_CSSstyles pre{
-margin:0;
-padding:0;
-}
-
 /*-------new code dialog-------*/
 div#srv_code_edit{
 left:0;
@@ -528,87 +454,6 @@ div#srv_link form fieldset div{
 div.srv_ctrlHolder{
 clear:both;
 }
-
-/*-------srv_wysiwyg_tools ----*/
-div#srv_wysiwyg_tools{
-border:0 none;
-margin:0;
-height:224px;
-width:54px;
-padding:10px 3px;
-left:-80px;
-top:200px;
-}
-div#srv_wysiwyg_tools li.srv_text > a, div#srv_wysiwyg_tools li.srv_text{
-width:54px;
-text-indent:0;
-background:0 none;
-padding:0;
-margin-bottom:0px;
-font-weight:bold;
-opacity:1.0;
-color:#64656e;
-}
-div#srv_wysiwyg_tools li.srv_text > a:hover{
-color:#1d2cb1;
-}
-
-div#srv_wysiwyg_tools ul li{
-width:20px;
-height:20px;
-border-bottom:0 none;
-float:left;
-margin:3px;
-background:none transparent;
-}
-div#srv_wysiwyg_tools a{
-width:20px;
-height:20px;
-background-image: url(/site_media/static/images/icons.png);
-display:block;
-opacity:0.9;
-cursor:pointer;
-overflow: hidden;
-text-indent:-9999px;
-padding:0;
-border:0 none;
-}
-div#srv_wysiwyg_tools a:hover{opacity:1.0;}
-	
-div#srv_wysiwyg_tools a.srv_bold, div#srv_wysiwyg_tools a.srv_bold.active				{background-position: 0px 0px;}
-div#srv_wysiwyg_tools a.srv_italic, div#srv_wysiwyg_tools a.srv_italic.active				{background-position: -60px 0px;}
-div#srv_wysiwyg_tools a.srv_underline, div#srv_wysiwyg_tools a.srv_underline.active		{background-position: -140px 0px;}
-div#srv_wysiwyg_tools a.srv_blockquote, div#srv_wysiwyg_tools a.srv_blockquote.active	{background-position: -220px 0px;}
-div#srv_wysiwyg_tools a.srv_hr, div#srv_wysiwyg_tools a.srv_hr.active					{background-position: -360px 0px;}
-div#srv_wysiwyg_tools a.srv_bullet, div#srv_wysiwyg_tools a.srv_bullet.active			{background-position: -20px 0px;}
-div#srv_wysiwyg_tools a.srv_number, div#srv_wysiwyg_tools a.srv_number.active			{background-position: -80px 0px;}
-div#srv_wysiwyg_tools a.srv_link, div#srv_wysiwyg_tools a.srv_link.active				{background-position: -500px 0px;}
-div#srv_wysiwyg_tools a.srv_unlink, div#srv_wysiwyg_tools a.srv_unlink.active			{background-position: -640px 0px;}
-div#srv_wysiwyg_tools a.srv_undo, div#srv_wysiwyg_tools a.srv_undo.active				{background-position: -160px 0px;}
-div#srv_wysiwyg_tools a.srv_redo, div#srv_wysiwyg_tools a.srv_redo.active				{background-position: -100px 0px;}
-div#srv_wysiwyg_tools a.srv_media, div#srv_wysiwyg_tools a.srv_media.active				{background-position: -380px 0px;}
-div#srv_wysiwyg_tools a.srv_code, div#srv_wysiwyg_tools a.srv_code.active				{background-position: -260px 0px;}
-div#srv_wysiwyg_tools a.srv_word, div#srv_wysiwyg_tools a.srv_word.active				{background-position: -380px -20px;}
-div#srv_wysiwyg_tools a.srv_cogs, div#srv_wysiwyg_tools a.srv_cogs.active				{background-position: -180px -20px;}
-div#srv_wysiwyg_tools a.srv_spell, div#srv_wysiwyg_tools a.srv_spell.active				{background-position: -540px -20px;}
-
-div#srv_wysiwyg_tools a.srv_bold:hover			{background-position: 0px -60px;}
-div#srv_wysiwyg_tools a.srv_italic:hover			{background-position: -60px -60px;}
-div#srv_wysiwyg_tools a.srv_underline:hover		{background-position: -140px -60px;}
-div#srv_wysiwyg_tools a.srv_blockquote:hover		{background-position: -220px -60px;}
-div#srv_wysiwyg_tools a.srv_hr:hover				{background-position: -360px -60px;}
-div#srv_wysiwyg_tools a.srv_bullet:hover			{background-position: -20px -60px;}
-div#srv_wysiwyg_tools a.srv_number:hover			{background-position: -80px -60px;}
-div#srv_wysiwyg_tools a.srv_link:hover			{background-position: -500px -60px;}
-div#srv_wysiwyg_tools a.srv_unlink:hover			{background-position: -640px -60px;}
-div#srv_wysiwyg_tools a.srv_undo:hover			{background-position: -160px -60px;}
-div#srv_wysiwyg_tools a.srv_redo:hover			{background-position: -100px -60px;}
-div#srv_wysiwyg_tools a.srv_media:hover			{background-position: -380px -60px;}
-div#srv_wysiwyg_tools a.srv_code:hover			{background-position: -260px -60px;}
-div#srv_wysiwyg_tools a.srv_word:hover			{background-position: -380px -80px;}
-div#srv_wysiwyg_tools a.srv_cogs:hover			{background-position: -180px -80px;}
-div#srv_wysiwyg_tools a.srv_spell:hover			{background-position: -540px -80px;}
-
 
 /*-----inline editor styles ----*/
 
