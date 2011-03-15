@@ -35,25 +35,29 @@ STATICFILES_FINDERS = (
 
 SECRET_KEY = "$dqgg1dt%!19ms5j1t4+7fixlqzp7&ji_^vhq7!g$r5#*(@=kf"
 
-TEMPLATE_LOADERS = (
+TEMPLATE_LOADERS = [
     "django.template.loaders.filesystem.Loader",
     "django.template.loaders.app_directories.Loader",
-)
+]
 
-MIDDLEWARE_CLASSES = (
+FIXTURE_DIRS = [
+    os.path.join(PROJECT_ROOT, "fixtures"),
+]
+
+MIDDLEWARE_CLASSES = [
     "django.middleware.common.CommonMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
-)
+]
 
 ROOT_URLCONF = "bare_necessities.urls"
 
-TEMPLATE_DIRS = (
+TEMPLATE_DIRS = [
     os.path.join(PROJECT_ROOT, "templates"),
-)
+]
 
 LOGGING = {
     "version": 1,
