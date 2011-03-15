@@ -1,3 +1,1 @@
-{% load thumbnail insert_tags %}
-{% thumbnail object.image 75x75 as thumb %}
-<li><a href="{% insert_detail_url insert object.pk %}"><img src="{{ thumb.url }}" /></a></li>
+<li><a href="{% insert_detail_url insert object.pk %}"><img src="{{ object.image.url }}" /></a></li>

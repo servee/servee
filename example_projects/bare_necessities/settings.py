@@ -103,7 +103,6 @@ INSTALLED_APPS = [
     "django.contrib.flatpages",
     
     # servee dependancies
-    "easy_thumbnails",
     "improved_inlines",
     "uni_form",
 

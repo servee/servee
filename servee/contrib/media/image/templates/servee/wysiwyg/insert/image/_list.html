@@ -1,8 +1,38 @@
 {% load insert_tags %}
-{% load thumbnail %}
+{% load uni_form_tags %}
+<form id="srv_upload_image" method="POST" enctype="multipart/form-data" class="servee uniform" action="{% url servee:insert_image_image_add %}">
+    {% csrf_token %}
+    {{ form|as_uni_form }}
+    <div class="buttonHolder">
+        <input type="submit" class="srv_button insert button" id="srv_upload_image_action" value="Upload">
+    </div>
+</form>
+<script type="text/javascript" src="{{ STATIC_URL }}uploadify/swfobject.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}uploadify/jquery.uploadify.3.0.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    // uploadify
+	/**/
+	$("form#srv_upload_image input[type=file]").uploadify({
+		swf: "{{ STATIC_URL }}uploadify/uploadify.swf",
+        uploader: $("form#srv_upload_image").attr("action"),
+        cancelImage: "{{ STATIC_URL }}uploadify/uploadify-cancel.png",
+        auto: true,
+        buttonImage: "{{ STATIC_URL }}images/buttonBG.png",
+        fileObjName: "image",
+        checkExisting: false,
+        postData: {
+            "csrfmiddlewaretoken": $("form#srv_upload_image [name=csrfmiddlewaretoken]").val()
+        },
+		onUploadSuccess: function(file, response){
+			$("div#srv_imageinsert_filePane ul").prepend(response);
+		}
+	});
+	$("input#srv_upload_image_action").hide();
+});
+</script>
 <ul>
 {% for object in insert.items %}
-    {% thumbnail object.image 75x75 as thumb %}
-    <li><a href="{% insert_detail_url insert object.pk %}"><img src="{{ thumb.url }}" /></a></li>
+    <li><a href="{% insert_detail_url insert object.pk %}"><img src="{{ object.image.url }}" /></a></li>
 {% endfor %}
 </ul>

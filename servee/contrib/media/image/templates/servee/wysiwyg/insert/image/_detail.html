@@ -1,45 +1,15 @@
-{% load thumbnail uni_form_tags insert_tags %}
+{% load insert_tags %}
 <h4>Insert an image</h4>
 	<div id="srv_insert_image_display">
-	   {% thumbnail object.image 165x200 as thumb %}
-	   <img src="{{ thumb.url }}" />
+	   {% thumbnail  165x200 as thumb %}
+	   <img src="{{ object.image.url }}" />
 	</div>
 	<h5 id="srv_insert_image_title">{{ object.title }}</h5>
 	<p id="srv_insert_image_description"></p>
 	<input type="hidden" name="srv_insert_image_pk" id="srv_insert_image_pk" value="{{ object.pk }}">
 	<input type="button" class="srv_button insert" id="srv_insert_image_action" value="Place image at Cursor">
-
-    <form id="srv_upload_image" method="POST" enctype="multipart/form-data" class="servee uniform" action="{% url servee:insert_image_image_add %}">
-        {% csrf_token %}
-        {{ form|as_uni_form }}
-        <div class="buttonHolder">
-            <input type="submit" class="srv_button insert button" id="srv_upload_image_action" value="Upload">
-        </div>
-    </form>
-<script type="text/javascript" src="{{ STATIC_URL }}uploadify/swfobject.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}uploadify/jquery.uploadify.3.0.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	// uploadify
-	/**/
-	$("form#srv_upload_image input[type=file]").uploadify({
-		swf: "{{ STATIC_URL }}uploadify/uploadify.swf",
-        uploader: $("form#srv_upload_image").attr("action"),
-        cancelImage: "{{ STATIC_URL }}uploadify/uploadify-cancel.png",
-        auto: true,
-        buttonImage: "{{ STATIC_URL }}images/buttonBG.png",
-        fileObjName: "image",
-        checkExisting: false,
-        postData: {
-            "csrfmiddlewaretoken": $("form#srv_upload_image [name=csrfmiddlewaretoken]").val()
-        },
-		onUploadSuccess: function(file, response){
-			$("div#srv_imageinsert_filePane ul").prepend(response);
-		}
-	});
-	$("input#srv_upload_image_action").hide();
-	/**/
-
 	$("input#srv_insert_image_action").click(function(e){
 		var template, pk;
 		pk = parseInt($("#srv_insert_image_pk").val(), 10);

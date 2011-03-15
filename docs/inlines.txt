@@ -1,0 +1,9 @@
+.. _ref-inlines
+
+=======
+Inlines
+=======
+
+Inlines are a very powerful tool for putting content inside another piece of content.
+The most comment use-case is to put a small representation of a Model (like an Image)
+onto your content area.

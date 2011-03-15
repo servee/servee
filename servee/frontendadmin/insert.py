@@ -219,8 +219,12 @@ class ModelInsert(BaseInsert):
         ))
                 
     def list_view(self, request):
-        return render_to_response(self.item_list_template, {"insert": self},
-            context_instance=RequestContext(request))
+        form = self.get_minimal_add_form()
+        
+        return render_to_response(self.item_list_template, {
+            "insert": self,
+            "form": form(),
+        }, context_instance=RequestContext(request))
     
     def detail_url(self, object_id):
         return reverse("%s:insert_%s_%s_detail" % (
@@ -233,7 +237,6 @@ class ModelInsert(BaseInsert):
         obj = self.get_object(unquote(object_id))
         
         form = self.get_minimal_add_form()
-        form()
         
         return render_to_response(self.item_detail_template, {
                 "insert": self,

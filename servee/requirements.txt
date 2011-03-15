@@ -3,8 +3,10 @@
 BeautifulSoup>=3.2
 django-improved-inlines>=0.2.1
 
-PIL
-easy-thumbnails
+# Django-classy-tags is so
+# much more readable, and easier
+# to implement, that it's an acceptable
+# dependency.
 django-classy-tags
 
 # It's presumed that django-uni-form will
