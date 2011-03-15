@@ -1,5 +1,4 @@
 {% load thumbnail uni_form_tags insert_tags %}
-<h4>Insert an image</h4>
 	<div id="srv_insert_image_display">
 	   {% thumbnail object.image 165x200 as thumb %}
 	   <img src="{{ thumb.url }}" />
@@ -27,7 +26,8 @@ $(document).ready(function(){
         uploader: $("form#srv_upload_image").attr("action"),
         cancelImage: "{{ STATIC_URL }}uploadify/uploadify-cancel.png",
         auto: true,
-        buttonImage: "{{ STATIC_URL }}images/buttonBG.png",
+        buttonImage: "{{ STATIC_URL }}images/upload.png",
+        width: "101",
         fileObjName: "image",
         checkExisting: false,
         postData: {
