@@ -1,7 +1,12 @@
 from django.contrib.admin.options import ModelAdmin, StackedInline, TabularInline
 
 class ServeeModelAdmin(ModelAdmin):
-    
+    """
+    ServeeModelAdmin is just like the normal ModelAdmin, but with a larger pool of default
+    templates.  First it uses the template specifically registered with the ModelAdmin (normal behavior)
+    the difference is the fallback, where normally it would check admin/...  it first checks servee/...
+    """
+        
     def __init__(self, *args, **kwargs):
         super(ServeeModelAdmin, self).__init__(*args, **kwargs)
         opts = self.model._meta
@@ -53,6 +58,25 @@ class ServeeModelAdmin(ModelAdmin):
             "admin/%s/object_history.html" % app_label,
             "admin/object_history.html",
         ]
+    
+    def change_view(self, *args, **kwargs):
+        """
+        Add the insert_classes to the template context.
+        """
+        if not kwargs.get("extra_context"):
+            kwargs["extra_context"] = {}
+        kwargs["extra_context"].update({"insert_classes": self.admin_site.insert_classes})
+        return super(ServeeModelAdmin, self).change_view(*args, **kwargs)
+    
+    def add_view(self, *args, **kwargs):
+        """
+        Add the insert_classes to the template context.
+        """
+        if not kwargs.get("extra_context"):
+            kwargs["extra_context"] = {}
+        kwargs["extra_context"].update({"insert_classes": self.admin_site.insert_classes})
+        return super(ServeeModelAdmin, self).add_view(*args, **kwargs)
+
 
 class ServeeStackedInline(StackedInline):
     template = 'servee/edit_inline/stacked.html'

@@ -1,20 +1,13 @@
-#Django>=1.3
+## Django>=1.3
 -e git+http://github.com/django/django.git#egg=Django
 BeautifulSoup>=3.2
 django-improved-inlines>=0.2.1
 
 PIL
 easy-thumbnails
+django-classy-tags
 
-# The changes in both uniform and frontendadmin are both
-# Templates only, and it's possible that we can just have a "servee templates"
-# Package, as long as it loads before frontendadmin and uni-form in INSTALLED_APPS
--e git+http://github.com/issackelly/django-uni-form.git#egg=django-uni-form
--e git+http://github.com/issackelly/django-frontendadmin.git#egg=frontendadmin
-
-#django-staticfiles>=1.0
--e git+https://github.com/jezdez/django-staticfiles.git#egg=staticfiles
-
-# Only needed for contrib.navigation
-django-treebeard>=1.60
-South>=0.7
+# It's presumed that django-uni-form will
+# Very soon have some support for fieldsets.
+# That's great. I assume the 0.8.0 release
+django-uni-form

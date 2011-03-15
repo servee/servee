@@ -3,12 +3,18 @@
 <head>
 <title>{% block title %}{% endblock %}</title>
 <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/base.css{% endblock %}" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/djAdmin.css" />
 {% block extrastyle %}{% endblock %}
 <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% load adminmedia %}{% admin_media_prefix %}css/ie.css{% endblock %}" /><![endif]-->
 {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}
 <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% admin_media_prefix %}{% endfilter %}";</script>
 {% block extrahead %}{% endblock %}
 {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}servee/js/frontendadmin.js"></script>
+{% include "wysiwyg/_wysiwyg_of_choice.html" %}
+
 </head>
 {% load i18n %}
 
@@ -78,6 +84,7 @@
     {% block footer %}<div id="footer"></div>{% endblock %}
 </div>
 <!-- END Container -->
-
+{% block wysiwyg %}{% endblock %}
+{% block tools %}{% endblock %}
 </body>
 </html>

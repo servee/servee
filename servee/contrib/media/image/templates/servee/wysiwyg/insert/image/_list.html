@@ -1,0 +1,8 @@
+{% load insert_tags %}
+{% load thumbnail %}
+<ul>
+{% for object in insert.items %}
+    {% thumbnail object.image 75x75 as thumb %}
+    <li><a href="{% insert_detail_url insert object.pk %}"><img src="{{ thumb.url }}" /></a></li>
+{% endfor %}
+</ul>

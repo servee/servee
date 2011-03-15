@@ -1,59 +1,41 @@
 <div class="srv_adminBox srv_wysiwyg_tools" id="srv_wysiwyg_tools">
-  <ul>
-    <li><a href="#" class="srv_bold" title="Bold">Bold</a></li>
-    <li><a href="#" class="srv_italic" title="Italic (Ctrl+I)">Italic</a></li>
-    <li><a href="#" class="srv_underline" title="Underline (Ctrl+U)">Underline</a></li>
-    <li><a href="#" class="srv_blockquote" title="Blockquote">Blockquote</a></li>
-    <li><a href="#" class="srv_bullet" title="Unordered list">Unordered List</a></li>
-    <li><a href="#" class="srv_number" title="Ordered list">Numbered List</a></li>
-    <li><a href="#" class="srv_link" title="Insert Link">Link</a></li>
-    <li><a href="#" class="srv_unlink" title="Unlink">Unlink</a></li>
-    <li><a href="#" class="srv_undo" title="Undo (Ctrl+Z)">Undo</a></li>
-    <li><a href="#" class="srv_redo" title="Redo (Ctrl+Y)">Redo</a></li>
-    <li><a href="#" class="srv_hr" title="Insert horizontal ruler">Horizontal Rule</a></li>
-    <li><a href="#" class="srv_code" title="Edit HTML Source">Edit Source</a></li>
-    <!--<li><a href="#" class="srv_word" title="Paste from Word">Paste From Word</a></li>-->
-    <!--<li><a href="#" class="srv_spell" title="Spelling and Grammar Check">Spelling</a></li>-->
+    <ul>
+        <li><a href="#" class="srv_bold" title="Bold">Bold</a></li>
+        <li><a href="#" class="srv_italic" title="Italic (Ctrl+I)">Italic</a></li>
+        <li><a href="#" class="srv_underline" title="Underline (Ctrl+U)">Underline</a></li>
+        <li><a href="#" class="srv_blockquote" title="Blockquote">Blockquote</a></li>
+        <li><a href="#" class="srv_bullet" title="Unordered list">Unordered List</a></li>
+        <li><a href="#" class="srv_number" title="Ordered list">Numbered List</a></li>
+        <li><a href="#" class="srv_link" title="Insert Link">Link</a></li>
+        <li><a href="#" class="srv_unlink" title="Unlink">Unlink</a></li>
+        <li><a href="#" class="srv_undo" title="Undo (Ctrl+Z)">Undo</a></li>
+        <li><a href="#" class="srv_redo" title="Redo (Ctrl+Y)">Redo</a></li>
+        <li><a href="#" class="srv_hr" title="Insert horizontal ruler">Horizontal Rule</a></li>
+        <li><a href="#" class="srv_code" title="Edit HTML Source">Edit Source</a></li>
+        <!--<li><a href="#" class="srv_word" title="Paste from Word">Paste From Word</a></li>-->
+        <!--<li><a href="#" class="srv_spell" title="Spelling and Grammar Check">Spelling</a></li>-->
 
-    <li class="srv_insert srv_text"><a href="#">&laquo; Insert</a></li>
-    <li class="srv_styles srv_text"><a href="#">&laquo; Styles</a></li>
-  </ul>
+        <li class="srv_insert srv_text"><a href="#">&laquo; Insert</a></li>
+        <li class="srv_styles srv_text"><a href="#">&laquo; Styles</a></li>
+    </ul>
 </div>
 
 <div id="srv_insertMedia" class="srv_adminBox">
   <ul class="srv_mediaList">
-{% for panel in panels %}
-	<li>
-		{% if panel.has_content %}
-			<a href="{{ panel.url|default:"#" }}" title="{{ panel.title }}" class="{{ panel.dom_id }}">
-		{% else %}
-		    <div class="contentless">
-		{% endif %}
-		{{ panel.nav_title }}
-		{% with panel.nav_subtitle as subtitle %}
-			{% if subtitle %}<br /><small>{{ subtitle }}</small>{% endif %}
-		{% endwith %}
-		{% if panel.has_content %}
+    {% for slug, class in insert_classes.iteritems %}
+    	<li>
+			<a href="{{ class.list_url }}" title="{{ class.title }}" data-slug="{{ class.base_url }}" class="{{ class.base_url }}">
+		    {{ class.nav_title }}
 			</a>
-		{% else %}
-		    </div>
-		{% endif %}
-	</li>
-{% endfor %}
+    	</li>
+    {% endfor %}
   </ul>
 
-{% for panel in panels %}
-	<div id="{{ panel.dom_id }}" class="srv_insertPanel">
-		<div class="srv_insertContent">
-		        {{ panel.content|safe }}
-		</div>
-	</div>
-{% endfor %}
 </div><!--end srv_insertMedia -->
 
 <div id="srv_code_edit" class="srv_adminBox">
 	<form id="srv_code_edit_form">
-	<textarea id="srv_code_edit_text"></textarea>
+	<textarea id="srv_code_edit_text" class="no_wysiwyg"></textarea>
 	<input type="submit" class="srv_button" id="srv_code_edit_action" value="Update"/>
 	</form>
 </div>
@@ -108,9 +90,7 @@
       <p><a href="#" class="f-block" title="Paragraph">Paragraph</a></p>
     </li>
     <li>
-      <pre>
-	<a href="#" class="f-block" title="Pre">Preformatted Text</a>
-</pre>
+      <pre><a href="#" class="f-block" title="Pre">Preformatted Text</a></pre>
     </li>
     <li>
       <blockquote>
@@ -120,16 +100,24 @@
   </ul>
 </div>
 <script type="text/javascript">
+
 DEBUG = '{{ DEBUG }}';
-if (DEBUG == 'True')DEBUG = true;
+//A quick save to change from python bool to js bool
+if (DEBUG == 'True') DEBUG = true;
 else DEBUG = false;
+
+
 if(typeof(console) == 'undefined'){
-console = {}
-console._logs = []
-console.log = function(h){ this._logs.push(h); }
+    //Console doesn't exist in some browsers, we'll fake it.
+    console = {}
+    console._logs = []
+    console.log = function(h){ this._logs.push(h); }
+    console.warn = function(h){ this._logs.push(h); }
+    console.error = function(h){ this._logs.push(h); }
 }
+
 $(document).ready(function(){
-	
+
 	//CODE DIALOG
 	$("a.srv_code").click(function(e){
 		srv_toggle_adminBox('srv_code_edit');
@@ -137,29 +125,29 @@ $(document).ready(function(){
 		e.preventDefault()
 		return false;
 	});
-		$("#srv_code_edit_form").submit(function(e){
-			srv_hide_adminBox('srv_code_edit');
-			srv_set_content($("#srv_code_edit_text").val())
-			e.preventDefault();
-			return false;
-		});
-		
+	$("#srv_code_edit_form").submit(function(e){
+		srv_hide_adminBox('srv_code_edit');
+		srv_set_content($("#srv_code_edit_text").val())
+		e.preventDefault();
+		return false;
+	});
+	
 	//INSERT DIALOG
 	$('li.srv_insert a').click(function(e){
 		srv_toggle_adminBox('srv_insertMedia');
 		e.preventDefault();
 		return false;
 	});
-		$("ul.srv_mediaList li a").click(function(e){
-			$("div.srv_insertPanel").hide();
-			$("ul.srv_mediaList li").removeClass('active');
-			console.log('Showing Panel: ' + $(this).attr('class'))
-			$("div#" +$(this).attr('class')).show();
-			$(this).parent().addClass('active');
-		});
-		$("ul.srv_mediaList li a:first").click();
-		
-		
+	$("ul.srv_mediaList li a").click(function(e){
+		$("div.srv_insertPanel").hide();
+		$("ul.srv_mediaList li").removeClass('active');
+		//console.log('Showing Panel: ' + $(this).attr('class'))
+		//$("div#" +$(this).attr('class')).show();
+		$(this).parent().addClass('active');
+	});
+	//$("ul.srv_mediaList li a:first").click();
+
+	
 	//StyleChooser
 	$('li.srv_styles a').click(function(e){
      	srv_toggle_adminBox('srv_CSSstyles');
@@ -174,30 +162,32 @@ $(document).ready(function(){
 		e.preventDefault();
 		return false;
 	});
-		$("#srv_paste_form").submit(function(e){
-			srv_paste_unclean($("#srv_paste_text").val());
-			srv_hide_adminBox('srv_paste');
-			e.preventDefault();
-			return false;
-		});
-		
+	$("#srv_paste_form").submit(function(e){
+		srv_paste_unclean($("#srv_paste_text").val());
+		srv_hide_adminBox('srv_paste');
+		e.preventDefault();
+		return false;
+	});
+	
 	$("a.srv_link").click(function(e){
 		srv_toggle_adminBox('srv_link');
 		$("#srv_link_url").val(srv_get_link_url());
 		$("#srv_link_text").val(srv_get_link_text());
-		
+	
 		//get window status
-		
+	
 		e.preventDefault();
 		return false;
 	});
-		$("#srv_link_form").submit(function(e){
-			srv_put_link()
-			srv_hide_adminBox('srv_link');
-			e.preventDefault();
-			return false;
-		});
+	$("#srv_link_form").submit(function(e){
+		srv_put_link()
+		srv_hide_adminBox('srv_link');
+		e.preventDefault();
+		return false;
+	});
 });
+
+//This object defines the widths for our animations
 srv_admin_boxes = {
 	srv_insertMedia: {
 		shown: false,
@@ -247,58 +237,80 @@ srv_admin_boxes = {
 		]
 	}
 }
+
+
 function srv_toggle_adminBox(ab){
-	var which_box = srv_admin_boxes[ab]
+    /**
+    Animation Toggle
+    **/
+	var which_box = srv_admin_boxes[ab];
 	if (which_box.shown){
-		srv_hide_adminBox(ab)
+		srv_hide_adminBox(ab);
 	}
 	else{
-		srv_show_adminBox(ab)
+		srv_show_adminBox(ab);
 	}
 }
-function srv_hide_adminBox(ab,move_wysiwyg){
-	var which_box = srv_admin_boxes[ab]
+
+
+function srv_hide_adminBox(ab, move_wysiwyg){
+    /**
+    Animation Hide
+    **/
+	var which_box = srv_admin_boxes[ab];
 	move_wysiwyg = (typeof move_wysiwyg == 'undefined') ? true : move_wysiwyg;	
 	srv_admin_boxes[ab].shown = false;
-	
+
 	//Match the tools
 	if(move_wysiwyg){
 		$('#srv_wysiwyg_tools').animate({
 		  left: 0
 		}, 'fast');
-		if(DEBUG) console.log('moving wysiwyg to 0')
+		if(DEBUG) console.log('moving wysiwyg to 0');
 	}
-	
+
 	//setup the animations
 	for (var change in which_box.changes){
-		$(which_box.changes[change].selector).stop(true,true)
-		$(which_box.changes[change].selector).animate({left:(-1 * which_box.changes[0].box_width)},'fast')
-	}	
+		$(which_box.changes[change].selector).stop(true,true);
+		$(which_box.changes[change].selector).animate({left:(-1 * which_box.changes[0].box_width)},'fast');
+	}
 }
+
+
 function srv_show_adminBox(ab){
-	var which_box = srv_admin_boxes[ab]
-	
-	//toggle
+    /**
+    Animation Show Sidebar
+    **/
+	var which_box = srv_admin_boxes[ab];
+
+	// toggle
 	srv_admin_boxes[ab].shown = true;
-	
-	//hide the others
+
+	// hide the others
 	for(var b in srv_admin_boxes){
 		if (srv_admin_boxes[b] != which_box){
-			if(DEBUG) console.log('hiding '+srv_admin_boxes[b].ident)
-			srv_hide_adminBox(srv_admin_boxes[b].ident,false)
+			if(DEBUG) console.log('hiding '+srv_admin_boxes[b].ident);
+			srv_hide_adminBox(srv_admin_boxes[b].ident,false);
 		}
 	}
-	
-	//match the tools
+
+	// match the tools
 	$('#srv_wysiwyg_tools').animate({
 	  left: which_box.changes[0].box_width
 	}, 'fast');
-	if(DEBUG) console.log('moving wysiwyg to '+which_box.changes[0].box_width)
-	
-	//setup animations
+	if(DEBUG) console.log('moving wysiwyg to '+which_box.changes[0].box_width);
+
+	// setup animations
 	for (var change in which_box.changes){
-		$(which_box.changes[change].selector).stop(true,true)
-		$(which_box.changes[change].selector).animate({left:which_box.changes[change].to_the_left},'fast')
+		$(which_box.changes[change].selector).stop(true,true);
+		$(which_box.changes[change].selector).animate({left:which_box.changes[change].to_the_left},'fast');
+	}
+}
+
+
+function srv_hide_all_adminBox(){
+    for(var b in srv_admin_boxes){
+		srv_hide_adminBox(srv_admin_boxes[b].ident,false);
 	}
 }
 </script>
