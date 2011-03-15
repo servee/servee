@@ -1,0 +1,6 @@
+--requirement=requirements.txt
+
+# I wish there was a pip file called "optionals".
+# South isn't actually required, except
+# For development of contrib apps.
+South>=0.7

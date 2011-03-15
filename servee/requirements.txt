@@ -11,8 +11,3 @@ django-classy-tags
 # Very soon have some support for fieldsets.
 # That's great. I assume the 0.8.0 release
 django-uni-form
-
-# I wish there was a pip file called "optionals".
-# South isn't actually required, except
-# For development of contrib apps.
-South>=0.7
