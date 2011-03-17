@@ -9,7 +9,6 @@ form.uniForm .ctrlHolder {
 border:0 none;
 margin-bottom:9px;
 padding:0;
-width:400px;
 }
 
 form.uniForm .focused{
@@ -85,9 +84,6 @@ float:none;
 
 
 
-/*------ KK - borrowed from the formalize CSS project. Will make awesomer for future projects, but this will work for now. I'm busy. http://host.sonspring.com/formalize/assets/stylesheets/formalize.css -------*/
-
-
 /* -- UI Consistency -----------------------------------------------*/
 
 ::-moz-focus-inner {
@@ -101,65 +97,7 @@ textarea {
 	vertical-align: middle;
 }
 
-button,
-input[type="reset"],
-input[type="submit"],
-input[type="button"], div.ctrlHolder input[type="submit"] {
-	-webkit-appearance: none;
-	-moz-border-radius: 11px;
-	-webkit-border-radius: 11px;
-	border-radius: 11px;
-	background: #ddd;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #ddd));
-	background: -moz-linear-gradient(top center, #fff 0%, #ddd 100%);
-	border: 1px solid;
-	border-color: #ddd #bbb #999;
-	cursor: pointer;
-	color: #333;
-	font: bold 13px/1.2 Arial, sans-serif;
-	outline: 0;
-	overflow: visible;
-	padding: 3px 10px 4px;
-	text-shadow: #fff 0 1px 1px;
-	width: auto;
-	margin:0 0 36px 0px;
 
-	/* IE7 */
-	*padding-top: 2px;
-	*padding-bottom: 0px;
-}
-button,
-input[type="reset"]:hover,
-input[type="submit"]:hover,
-input[type="button"]:hover,
-a.edit:hover{
-	background: #eee;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #ccc));
-	background: -moz-linear-gradient(top center, #fff 0%, #ccc 100%);
-
-}
-button,
-input[type="reset"]:active,
-input[type="submit"]:active,
-input[type="button"]:active,
-a.edit:active{
-	background: #eee;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ccc), color-stop(1, #fff));
-	background: -moz-linear-gradient(top center, #ccc 0%, #fff 100%);
-
-}
-button {
-	/* IE7 */
-	*padding-top: 1px;
-	*padding-bottom: 1px;
-}
-
-button[disabled],
-input[type="reset"][disabled],
-input[type="submit"][disabled],
-input[type="button"][disabled] {
-	color: #888;
-}
 
 textarea,
 select,
@@ -200,6 +138,9 @@ input[type="week"] {
 	*height: auto;
 }
 
+textarea{
+height:100px;
+}
 
 button:focus,
 button:active,
@@ -216,4 +157,11 @@ textarea:active {
 	background-color: rgba(255,255,255,0.85);
 	/* for Opera */
 	z-index: 1;
+}
+
+
+/*------- specific button overrides ----*/
+
+#srv_insert_image_action{
+width:100%;
 }

@@ -3,8 +3,8 @@
 <head>
 <title>{% block title %}{% endblock %}</title>
 <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/base.css{% endblock %}" />
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/djAdmin.css" />
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/admin.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}servee/css/djAdmin.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}servee/css/admin.css" />
 {% block extrastyle %}{% endblock %}
 <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% load adminmedia %}{% admin_media_prefix %}css/ie.css{% endblock %}" /><![endif]-->
 {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}

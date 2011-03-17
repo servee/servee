@@ -1,0 +1,36 @@
+/*--- don't know what these are anymore... scrapping soon ---*/
+
+body fieldset.frontendadmin p, body fieldset.frontendadmin{
+background: none transparent;
+border:0 none;
+padding:0;
+}
+body fieldset.frontendadmin p input[type="text"], body fieldset.frontendadmin p input[type="password"], body fieldset.frontendadmin p textarea {
+border:1px solid #ccc;
+border-bottom:1px solid #eee;
+padding:4px;
+}
+body fieldset.frontendadmin textarea{
+height:375px;
+}
+
+body .defaultSkin table.mceLayout {
+border-bottom:1px solid #eee;
+background:none transparent;
+} 
+body .defaultSkin .mceIframeContainer{
+border:0 none;
+}
+body .defaultSkin tr.mceLast{
+display: none;
+}
+
+/*- more inline edits -*/
+span#id_content_parent, textarea#id_content, input[id="id_title"]{
+width:100%;
+clear:both;
+}
+label[for="id_content"], label[for="id_title"]{
+text-align: left;
+}
+

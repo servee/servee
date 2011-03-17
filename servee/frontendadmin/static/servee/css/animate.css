@@ -1,4 +1,4 @@
-.srv_adminBox, .srv_adminBox div, .srv_adminBox ul{
+.srv_adminBox, .srv_adminBox div, .srv_adminBox ul, .srv_adminBox input{
 -webkit-transition: all 0.15s ease;
 -moz-transition: all 0.15s ease;
 -o-transition: all 0.15s ease;
@@ -8,7 +8,9 @@ transition: all 0.15s ease;
 /* -- open everything ---*/
 #srv_wysiwyg_tools.out, 
 #srv_CSSstyles.out, #srv_CSSstyles.out ul, 
-#srv_insertMedia.out, #srv_insertMedia.out .srv_mediaList, #srv_insertMedia.out .srv_mediaList, #srv_insertMedia.out .srv_filePane, #srv_insertMedia.out.srv_insertOptions
+#srv_insertMedia.out, #srv_insertMedia.out .srv_mediaList, #srv_insertMedia.out .srv_mediaList, #srv_insertMedia.out .srv_filePane, #srv_insertMedia.out.srv_insertOptions,
+#srv_code_edit.out, #srv_code_edit.out textarea, 
+#srv_link.out
 {
 left:0px;
 }
@@ -16,8 +18,9 @@ left:0px;
 #srv_insertMedia.out .srv_insertOptions{
 left:120px;
 }
-
-
+#srv_code_edit.out input{
+left:200px;
+}
 
 
 /* -- shuffle the tinyMCE toolbar around ---*/
@@ -27,4 +30,12 @@ left:150px;
 }
 #srv_wysiwyg_tools.out.srv_insertMedia{
 left:322px;
+}
+
+#srv_wysiwyg_tools.srv_code_edit.out{
+left:400px;
+}
+
+#srv_wysiwyg_tools.srv_link.out{
+left:200px;
 }

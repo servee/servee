@@ -143,9 +143,50 @@ background: url(../images/srv-icons.png) 0px -573px no-repeat;
 background: url(../images/imageIcon.png) top left no-repeat;
 }
 
+/*--------- uploadify ------------*/
+
+.uploadifyQueueItem {
+	font: 9px Helvetica, Arial, sans-serif;
+	text-align: left;
+	border: 0 none;
+	background-color: transparent;
+	margin-top: 4px;
+	padding: 0;
+	width: 100%;
+}
+.uploadifyError {
+	border: 2px solid #FBCBBC !important;
+	background-color: #FDE5DD !important;
+}
+.uploadifyQueueItem .cancel {
+	float: right;
+	width:9px;
+	height:9px;
+}
+#srv_insertmedia .uploadifyQueueItem img{
+	-moz-box-shadow: 0 0 0 transparent;
+	-webkit-box-shadow:  0 0 0 transparent;
+	box-shadow:  0 0 0 transparent;
+}
+.uploadifyQueueItem .cancel a{
+	border-bottom:0 none;
+}
+.uploadifyProgress {
+	background-color: #FFFFFF;
+	border:0 none;
+	margin-top: 4px;
+	width: 100%;
+}
+.uploadifyProgressBar {
+	background-color: #1046B9;
+	width: 1px;
+	height: 3px;
+}
+
 /*-- then ---*/
 .srv_filePane {
-overflow:auto;
+overflow-y:auto;
+overflow-x:hidden;
 top:67px;
 bottom:0px;
 left:-340px;
@@ -153,7 +194,7 @@ width:120px;
 position:fixed;
 height:auto;
 margin:0;
-background: #aaa;
+background: #929292;
 border-right:1px solid #909090;
 }
 
@@ -163,10 +204,26 @@ margin:0;
 padding:18px 0 0 0;
 }
 .srv_filePane li{
-width:120px;
+width:100%;
 text-align: center;
+padding:6px 0;
 }
-
+.srv_filePane li img{
+max-height: 90px;
+max-width: 90px;
+}
+.srv_filePane #srv_upload_image{
+width:100%;
+}
+#srv_upload_image label {
+display:none;
+}
+#srv_upload_image .ctrlHolder {
+width:90px;
+text-align: center;
+padding:10px 0 0 0;
+margin:0 auto;
+}
 .srv_insertOptions{
 position:fixed;
 left:-200px;
@@ -180,6 +237,10 @@ overflow:auto;
 #srv_insert_image_display{
 width:100%;
 text-align: center;
+}
+#srv_insert_image_display img{
+max-height: 140px;
+max-width:180px;
 }
 
 .srv_insertOptions label {
@@ -209,9 +270,9 @@ min-height:430px;
 }
 #srv_wysiwyg_tools ul{
 top:50%;
-margin:-209px 0 0 0;
+margin:-190px 0 0 0;
 padding:0;
-height:417px;
+height:380px;
 width:30px;
 position: absolute;
 }
@@ -229,7 +290,7 @@ background:none transparent;
 #srv_wysiwyg_tools a{
 width:100%;
 height:100%;
-background-image: url(/site_media/static/images/srv-icons.png);
+background-image: url(../images/srv-icons.png);
 display:block;
 overflow: hidden;
 text-indent:-9999px;
@@ -285,3 +346,45 @@ border-left:0 none;
 #srv_wysiwyg_tools a.srv_insert:hover		{background-position: -32px -532px;}
 
 
+/*-------new code dialog-------*/
+#srv_code_edit{
+left:-402px;
+top:0;
+bottom:0;
+width:400px;
+}
+#srv_code_edit textarea{
+bottom:64px;
+top:0;
+bottom:77px;
+width:400px;
+position: absolute;
+left:-402px;
+margin:0;
+padding:8px;
+overflow-y:auto;
+overflow-x:hidden;
+font: 12px/16px "Lucida Console", Monaco, "Courier New", mono;
+color:#333;
+white-space: pre;
+background:#eee;
+height:auto;
+border:0 none;
+}
+div#srv_code_edit input{
+position: fixed;
+left:-396px;
+width:190px;
+margin:0;
+bottom:36px;
+}
+
+/*-------link dialog-------*/
+div#srv_link{
+left:-202px;
+top:0;
+bottom:0;
+width:180px;
+position: fixed;
+padding:10px;
+}

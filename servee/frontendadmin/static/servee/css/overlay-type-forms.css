@@ -1,0 +1,99 @@
+/*  type styles----*/
+
+#srv_adminLarge a, ul#srv_adminList a{
+border-bottom:0 none;
+}
+
+.srv_adminBox h5{
+color: #333;
+font: normal 12px/16px sans-serif;
+margin:9px 0 18px;
+text-transform: none;
+letter-spacing: normal;
+}
+
+
+/*---- overlay forms-----*/
+
+.srv_adminBox label{
+font: normal 12px/12px sans-serif;
+color:#333;
+margin: 12px 0 1px 0;
+display:inline-block;
+vertical-align:top;
+zoom:1;
+*display:inline;
+}
+.srv_adminBox input{
+width:180px;
+}
+fieldset{
+border:0 none;
+}
+p.formHint{
+font: italic 11px/14px sans-serif;
+color:#666;
+}
+.srv_buttonHolder{
+text-align: right;
+}
+
+
+/*---------- all text inputs, formatted uni-form style-----*/
+
+::-moz-focus-inner {border: 0;}
+input,button,select,textarea {margin: 0;vertical-align: middle;}
+
+textarea,
+select,
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+.srv_adminBox input{
+	-webkit-appearance: none;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background-color: #fff;
+	background-color: rgba(255,255,255,0.9);
+	border: 1px solid;
+	border-color: #848484 #c1c1c1 #e1e1e1;
+	color: #222;
+	outline: 0;
+	padding: 2px 3px;
+	font-size: 13px;
+	font-family: Arial, sans-serif;
+	height: 1.8em;
+
+	/* IE7 */
+	*padding-top: 2px;
+	*padding-bottom: 1px;
+	*height: auto;
+}
+
+textarea{
+height:100px;
+}
+
+button:focus,button:active,input:focus,input:active,select:focus,select:active,textarea:focus,textarea:active {
+	-moz-box-shadow: 0 0 14px #8facf5;
+	-webkit-box-shadow: 0 0 14px #8facf5;
+	box-shadow: 0 0 14px #8facf5;
+	background-color:#fff;
+	background-color: rgba(255,255,255,0.85);
+	/* for Opera */
+	z-index: 1;
+}

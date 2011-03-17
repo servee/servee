@@ -1,0 +1,94 @@
+
+/*----------------- green action button------------------*/
+button,
+input[type="reset"],
+input[type="submit"],
+input[type="button"], .srv_adminBox input[type="submit"] {
+	-webkit-appearance: none;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background: #139e04;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #139e04), color-stop(1, #0f6705));
+	background: -moz-linear-gradient(top center, #139e04 0%, #0f6705 100%);
+	border: 1px solid;
+	border-color: #0c590a #094b08 #094d08;
+	cursor: pointer;
+	color: #fff;
+	font: bold 14px/1.2 sans-serif;
+	outline: 0;
+	overflow: visible;
+	padding: 6px 10px 8px;
+	text-shadow: 0 -1px 1px #0d5c05;
+	width: auto;
+	margin:0 0 36px 0px;
+	-moz-box-shadow: 0px 1px 1px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0px 1px 1px rgba(0,0,0,0.3);
+	box-shadow: 0px 1px 1px rgba(0,0,0,0.3);
+	height:auto;
+
+	/* IE7 */
+	*padding-top: 2px;
+	*padding-bottom: 0px;
+}
+button,
+input[type="reset"]:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+a.edit:hover{
+	background: #15c102;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #15c102), color-stop(1, #0f6705));
+	background: -moz-linear-gradient(top center, #15c102 0%, #0f6705 100%);
+
+}
+button,
+input[type="reset"]:active,
+input[type="submit"]:active,
+input[type="button"]:active,
+a.edit:active{
+	background: #0f6705;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0f6705), color-stop(1, #15c102));
+	background: -moz-linear-gradient(top center, #0f6705 0%, #15c102 100%);
+
+}
+button {
+	/* IE7 */
+	*padding-top: 1px;
+	*padding-bottom: 1px;
+}
+
+button[disabled],
+input[type="reset"][disabled],
+input[type="submit"][disabled],
+input[type="button"][disabled] {
+	color: #888;
+}
+
+/*---------------inline editor buttons -------------------------------------------------------*/
+
+a.frontendadmin_add, a.frontendadmin_delete, a.frontendadmin_edit{
+padding:2px 5px 1px 16px;
+margin:0 4px 0 0;
+display:inline-block;
+vertical-align:top;
+zoom:1;
+*display:inline;
+cursor: pointer;
+outline: 0;
+overflow: visible;
+background:url(../images/small-icons.png) no-repeat -2px 0px;
+color:#333;
+text-decoration: none;
+font: bold 11px/1.2 Arial, sans-serif;
+text-shadow: #fff 0 1px 1px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+border: 1px solid;
+border-color: #ddd #bbb #999;
+}
+a.frontendadmin_delete{ 		background:url(../images/small-icons.png) no-repeat -2px -36px;}
+a.frontendadmin_edit{ 			background:url(../images/small-icons.png) no-repeat -2px -18px;}
+a.frontendadmin_add:hover{ 		background:url(../images/small-icons.png) no-repeat -2px -57px;}
+a.frontendadmin_delete:hover{ 	background:url(../images/small-icons.png) no-repeat -2px -93px;}
+a.frontendadmin_edit:hover{ 	background:url(../images/small-icons.png) no-repeat -2px -75px;}
