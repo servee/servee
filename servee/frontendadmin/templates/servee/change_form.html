@@ -47,15 +47,12 @@
     {{ adminform.form.non_field_errors }}
 {% endif %}
 
-{% for fieldset in adminform %}
-  {% include "servee/includes/fieldset.html" %}
-{% endfor %}
-
+{{ adminform.form|as_uni_form }}
 
 {% block after_field_sets %}{% endblock %}
 
 {% for inline_admin_formset in inline_admin_formsets %}
-    {% include inline_admin_formset.opts.template %}
+    {{ inline_admin_formset|as_uni_form }}
 {% endfor %}
 
 {% block after_related_objects %}{% endblock %}
