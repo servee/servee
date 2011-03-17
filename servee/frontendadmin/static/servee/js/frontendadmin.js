@@ -1,41 +1,37 @@
 $(document).ready(function(){
-	$('a.frontendadmin_edit').hover(
-	    function(){$(this).parent().css('outline', '4px solid #eeeeee');},
-	    function(){$(this).parent().css('outline', '');}
+	$("a.frontendadmin_edit").hover(
+	    function(){$(this).parent().css("outline", "4px solid #eeeeee");},
+	    function(){$(this).parent().css("outline", "");}
 	);
-	$('a.frontendadmin_delete').hover(
-	    function(){$(this).parent().css('outline', '4px solid #8C1717');},
-	    function(){$(this).parent().css('outline', '');}
+	$("a.frontendadmin_delete").hover(
+	    function(){$(this).parent().css("outline", "4px solid #8C1717");},
+	    function(){$(this).parent().css("outline", "");}
 	);
 
-
-
-	$('a.frontendadmin_add').click(function(){
+	$("a.frontendadmin_add").click(function(e){
 		var $base, $par = $(this).parent();
-	    $par.css('outline', '');
+	    $par.css("outline", "");
 	    $.ajax({
 	        url: this.href,
 	        success: function(data, text){
 	            $par.html(data);
-	            $base = $par.find("form.frontendadmin");
-	            load_wysiwyg($base);
 	        }
 	    });
+	    e.preventDefault();
 	    return false;
 	});
 
 
-	$('a.frontendadmin_edit').click(function(){
+	$("a.frontendadmin_edit").click(function(e){
 		var $base, $par = $(this).parent();
-	    $par.css('outline', '');
+	    $par.css("outline", "");
 	    $.ajax({
 	        url: this.href,
 	        success: function(data, text){
 	            $par.html(data);
-	            $base = $par.find("form.frontendadmin");
-	            load_wysiwyg($base);
 	        }
 	    });
+	    e.preventDefault();
 	    return false;
 	});
 
@@ -58,12 +54,12 @@ $(document).ready(function(){
                 $(".srv_filePane").remove();
                 $(".srv_insertOptions").remove();
                 $(".srv_mediaList").after(
-                    "<div id='srv_"+currentInsert+"_filePane'class='srv_filePane'>"
+                    "<div id='srv_"+currentInsert+"_filePane' class='srv_filePane'>"
                     + data
                     + "</div>"
                 );
                 //Once the dom is rebuilt, slide it in.
-                srv_show_adminBox('srv_insertMedia');
+                srv_show_adminBox("srv_insertMedia");
             }
         });
 		e.preventDefault();
@@ -84,7 +80,7 @@ $(document).ready(function(){
                     + "</div>"
                 );
                 //Once the dom is rebuilt, slide it in.
-                srv_show_adminBox('srv_insertMedia');
+                srv_show_adminBox("srv_insertMedia");
             }
         });
 		e.preventDefault();

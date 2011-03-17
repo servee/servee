@@ -1,4 +1,5 @@
 from django.contrib.admin.options import ModelAdmin, StackedInline, TabularInline
+from django.http import HttpResponse
 
 class ServeeModelAdmin(ModelAdmin):
     """
@@ -59,13 +60,24 @@ class ServeeModelAdmin(ModelAdmin):
             "admin/object_history.html",
         ]
     
+    def response_change(self, request, obj):
+        """
+        Act differently during frontendadmin(ajax) just reload the page.
+        """
+        if request.is_ajax():
+            return HttpResponse("<script type='text/javascript'>window.location.reload(true);</script>")
+        return super(ServeeModelAdmin, self).response_change(request, obj)
+    
     def change_view(self, *args, **kwargs):
         """
         Add the insert_classes to the template context.
         """
         if not kwargs.get("extra_context"):
             kwargs["extra_context"] = {}
-        kwargs["extra_context"].update({"insert_classes": self.admin_site.insert_classes})
+        kwargs["extra_context"].update({
+            "insert_classes": self.admin_site.insert_classes,
+            "form_url": "derp"
+        })
         return super(ServeeModelAdmin, self).change_view(*args, **kwargs)
     
     def add_view(self, *args, **kwargs):
@@ -74,7 +86,10 @@ class ServeeModelAdmin(ModelAdmin):
         """
         if not kwargs.get("extra_context"):
             kwargs["extra_context"] = {}
-        kwargs["extra_context"].update({"insert_classes": self.admin_site.insert_classes})
+        kwargs["extra_context"].update({
+            "insert_classes": self.admin_site.insert_classes,
+            "form_url": "herp"
+        })
         return super(ServeeModelAdmin, self).add_view(*args, **kwargs)
 
 

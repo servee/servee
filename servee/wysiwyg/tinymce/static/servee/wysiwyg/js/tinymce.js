@@ -64,11 +64,6 @@ function load_wysiwyg($par){
 			});
 		}
 	});
-	$par.submit(function(e){
-	    for (edId in tinyMCE.editors) {
-            tinyMCE.editors[edId].save();
-        }
-	});
 }
 
 function srv_wysiwyg_insert_html_at_cursor(h){
