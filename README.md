@@ -31,4 +31,6 @@ Then syncdb, or migrate and collectstatic (if you are on production)
 It's important to add servee urls and frontendadmin urls
     
     from servee import frontendadmin
+    frontendadmin.site.autodiscover()
+    # ...
     url(r"^servee/", include(frontendadmin.site.urls)),
