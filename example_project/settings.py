@@ -1,4 +1,3 @@
-# Django settings for bare_necessities project.
 import os
 
 DEBUG = True
@@ -53,7 +52,7 @@ MIDDLEWARE_CLASSES = [
     "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
 ]
 
-ROOT_URLCONF = "bare_necessities.urls"
+ROOT_URLCONF = "example_project.urls"
 
 TEMPLATE_DIRS = [
     os.path.join(PROJECT_ROOT, "templates"),

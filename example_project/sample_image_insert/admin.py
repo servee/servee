@@ -1,5 +1,5 @@
 from django.contrib import admin
-from servee.sample_insert.image.models import Image
+from sample_image_insert.models import Image
 
 
 class ImageAdmin(admin.ModelAdmin):
