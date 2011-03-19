@@ -10,7 +10,7 @@ Sample projects should get you started with a working version of servee.
 Bare Essentials
 ===============
 
-This is a bare django project + flatpages + required settings and installed apps for servee + contrib.
+This is a bare django project + flatpages + required settings and installed apps for servee.
 
 To build it, these instructions assume you have virtualenv + virtualenv wrapper installed.
 
@@ -19,13 +19,12 @@ Creating the Project::
     mkvirtualenv servee
     cd ~/Path/to/servee/
     python manage.py develop
-    pip install -r requirements.txt
 
-    cd example_projects/bare_necessities
+    cd example_project/
     python manage.py syncdb
     python manage.py runserver
     
-Go to http://localhost:8000/admin/flatpages/add/ and add a flatpage with the url /
+Login at http://localhost:8000/
 
 Go to http://localhost:8000/ to edit it.
 

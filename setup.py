@@ -14,6 +14,10 @@ setup(
     packages=find_packages(exclude=['ez_setup']),
     include_package_data=True,
     zip_safe=False, # because we're including media that Django needs
+    requires = [
+        'django-classy-tags',
+        'django-uni-form',
+    ],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',

@@ -30,8 +30,7 @@ function load_wysiwyg($par){
 
 		//Auto resize
 		theme_advanced_resizing_min_width : 50,
-		theme_advanced_resizing_min_height : 50,
-
+		theme_advanced_resizing_min_height : 350,
 
 		setup: function (ed) {
 			ed.onPostRender.add(function(ed,evt){

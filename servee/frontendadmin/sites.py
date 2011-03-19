@@ -1,4 +1,5 @@
 from django.contrib.admin.sites import AdminSite, AlreadyRegistered
+from django.conf import settings
 
 class ServeeAdminSite(AdminSite):
     """
@@ -7,7 +8,6 @@ class ServeeAdminSite(AdminSite):
     """
     
     insert_classes = {}
-    #toolbar_classes = []
     custom_views = []
     
     def register_view(self, path, view, name=None):
@@ -35,14 +35,6 @@ class ServeeAdminSite(AdminSite):
         # Add to registry of instantiated models
         self.insert_classes[insert_class.base_url()] = insert_class
     
-    
-    #def register_toolbar(self, class_registered):
-    #    """
-    #    ... Yet Unimplemented
-    #    """
-    #    self.toolbar_classes.append(class_registered)
-    
-    
     def get_urls(self):
         """Add our custom views to the admin urlconf."""
         urls = super(ServeeAdminSite, self).get_urls()
@@ -59,13 +51,15 @@ class ServeeAdminSite(AdminSite):
             urls += patterns("",
                 (r"^insert/%s/%s/" % (insert.model._meta.app_label, insert.model._meta.module_name), include(insert.urls))
             )
-        
         return urls
     
     def __init__(self, *args, **kwargs):
         super(ServeeAdminSite, self).__init__(*args, **kwargs)
+        
+        ##@@ TODO Fix so that this can be properly namespaced
         self.name = "servee"
         self.app_name = "servee"
+        self.uses_wysiwyg = "servee.wysiwyg" in settings.INSTALLED_APPS
         
         self.index_template = ["servee/index.html", "admin/index.html"]
         self.login_template = ["servee/login.html", "admin/login.html"]

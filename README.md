@@ -7,13 +7,12 @@ This is an alpha version of servee and may contain many bugs.
 First you should put servee in your environment:
 
     pip install -e git+git://github.com/servee/servee.git@features/replace_frontendadmin#egg=django-servee
-    # servee is on PyPI as django-servee, but it is out of date
+    # servee is on PyPI as django-servee, but it is out of date if you're looking for the
+    # development version
 
 or download and
 
     ./setup.py develop
-
-I pip is not setup to read the other dependancies from there so navigate to your servee folder in your path now (<env>/src/servee, or wherever you downloaded from) and do pip install -r requirements.txt
 
 Then add servee to installed apps and add the two middleware packages.
 
@@ -22,17 +21,10 @@ Then add servee to installed apps and add the two middleware packages.
         "uni_form",
     
         #servee
-        "servee",
-        "improved_inlines",
+        "servee.frontendadmin",
         "servee.wysiwyg",
         "servee.wysiwyg.tinymce", 
     ]
-
-Also Add this setting to settings.py
-
-    # Currently, it's overkill, since there is just one WYSIWYG
-    # Editor supported. Please write and submit another :)
-    SRV_WYSIWYG_EDITOR = "tinymce"
 
 Then syncdb, or migrate and collectstatic (if you are on production)
 

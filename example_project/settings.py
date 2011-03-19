@@ -125,3 +125,6 @@ INSTALLED_APPS = [
     # frontend editing to 3rd party apps.
     "servee_extensions",
 ]
+
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/"

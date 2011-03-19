@@ -1,6 +1,6 @@
 {% load insert_tags %}
 {% load uni_form_tags %}
-<form id="srv_upload_image" method="POST" enctype="multipart/form-data" class="servee uniform" action="{% url servee:insert_image_image_add %}">
+<form id="srv_upload_image" method="POST" enctype="multipart/form-data" class="servee uniform" action="{% url servee:insert_sample_image_insert_image_add %}">
     {% csrf_token %}
     {{ form|as_uni_form }}
     <div class="buttonHolder">
