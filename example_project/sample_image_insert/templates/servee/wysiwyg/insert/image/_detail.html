@@ -1,0 +1,23 @@
+{% load insert_tags %}
+	<div id="srv_insert_image_display">
+	   <img src="{{ object.image.url }}" />
+	</div>
+	<h5 id="srv_insert_image_title">{{ object.title }}</h5>
+	<p id="srv_insert_image_description"></p>
+	<input type="hidden" name="srv_insert_image_pk" id="srv_insert_image_pk" value="{{ object.pk }}">
+	<input type="button" class="srv_button insert" id="srv_insert_image_action" value="Place image at Cursor">
+<script type="text/javascript">
+$(document).ready(function(){
+	$("input#srv_insert_image_action").click(function(e){
+        $.ajax({
+		    url: "{% insert_render_url insert object.pk %}",
+		    success: function(data, text){
+		        srv_hide_adminBox("srv_insertMedia");
+        		srv_wysiwyg_insert_html_at_cursor(data);
+		    }
+		});
+		e.preventDefault();
+		return false;
+	});
+});
+</script>

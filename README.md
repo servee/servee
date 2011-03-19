@@ -28,7 +28,7 @@ Then add servee to installed apps and add the two middleware packages.
         "servee.wysiwyg.tinymce",
 
         #media
-        "servee.contrib.media.image",    
+        "servee.sample_insert.image",    
     ]
 
 Also Add this setting to settings.py
