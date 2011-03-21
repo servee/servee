@@ -8,8 +8,8 @@ INSTALLED_APPS = (
     "django.contrib.flatpages",
     "django.contrib.sessions",
     "django.contrib.contenttypes",
-    "frontendadmin",
     "servee",
+    "frontendadmin",
 )
 
 DATABASES = {

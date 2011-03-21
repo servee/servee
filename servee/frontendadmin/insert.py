@@ -293,16 +293,23 @@ class ModelInsert(BaseInsert):
         """
         instance_form = self.get_minimal_add_form()
         form = instance_form(request.POST, request.FILES)
-        
+
         new_instance = None
         if form.is_valid():
             new_instance = form.save()
-        
-        return render_to_response(self.item_add_template, {
-                "insert": self,
-                "form": form,
-                "object": new_instance
-            }, context_instance=RequestContext(request))
+            template = get_template(self.item_add_template)
+            context = RequestContext(request)
+            context.update({
+                    "insert": self,
+                    "form": form,
+                    "object": new_instance
+                })
+            response = HttpResponse(template.render(context))
+            response.status_code = 201
+            return response
+        response = HttpResponse(form.errors)
+        response.status_code = 400
+        return response
     
     def delete_view(self, request, object_id):
         """

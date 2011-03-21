@@ -35,6 +35,17 @@ class ServeeAdminSite(AdminSite):
         # Add to registry of instantiated models
         self.insert_classes[insert_class.base_url()] = insert_class
     
+    def unregister_insert(self, class_registered):
+        """
+        Removes a class from the insert_classes dictionary.  This is useful if a
+        third party registerd the class, and you want to edit it.
+        """
+        insert_class = class_registered(self)
+        
+        if self.insert_classes.get(insert_class.base_url()):
+            self.insert_classes.pop(insert_class.base_url())
+        
+    
     def get_urls(self):
         """Add our custom views to the admin urlconf."""
         urls = super(ServeeAdminSite, self).get_urls()

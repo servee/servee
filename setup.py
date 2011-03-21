@@ -1,31 +1,53 @@
-from setuptools import setup, find_packages
+import os
+from distutils.core import setup
+from distutils.command.install import INSTALL_SCHEMES
 
-setup(
-    name="django-servee",
-    version=__import__("servee").__version__,
-    description=__import__("servee").__about__,
-    long_description=open("README.md").read(),
-    # Get more strings from http://www.python.org/pypi?:action=list_classifiers
-    author="Kelly Creative Tech - Issac Kelly",
-    author_email="issac@kellycreativetech.com",
-    url="http://www.servee.com",
-    #download_url="http://github.com/robhudson/django-debug-toolbar/downloads",
-    license="BSD",
-    packages=find_packages(exclude=["ez_setup"]),
-    include_package_data=True,
-    zip_safe=False, # because we're including media that Django needs
-    install_requires = [
-        "django-classy-tags>=0.3.3",
-        "django-uni-form>=0.7.0",
-    ],
-    classifiers=[
-        "Development Status :: 3 - Alpha",
-        "Environment :: Web Environment",
-        "Framework :: Django",
-        "Intended Audience :: Developers",
-        "License :: OSI Approved :: BSD License",
-        "Operating System :: OS Independent",
-        "Programming Language :: Python",
-        "Topic :: Software Development :: Libraries :: Python Modules",
-    ],
-)
+app_name = "servee"
+version = "0.6.0-a1"
+
+# Tell distutils to put the data_files in platform-specific installation
+# locations. See here for an explanation:
+# http://groups.google.com/group/comp.lang.python/browse_thread/thread/35ec7b2fed36eaec/2105ee4d9e8042cb
+for scheme in INSTALL_SCHEMES.values():
+    scheme['data'] = scheme['purelib']
+
+# Compile the list of packages available, because distutils doesn't have
+# an easy way to do this.
+packages, data_files = [], []
+root_dir = os.path.dirname(__file__)
+if root_dir:
+    os.chdir(root_dir)
+
+for dirpath, dirnames, filenames in os.walk(app_name):
+    # Ignore dirnames that start with '.'
+    for i, dirname in enumerate(dirnames):
+        if dirname.startswith('.'): del dirnames[i]
+    if '__init__.py' in filenames:
+        pkg = dirpath.replace(os.path.sep, '.')
+        if os.path.altsep:
+            pkg = pkg.replace(os.path.altsep, '.')
+        packages.append(pkg)
+    elif filenames:
+        prefix = dirpath[len(app_name)+1:] # Strip "app_name/" or "app_name\"
+        for f in filenames:
+            data_files.append(os.path.join(prefix, f))
+
+setup(name='django-servee',
+      version=version,
+      description='Wysiwyg Editing for Django, based on the Django Admin.',
+      long_description=open('README.md').read(),
+      author='Issac Kelly',
+      author_email='issac@kellycreativetech.com',
+      url='http://github.com/servee/%s/' % app_name,
+      package_dir={app_name: app_name},
+      packages=["servee", "servee.frontendadmin", "servee.wysiwyg",],
+      package_data={app_name: data_files},
+      classifiers=['Development Status :: 3 - Alpha',
+                   'Environment :: Web Environment',
+                   'Intended Audience :: Developers',
+                   'License :: OSI Approved :: BSD License',
+                   'Operating System :: OS Independent',
+                   'Programming Language :: Python',
+                   'Topic :: Utilities'],
+      zip_safe=False,
+      )
