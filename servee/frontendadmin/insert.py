@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.admin.util import unquote
 from django.http import HttpResponse
 from django.template import RequestContext
-from django.template.loader import get_template
+from django.template.loader import select_template
 from django.shortcuts import render_to_response
 from django.utils.functional import update_wrapper
 from django.views.decorators.csrf import csrf_exempt
@@ -154,7 +154,7 @@ class ModelInsert(BaseInsert):
         STATIC_URL
         """
         item = self.model._default_manager.get(pk=item)
-        t = get_template(self.item_render_template)
+        t = select_template(self.item_render_template)
         return t.render({
             "MEDIA_URL": settings.MEDIA_URL,
             "STATIC_URL": settings.STATIC_URL,
@@ -297,7 +297,7 @@ class ModelInsert(BaseInsert):
         new_instance = None
         if form.is_valid():
             new_instance = form.save()
-            template = get_template(self.item_add_template)
+            template = select_template(self.item_add_template)
             context = RequestContext(request)
             context.update({
                     "insert": self,
