@@ -504,8 +504,7 @@
 
 			process([
 				// Copy paste from Java like Open Office will produce this junk on FF
-				[/Version:[\d.]+\nStartHTML:\d+\nEndHTML:\d+\nStartFragment:\d+\nEndFragment:\d+/gi, ''],
-				[/<\/h[1-6][^>]*>/gi, "</strong></p>"]
+				[/Version:[\d.]+\nStartHTML:\d+\nEndHTML:\d+\nStartFragment:\d+\nEndFragment:\d+/gi, '']
 			]);
 
 			// Class attribute options are: leave all as-is ("none"), remove all ("all"), or remove only those starting with mso ("mso").
@@ -757,7 +756,7 @@
 					/^\s+|\s+$/g									// Trim the front & back
 				]);
 
-				h = dom.decode(h);
+				h = dom.decode(tinymce.html.Entities.encodeRaw(h));
 
 				// Delete any highlighted text before pasting
 				if (!sel.isCollapsed()) {

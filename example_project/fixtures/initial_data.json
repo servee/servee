@@ -1,0 +1,17 @@
+[
+    {
+        "pk": 1, 
+        "model": "flatpages.flatpage", 
+        "fields": {
+            "registration_required": false, 
+            "title": "Homepage", 
+            "url": "/", 
+            "template_name": "", 
+            "sites": [
+                1
+            ], 
+            "content": "<p>This is the homepage.</p>\r\n<p>&nbsp;</p>\r\n<p><a href='/login/' >Login to see the edit buttons.  They'll be at the bottom.</a></p>", 
+            "enable_comments": false
+        }
+    }
+]

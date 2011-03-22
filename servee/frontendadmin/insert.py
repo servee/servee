@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.admin.util import unquote
 from django.http import HttpResponse
 from django.template import RequestContext
-from django.template.loader import get_template
+from django.template.loader import select_template
 from django.shortcuts import render_to_response
 from django.utils.functional import update_wrapper
 from django.views.decorators.csrf import csrf_exempt
@@ -154,7 +154,7 @@ class ModelInsert(BaseInsert):
         STATIC_URL
         """
         item = self.model._default_manager.get(pk=item)
-        t = get_template(self.item_render_template)
+        t = select_template(self.item_render_template)
         return t.render({
             "MEDIA_URL": settings.MEDIA_URL,
             "STATIC_URL": settings.STATIC_URL,
@@ -293,16 +293,23 @@ class ModelInsert(BaseInsert):
         """
         instance_form = self.get_minimal_add_form()
         form = instance_form(request.POST, request.FILES)
-        
+
         new_instance = None
         if form.is_valid():
             new_instance = form.save()
-        
-        return render_to_response(self.item_add_template, {
-                "insert": self,
-                "form": form,
-                "object": new_instance
-            }, context_instance=RequestContext(request))
+            template = select_template(self.item_add_template)
+            context = RequestContext(request)
+            context.update({
+                    "insert": self,
+                    "form": form,
+                    "object": new_instance
+                })
+            response = HttpResponse(template.render(context))
+            response.status_code = 201
+            return response
+        response = HttpResponse(form.errors)
+        response.status_code = 400
+        return response
     
     def delete_view(self, request, object_id):
         """

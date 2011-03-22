@@ -2,22 +2,10 @@
 Introduction
 ============
 
-Servee has a few goals, if Django is opinionated server side python, Servee is opinionated site building and front-end editing.
+Servee is a subclass of django.contrib.admin built for front-end editing.
+It keeps a separate registry from django.contrib.admin, and the tools are specifically
+built with non-technical users in mind.  Many aspects of servee are intentionally basic
+to keep dependencies down so it can be used across a very wide variety of projects.
 
-Servee works best built on Pinax.  You can be picky about which components you want, and it is straightforward to build your own components.
-
-Servee is model-independent, and is designed not to get in the way of the site-building process, but to add a level of functionality and a minimal cost on top of an existing Django or Pinax site.
-
-.. _included-batteries:
-
-Servee includes
----------------
-
- - pluggable WYSIWYG front-end editing
- - Simple way to integrate models into areas of your site
- - Standardized Components for Media
- - Photos
- - Videos
- - Documents
- - Galleries (of any type of model)
- - Menus and Menu Builder
+It's also meant to be tightly coupled with wysiwyg components for content editing.  Right now
+this means TinyMCE is supported.

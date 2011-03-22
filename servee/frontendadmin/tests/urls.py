@@ -4,6 +4,5 @@ import frontendadmin_registry
 
 
 urlpatterns = patterns("",
-    url(r"^servee/", include("servee.urls")),
     url(r"^servee/", include(frontendadmin.site.urls)),
 )

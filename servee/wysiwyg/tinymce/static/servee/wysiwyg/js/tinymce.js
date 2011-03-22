@@ -6,10 +6,10 @@ function load_wysiwyg($par){
 		// General options
 		extend_valid_elements: 'script[charset|defer|language|src|type],iframe,img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|obj|param|embed],inline[id|ids|type|filter|class|template]',
 		theme : 'advanced',
-		plugins: 'safari,paste,media,autoresize',
+		plugins: 'paste,media,autoresize',
 		fix_list_elements : true,
 
-		// Theme options
+		// Theme options, empty on purpose
 		theme_advanced_buttons1 : '',
 		theme_advanced_buttons2 : '',
 		theme_advanced_buttons3 : '',
@@ -23,43 +23,25 @@ function load_wysiwyg($par){
 		paste_convert_headers_to_strong : true,
 
 		// Example content CSS (should be your site CSS)
+		// This is a convention, if you need to override
+		// wysiwyg.css location, you'll have to override this
+		// entire file.. or symlink.
 		content_css : "/site_media/static/css/wysiwyg.css",
-
-		// Drop lists for link/image/media/template dialogs
-		template_external_list_url : "lists/template_list.js",
-		external_link_list_url : "lists/link_list.js",
-		external_image_list_url : "lists/image_list.js",
-		media_external_list_url : "lists/media_list.js",
 
 		//Auto resize
 		theme_advanced_resizing_min_width : 50,
-		theme_advanced_resizing_min_height : 50,
-
+		theme_advanced_resizing_min_height : 350,
 
 		setup: function (ed) {
 			ed.onPostRender.add(function(ed,evt){
 				$(ed.getBody()).addClass(ed.id);
 				$(ed.getBody()).css({'backgroundColor':'transparent'});
 				$(ed.getWin()).focus(function(e) {
-					
-					if((parseInt($("#srv_wysiwyg_tools").css('left').slice(0,$("#srv_wysiwyg_tools").css('left').length-2))) < 0){
-						$('#srv_wysiwyg_tools').addClass('out');
-					}
+					$('#srv_wysiwyg_tools').addClass('out');
 			    });
-				/*$(ed.getWin()).blur(function(e) {
-					$('#srv_wysiwyg_tools').animate({
-					  left: -1 * $('#srv_wysiwyg_tools').width()
-					}, 'fast');
-			    });*/
-
+			    
 			    $par.find("input, textarea").focus(function(e) {
-					$('#srv_wysiwyg_tools').animate({
-					  left: -1 * $('#srv_wysiwyg_tools').width()
-					}, 'fast');
-					for(var b in srv_admin_boxes){
-						if(DEBUG) console.log('hiding '+srv_admin_boxes[b].ident)
-						srv_hide_adminBox(srv_admin_boxes[b].ident,false)
-					}
+					$('#srv_wysiwyg_tools, .srv_adminBox').removeClass('out');
 			    });
 			});
 		}

@@ -1,14 +1,16 @@
-# -*- coding: utf-8 -*-
+VERSION = (0, 6, 0, "a", 1)  # following PEP 386
+DEV_N = None
 
-__about__ = """
-Servee is for WYSIWYG editing of your models on the front end of your site, and for building tools for site managers, that don't quite belong in the admin.
 
-Servee works best built on Pinax.  You can be picky about which components you want, and it is straightforward to build your own components.
+def get_version():
+    version = "%s.%s" % (VERSION[0], VERSION[1])
+    if VERSION[2]:
+        version = "%s.%s" % (version, VERSION[2])
+    if VERSION[3] != "f":
+        version = "%s%s%s" % (version, VERSION[3], VERSION[4])
+        if DEV_N:
+            version = "%s.dev%s" % (version, DEV_N)
+    return version
 
-Servee is model-independent, and is designed not to get in the way of the site-building process, but to add a level of functionality and a minimal cost on top of an existing Django or Pinax site.
-"""
 
-__description__ = "Servee is awesome"
-
-VERSION = (0, 5, 5, "dev1")
-__version__ = '.'.join(map(str, VERSION))
+__version__ = get_version()

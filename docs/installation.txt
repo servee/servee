@@ -1,0 +1,7 @@
+
+=========
+
+=========
+
+Servee is on PyPI as django-servee
+

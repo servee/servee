@@ -7,3 +7,19 @@ Inlines
 Inlines are a very powerful tool for putting content inside another piece of content.
 The most comment use-case is to put a small representation of a Model (like an Image)
 onto your content area.
+
+Included in the example_project is a very simple image insert + model, based on ModelInsert.
+
+Inserts have three primary views:
+
+* List: A list of available items to be inserted
+* Detail: Shows More information about the item, as well as the button for rendering the insert onto the current content block.
+* Render: Returns a partial HTML template that gets inserted onto the page at the cursor.
+
+Model Inserts also work off of an idea that you can add one by only putting in the required fields
+For our Image example, the only required field is the `image = models.ImageField...` field.
+
+We are using uploadify to allow you to add several images to the site at once.
+
+If you don't specify an add_form when creating your ModelInsert class, it will create one for you based
+on the required fields.
