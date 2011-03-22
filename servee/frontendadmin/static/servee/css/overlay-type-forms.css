@@ -22,17 +22,17 @@ width:100%;
 width:100%;
 float:none;
 }
-fieldset{
+.srv_adminBox fieldset{
 border:0 none;
 }
-.uniForm .formHint{
+.srv_adminBox .uniForm .formHint{
 font: italic 11px/14px sans-serif;
 color:#666;
 width:100%;
 top:0;
 margin:4px 0 18px 0;
 }
-.srv_buttonHolder{
+.srv_adminBox .srv_buttonHolder{
 text-align: right;
 }
 
