@@ -1,15 +1,11 @@
 /*  type styles----*/
 
-#srv_adminLarge a, ul#srv_adminList a{
-border-bottom:0 none;
-}
-
-.srv_adminBox h5{
-color: #333;
+.srv_adminBox, .srv_adminBox p{
 font: normal 12px/16px sans-serif;
+color: #333;
+}
+p#srv_insert_image_title{
 margin:9px 0 18px;
-text-transform: none;
-letter-spacing: normal;
 }
 
 
@@ -96,4 +92,60 @@ button:focus,button:active,input:focus,input:active,select:focus,select:active,t
 	background-color: rgba(255,255,255,0.85);
 	/* for Opera */
 	z-index: 1;
+}
+
+/*----------------- green action button------------------*/
+button,
+input[type="reset"],
+input[type="submit"],
+input[type="button"], .srv_adminBox input[type="submit"], .srv_adminBox input[type="button"] {
+	-webkit-appearance: none;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background: #139e04;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #139e04), color-stop(1, #0f6705));
+	background: -moz-linear-gradient(top center, #139e04 0%, #0f6705 100%);
+	border: 1px solid;
+	border-color: #0c590a #094b08 #094d08;
+	cursor: pointer;
+	color: #fff;
+	font: bold 14px/1.2 sans-serif;
+	outline: 0;
+	overflow: visible;
+	padding: 6px 10px 8px;
+	text-shadow: 0 -1px 1px #0d5c05;
+	width: auto;
+	margin:0 0 36px 0px;
+	-moz-box-shadow: 0px 1px 1px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0px 1px 1px rgba(0,0,0,0.3);
+	box-shadow: 0px 1px 1px rgba(0,0,0,0.3);
+	height:auto;
+
+	/* IE7 */
+	*padding-top: 2px;
+	*padding-bottom: 0px;
+}
+button:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover, .srv_adminBox input[type="submit"]:hover, .srv_adminBox input[type="button"]:hover{
+	background: #15c102;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #15c102), color-stop(1, #0f6705));
+	background: -moz-linear-gradient(top center, #15c102 0%, #0f6705 100%);
+
+}
+button:active,
+input[type="reset"]:active,
+input[type="submit"]:active,
+input[type="button"]:active, .srv_adminBox input[type="submit"]:active, .srv_adminBox input[type="button"]:active{
+	background: #0f6705;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0f6705), color-stop(1, #15c102));
+	background: -moz-linear-gradient(top center, #0f6705 0%, #15c102 100%);
+
+}
+button {
+	/* IE7 */
+	*padding-top: 1px;
+	*padding-bottom: 1px;
 }
