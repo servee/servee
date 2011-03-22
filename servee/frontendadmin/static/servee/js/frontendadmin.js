@@ -1,20 +1,30 @@
 $(document).ready(function(){
-	$("a.frontendadmin_edit").hover(
-	    function(){$(this).parent().css("outline", "4px solid #eeeeee");},
-	    function(){$(this).parent().css("outline", "");}
+	
+	/* Frontendadmin buttons add, edit, delete */
+	$("a.frontendadmin_edit:not(.modal)").hover(
+	    function(){$(this).parent().addClass("pre-edit");},
+	    function(){$(this).parent().removeClass("pre-edit");}
 	);
-	$("a.frontendadmin_delete").hover(
-	    function(){$(this).parent().css("outline", "4px solid #8C1717");},
-	    function(){$(this).parent().css("outline", "");}
+	$("a.frontendadmin_delete:not(.modal)").hover(
+	    function(){$(this).parent().addClass("pre-delete");},
+	    function(){$(this).parent().removeClass("pre-delete");}
 	);
+	
 
-	$("a.frontendadmin_add").click(function(e){
-		var $base, $par = $(this).parent();
-	    $par.css("outline", "");
+	$("a.frontendadmin_add").live("click", function(e){
+		var $base, $link = $(this), $par = $link.parent();
+
 	    $.ajax({
 	        url: this.href,
 	        success: function(data, text){
-	            $par.html(data);
+	            if ($link.hasClass("modal")){
+	                $.fancybox({
+	                    content: data,
+	                });
+	            }
+	            else {
+    	            $par.html(data);	                
+	            }
 	        }
 	    });
 	    e.preventDefault();
@@ -22,13 +32,21 @@ $(document).ready(function(){
 	});
 
 
-	$("a.frontendadmin_edit").click(function(e){
-		var $base, $par = $(this).parent();
+	$("a.frontendadmin_edit").live("click", function(e){
+		var $base, $link = $(this), $par = $link.parent();
+
 	    $par.css("outline", "");
 	    $.ajax({
 	        url: this.href,
 	        success: function(data, text){
-	            $par.html(data);
+	            if ($link.hasClass("modal")){
+	                $.fancybox({
+	                    content: data,
+	                });
+	            }
+	            else {
+    	            $par.html(data);	                
+	            }
 	        }
 	    });
 	    e.preventDefault();

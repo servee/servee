@@ -21,10 +21,11 @@ class AddObject(Tag):
 
     options = Options(
         Argument('queryset_instance', required=True),
-        Argument('label', required=False, resolve=False)
+        Argument('label', required=False, resolve=False),
+        Argument('add_class', required=False, resolve=False)
     )
 
-    def render_tag(self, context, queryset_instance, label=None):
+    def render_tag(self, context, queryset_instance, label=None, add_class=None):
         if not isinstance(queryset_instance, QuerySet):
             raise template.TemplateSyntaxError, "'%s' argument must be a queryset" % queryset_instance
 
@@ -38,7 +39,8 @@ class AddObject(Tag):
         if not label:
             label = _("Add")
 
-        return '<a class="frontendadmin frontendadmin_add" href="%s">%s</a>' % (
+        return '<a class="frontendadmin frontendadmin_add %s" href="%s">%s</a>' % (
+            add_class,
             reverse("servee:%s_%s_add" % (app_label, model_name,)),
             unicode(label)
         )
@@ -48,10 +50,11 @@ class ChangeObject(Tag):
 
     options = Options(
         Argument('model_instance', required=True),
-        Argument('label', required=False, resolve=False)
+        Argument('label', required=False, resolve=False),
+        Argument('add_class', required=False, resolve=False)
     )
 
-    def render_tag(self, context, model_instance, label=None):
+    def render_tag(self, context, model_instance, label=None, add_class=None):
         if not isinstance(model_instance, Model):
             raise template.TemplateSyntaxError, "'%s' argument must be a model-instance" % model_instance
 
@@ -63,9 +66,11 @@ class ChangeObject(Tag):
             return ""
 
         if not label:
+            print "derp"
             label = _("Change")
 
-        return '<a class="frontendadmin frontendadmin_edit" href="%s">%s</a>' % (
+        return '<a class="frontendadmin frontendadmin_edit %s" href="%s">%s</a>' % (
+            add_class,
             reverse("servee:%s_%s_change" % (
                     app_label,
                     model_name,
@@ -79,10 +84,11 @@ class DeleteObject(Tag):
 
     options = Options(
         Argument('model_instance', required=True),
-        Argument('label', required=False, resolve=False)
+        Argument('label', required=False, resolve=False),
+        Argument('add_class', required=False, resolve=False)
     )
 
-    def render_tag(self, context, model_instance, label=None):
+    def render_tag(self, context, model_instance, label=None, add_class=None):
         if not isinstance(model_instance, Model):
             raise template.TemplateSyntaxError, "'%s' argument must be a model-instance" % model_instance
 
@@ -96,7 +102,8 @@ class DeleteObject(Tag):
         if not label:
             label = _("Delete")
 
-        return '<a class="frontendadmin frontendadmin_delete" href="%s">%s</a>' % (
+        return '<a class="frontendadmin frontendadmin_delete %s" href="%s">%s</a>' % (
+            add_class,
             reverse("servee:%s_%s_delete" % (
                     app_label,
                     model_name,

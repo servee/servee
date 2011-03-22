@@ -60,13 +60,13 @@ class ServeeModelAdmin(ModelAdmin):
             "admin/object_history.html",
         ]
     
-    def response_change(self, request, obj):
-        """
-        Act differently during frontendadmin(ajax) just reload the page.
-        """
-        if request.is_ajax():
-            return HttpResponse("<script type='text/javascript'>window.location.reload(true);</script>")
-        return super(ServeeModelAdmin, self).response_change(request, obj)
+    #def response_change(self, request, obj):
+    #    """
+    #    Act differently during frontendadmin(ajax) just reload the page.
+    #    """
+    #    if request.is_ajax():
+    #        return HttpResponse("<script type='text/javascript'>window.location.reload(true);</script>")
+    #    return super(ServeeModelAdmin, self).response_change(request, obj)
     
     def change_view(self, *args, **kwargs):
         """

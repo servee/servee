@@ -12,8 +12,16 @@
 {% block extrahead %}{% endblock %}
 {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
 
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.5.1.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}servee/js/frontendadmin.js"></script>
+
+{% if not request.is_ajax %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.5.1.min.js"></script>
+    <!--Fancybox -->
+    <script type="text/javascript" src="{{ STATIC_URL }}fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+
+    <script type="text/javascript" src="{{ STATIC_URL }}servee/js/frontendadmin.js"></script>
+{% endif %}
 {% include "wysiwyg/_wysiwyg_of_choice.html" %}
 
 </head>
