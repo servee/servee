@@ -36,6 +36,13 @@ border:0 none;
 -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
+/* -- white shadows for inset text --*/
+
+.srv_mediaList li a, .srv_adminBox label, a.frontendadmin_add, a.frontendadmin_delete, a.frontendadmin_edit{
+-moz-text-shadow: 0px 1px 0px rgba(255,255,255,0.8);
+-webkit-text-shadow:0px 1px 0px rgba(255,255,255,0.8);
+text-shadow: 0px 1px 0px rgba(255,255,255,0.8);
+}
 
 /* ------------ new CSS Styles dialog ------- */
 #srv_CSSstyles{
@@ -119,6 +126,11 @@ width:59px;
 height:66px;
 background:none transparent;
 list-style:none;
+display:inline-block;
+vertical-align:top;
+zoom:1;
+*display:inline;
+margin-right:10px;
 }
 .srv_mediaList li a{
 opacity: 0.5;
@@ -126,14 +138,12 @@ width:59px;
 height:22px;
 display:block;
 text-align: center;
-color:#000;
+color:#222;
 padding-top:39px;
 font-size:11px;
--moz-text-shadow: 0px 1px 0px rgba(255,255,255,0.8);
--webkit-text-shadow:0px 1px 0px rgba(255,255,255,0.8);
-text-shadow: 0px 1px 0px rgba(255,255,255,0.8);
+text-decoration: none;
 }
-.srv_mediaList li.active a{
+.srv_mediaList li.active a, .srv_mediaList li a:hover{
 opacity: 1.0;
 }
 .srv_mediaList li.active{
@@ -141,6 +151,9 @@ background: url(../images/srv-icons.png) 0px -573px no-repeat;
 }
 .srv_mediaList li a.imageinsert{
 background: url(../images/imageIcon.png) top left no-repeat;
+}
+.srv_mediaList li a.documentinsert{
+background: url(../images/doc-icon.png) top left no-repeat;
 }
 
 /*--------- uploadify ------------*/
@@ -212,13 +225,18 @@ padding:6px 0;
 max-height: 90px;
 max-width: 90px;
 }
+.srv_filePane li a{
+color:#222;
+text-decoration: none;
+font-size:10px;
+}
 .srv_filePane #srv_upload_image{
 width:100%;
 }
-#srv_upload_image label {
+#srv_upload_image label, #srv_upload_document label {
 display:none;
 }
-#srv_upload_image .ctrlHolder {
+.srv_filePane .ctrlHolder {
 width:90px;
 text-align: center;
 padding:10px 0 0 0;
@@ -279,6 +297,18 @@ position: absolute;
 
 /*--------text editor icons ----------*/ 
 
+#srv_wysiwyg_tools p.collapse{
+width:26px;
+height:18px;
+position: absolute;
+top:3px;
+right:4px;
+margin:0;
+}
+#srv_wysiwyg_tools p.collapse.bottom{
+top:auto;
+bottom:3px;
+}
 #srv_wysiwyg_tools ul li{
 width:26px;
 height:24px;
@@ -325,6 +355,9 @@ border-left:0 none;
 #srv_wysiwyg_tools a.srv_code, #srv_wysiwyg_tools a.srv_code.active				{background-position: 0 -508px;}
 #srv_wysiwyg_tools a.srv_insert, #srv_wysiwyg_tools a.srv_insert.active			{background-position: 0 -532px;}
 
+#srv_wysiwyg_tools p.collapse a				{background-position: 0 0;}
+#srv_wysiwyg_tools p.collapse a:hover		{background-position: -32px 0px;}
+
 
 #srv_wysiwyg_tools a.srv_bold:hover			{background-position: -32px -133px;}
 #srv_wysiwyg_tools a.srv_italic:hover		{background-position: -32px -160px;}
@@ -361,7 +394,7 @@ width:400px;
 position: absolute;
 left:-402px;
 margin:0;
-padding:8px;
+padding:18px 8px 8px 8px;
 overflow-y:auto;
 overflow-x:hidden;
 font: 12px/16px "Lucida Console", Monaco, "Courier New", mono;
