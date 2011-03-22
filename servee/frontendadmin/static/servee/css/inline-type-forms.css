@@ -45,11 +45,9 @@ tr.mceLast{display:none;}
 /*----------------- submit row ------------------*/
 form.frontendadmin{
 position: relative;
+padding-bottom:36px;
 }
-.submit-row-wrap{
-left: 0;
-position: absolute;
-}
+
 .submit-row {
 padding:5px;
 text-align: right;
@@ -62,11 +60,10 @@ box-shadow:0 1px 6px rgba(0,0,0,0.2);
 overflow: auto;
   position: absolute;
   bottom: 0;
+  width:100%;
+  box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
 
 }
-
-
-
 
 
 .submit-row p.deletelink-box{

@@ -86,29 +86,24 @@ $(document).ready(function(){
 		e.preventDefault();
 		return false;
 	});
-
+    
 });
+	/*---- sticky submit-box ----*/
 
-/*---- sticky submit-box ----*/
+$(document).ready(function(){
 
-$(function () {
-  
-  var msie6 = $.browser == 'msie' && $.browser.version < 7;
-  
-  if (!msie6) {
-    var top = $('.submit-row').offset().top - parseFloat($('.submit-row').css('margin-top').replace(/auto/, 0));
-    $(window).scroll(function (event) {
-      // what the y position of the scroll is
-      var y = $(this).scrollTop();
-      
-      // whether that's below the form
-      if (y >= top) {
-        // if so, ad the fixed class
-        $('.submit-row').addClass('fixed');
-      } else {
-        // otherwise remove it
-        $('.submit-row').removeClass('fixed');
-      }
-    });
-  }  
+
+	$(window).scroll(function(){
+		if  ($(window).scrollTop() > $(".submit-box").offset({ scroll: false }).top){
+		   $(".submit-box").css("position", "fixed");
+		   $(".submit-box").css("bottom", "0");
+		}
+		
+		if  ($(window).scrollTop() <= $(".submit-box").offset({ scroll: false }).top){
+		   $(".submit-box").css("position", "relative");
+		   $(".submit-box").css("bottom", $(".smartBannerIdentifier").offset);
+		}
+	}); 
+
+
 });
