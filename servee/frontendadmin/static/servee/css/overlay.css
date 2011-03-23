@@ -155,7 +155,14 @@ background: url(../images/imageIcon.png) top left no-repeat;
 .srv_mediaList li a.documentinsert{
 background: url(../images/doc-icon.png) top left no-repeat;
 }
-
+.srv_mediaList li a.galleryinsert{
+background: url(../images/gallery-icon.png) top left no-repeat;
+}
+div#srv_galleryinsert_filePane li a{
+background: url(../images/gallery-icon.png) 28px 0 no-repeat;
+padding:40px 0 0 0;
+display:block;
+}
 /*--------- uploadify ------------*/
 
 .uploadifyQueueItem {

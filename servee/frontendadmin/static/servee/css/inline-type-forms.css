@@ -78,8 +78,9 @@ box-shadow:0 1px 6px rgba(0,0,0,0.2);
 overflow: auto;
   position: relative;
   bottom: 0;
-  width:100%;
-  box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+  box-sizing: border-box; 
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box;
 
 }
 
