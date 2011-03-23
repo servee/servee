@@ -104,24 +104,5 @@ $(document).ready(function(){
 		e.preventDefault();
 		return false;
 	});
-    
-});
-	/*---- sticky submit-box ----*/
-
-$(document).ready(function(){
-
-
-	$(window).scroll(function(){
-		if  ($(window).scrollTop() > $(".submit-box").offset({ scroll: false }).top){
-		   $(".submit-box").css("position", "fixed");
-		   $(".submit-box").css("bottom", "0");
-		}
-		
-		if  ($(window).scrollTop() <= $(".submit-box").offset({ scroll: false }).top){
-		   $(".submit-box").css("position", "relative");
-		   $(".submit-box").css("bottom", $(".smartBannerIdentifier").offset);
-		}
-	}); 
-
 
 });
