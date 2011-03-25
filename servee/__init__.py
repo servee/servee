@@ -1,5 +1,5 @@
 VERSION = (0, 6, 0, "a", 1)  # following PEP 386
-DEV_N = "9"
+DEV_N = "10"
 
 # cribbed from pinax
 # https://github.com/pinax/pinax/raw/master/LICENSE

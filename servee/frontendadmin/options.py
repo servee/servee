@@ -71,11 +71,10 @@ class ServeeModelAdmin(ModelAdmin):
         
         # we want to override the default save case in the frontend
         ref = request.META.get("HTTP_REFERER")
-        print ref.find("/servee/")
         if ref and (ref.find("/servee/") == -1):
             if request.is_ajax():
                 return HttpResponse("<script type='text/javascript'>window.location.reload(true);</script>")
-            elif request.FILES:
+            else:
                 return HttpResponseRedirect(ref)
         
         # fallback to normal functionality
