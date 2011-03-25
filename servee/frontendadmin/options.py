@@ -66,7 +66,7 @@ class ServeeModelAdmin(ModelAdmin):
         """
         
         # in these cases, the redirect is good
-        if list(set(request.POST) & set(["_addanother", "_saveasnew", "_continue"])):
+        if list(set(request.POST.keys()) & set(["_addanother", "_saveasnew", "_continue"])):
             return super(ServeeModelAdmin, self).response_change(request, obj)
         
         # we want to override the default save case in the frontend
@@ -77,6 +77,9 @@ class ServeeModelAdmin(ModelAdmin):
                 return HttpResponse("<script type='text/javascript'>window.location.reload(true);</script>")
             elif request.FILES:
                 return HttpResponseRedirect(ref)
+        
+        # fallback to normal functionality
+        return super(ServeeModelAdmin, self).response_change(request, obj)
     
     def change_view(self, *args, **kwargs):
         """
