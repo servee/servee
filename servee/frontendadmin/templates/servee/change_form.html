@@ -81,7 +81,32 @@ $(document).ready(function(){
 		   $(".submit-row").css("position", "relative");
 		   $(".submit-row").css("bottom", $(".scrollidentifier").offset());
 		}
-	}); 
+	});
+	
+	var $base = $("#{{ opts.module_name }}_form");
+    var $par = $base.parent();
+    load_wysiwyg($base);
+    $base.submit(function(e){
+        if($base.find("[type=file]").length == 0){
+            $.ajax({
+                "url": $base.attr("action"),
+                "type": $base.attr("method"),
+                "data": $base.serialize(),
+                success: function(data, text){
+                    //Fracking tinymce destroy bug....
+                    
+                    t = {};
+                    t.keyNav = {};
+                    t.keyNav.destroy = function(){};
+                    
+                    $par.html(data);
+                },
+            });
+            
+            e.preventDefault();
+            return false;
+        }
+    });
 });
 </script>
 {% endblock %}

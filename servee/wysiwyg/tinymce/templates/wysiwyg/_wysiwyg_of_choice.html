@@ -1,28 +1,2 @@
 <script type="text/javascript" src="{{ STATIC_URL }}tinymce/jscripts/tiny_mce/jquery.tinymce.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}servee/wysiwyg/js/tinymce.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-    var $base = $("#{{ opts.module_name }}_form");
-    var $par = $base.parent();
-    load_wysiwyg($base);
-    $base.submit(function(e){
-        if($base.attr("enctype") != "multipart/form-data"){
-            $.ajax({
-                "url": $base.attr("action"),
-                "type": $base.attr("method"),
-                "data": $base.serialize(),
-                "success": function(data, text){
-                    //Fracking tinymce destroy bug....
-                    t = {};
-                    t.keyNav = {};
-                    t.keyNav.destroy = function(){};
-                    $par.html(data);
-                }
-            });
-        
-            e.preventDefault();
-            return false;
-        }
-    });
-});
-</script>

@@ -1,5 +1,5 @@
 from django.contrib.admin.options import ModelAdmin, StackedInline, TabularInline
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 class ServeeModelAdmin(ModelAdmin):
     """
@@ -60,13 +60,23 @@ class ServeeModelAdmin(ModelAdmin):
             "admin/object_history.html",
         ]
     
-    #def response_change(self, request, obj):
-    #    """
-    #    Act differently during frontendadmin(ajax) just reload the page.
-    #    """
-    #    if request.is_ajax():
-    #        return HttpResponse("<script type='text/javascript'>window.location.reload(true);</script>")
-    #    return super(ServeeModelAdmin, self).response_change(request, obj)
+    def response_change(self, request, obj):
+        """
+        Act differently during frontendadmin(ajax) just reload the page.
+        """
+        
+        # in these cases, the redirect is good
+        if list(set(request.POST) & set(["_addanother", "_saveasnew", "_continue"])):
+            return super(ServeeModelAdmin, self).response_change(request, obj)
+        
+        # we want to override the default save case in the frontend
+        ref = request.META.get("HTTP_REFERER")
+        print ref.find("/servee/")
+        if ref and (ref.find("/servee/") == -1):
+            if request.is_ajax():
+                return HttpResponse("<script type='text/javascript'>window.location.reload(true);</script>")
+            elif request.FILES:
+                return HttpResponseRedirect(ref)
     
     def change_view(self, *args, **kwargs):
         """
@@ -76,7 +86,6 @@ class ServeeModelAdmin(ModelAdmin):
             kwargs["extra_context"] = {}
         kwargs["extra_context"].update({
             "insert_classes": self.admin_site.insert_classes,
-            "form_url": "derp"
         })
         return super(ServeeModelAdmin, self).change_view(*args, **kwargs)
     

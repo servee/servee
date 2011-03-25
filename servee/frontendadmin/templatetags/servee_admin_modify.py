@@ -22,4 +22,4 @@ def submit_row_frontendadmin(context):
         'is_popup': is_popup,
         'show_save': True
     }
-submit_row = register.inclusion_tag('servee/submit_line.html', takes_context=True)(submit_row_frontendadmin)
+submit_row = register.inclusion_tag('servee/_submit_line.html', takes_context=True)(submit_row_frontendadmin)
