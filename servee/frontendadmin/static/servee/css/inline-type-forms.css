@@ -66,15 +66,13 @@ width:270px;
 padding:4px 0;
 }
 
-/*----- masthead of inline editor styles -------*/
+/*----- masthead of inline editor styles ***commented out of the DJ admin at the moment -------*/
 
 ul.object-tools{
 list-style: none;
 margin:0;
 padding:0;
 text-align: right;
-float:right;
-width:auto;
 }
 ul.object-tools li{
 display:inline-block;

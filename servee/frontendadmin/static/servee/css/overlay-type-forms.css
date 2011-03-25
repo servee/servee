@@ -144,7 +144,7 @@ font-size:12px;
 .frontendadmin input[type="checkbox"]{
 margin:0 10px 0 80px;
 }
-.frontendadmin .defaultSkin table#id_content_tbl{
+.frontendadmin .defaultSkin table.mceLayout{
 background:transparent;
 }
 
