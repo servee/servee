@@ -68,7 +68,6 @@ input,button,select,textarea {margin: 0;vertical-align: middle;}
 .srv_adminBox input[type="time"],
 .srv_adminBox input[type="url"],
 .srv_adminBox input[type="week"],
-.srv_adminBox input, 
 
 .frontendadmin textarea,
 .frontendadmin select,
@@ -84,8 +83,7 @@ input,button,select,textarea {margin: 0;vertical-align: middle;}
 .frontendadmin input[type="text"],
 .frontendadmin input[type="time"],
 .frontendadmin input[type="url"],
-.frontendadmin input[type="week"],
-.frontendadmin input{
+.frontendadmin input[type="week"]{
 	-webkit-appearance: none;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
