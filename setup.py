@@ -112,13 +112,14 @@ setup(
     packages = find_packages(exclude=["example_project*",]),
     package_data = find_package_data('servee',only_in_packages=False),
     install_requires = [
-        'Django>1.2.5',
+        'Django==1.3',
         'django-uni-form>=0.7',
         'django-classy-tags',
     ],
     #tests_require = [
     #    'Django', 'django-classy-tags', 'django-uni-form'
     #],
+    include_package_data=True,
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Framework :: Django',

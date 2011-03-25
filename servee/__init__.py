@@ -1,7 +1,8 @@
 VERSION = (0, 6, 0, "a", 1)  # following PEP 386
-DEV_N = None
+DEV_N = "5"
 
-
+# cribbed from pinax
+# https://github.com/pinax/pinax/raw/master/LICENSE
 def get_version():
     version = "%s.%s" % (VERSION[0], VERSION[1])
     if VERSION[2]:
