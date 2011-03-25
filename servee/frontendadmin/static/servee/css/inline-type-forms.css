@@ -27,7 +27,7 @@ a.frontendadmin_edit:hover{ 	background:url(../images/small-icons.png) no-repeat
 
 
 
-/*----- editor forms - uniForm overrides-------*/
+/*----- editor forms -------*/
 
 .form-row{
 border-bottom:0 none;
@@ -40,12 +40,13 @@ height:300px;
 clear:both;
 }
 .form-row label{
-margin:0 0 4px 0;
+margin:3px 0 4px 0;
 width:100px;
 display:inline-block;
 vertical-align:top;
 zoom:1;
 *display:inline;
+font-size:12px;
 }
 tr.mceLast{display:none;}
 
@@ -60,6 +61,56 @@ font-size:12px;
 font-style:italic;
 padding-left:100px;
 }
+td.image_path{
+width:270px;
+padding:4px 0;
+}
+
+/*----- masthead of inline editor styles -------*/
+
+ul.object-tools{
+list-style: none;
+margin:0;
+padding:0;
+text-align: right;
+float:right;
+width:auto;
+}
+ul.object-tools li{
+display:inline-block;
+vertical-align:top;
+zoom:1;
+*display:inline;
+}
+ul.object-tools li a{
+	display:block;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background: #ededed;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ededed), color-stop(1, #cfcfcf));
+	background: -moz-linear-gradient(top center, #ededed 0%, #cfcfcf 100%);
+	border: 1px solid;
+	border-color: #ddd #bbb #999;
+	cursor: pointer;
+	color: #333;
+	font: bold 11px/1.1 sans-serif;
+	outline: 0;
+	overflow: visible;
+	padding: 1px 6px 2px;
+	text-shadow: 0 1px 0px #fff;
+	width: auto;
+	margin:0 6px 0 0;
+	height:auto;
+
+	/* IE7 */
+	*padding-top: 2px;
+	*padding-bottom: 0px;
+	float:right;
+}
+
+
+
 /*----------------- submit row ------------------*/
 form.frontendadmin{
 position: relative;
@@ -68,6 +119,7 @@ padding-bottom:36px;
 
 .submit-row {
 padding:5px;
+margin-top:18px;
 text-align: right;
 border:1px solid;
 border-color: #ccc; 
@@ -89,6 +141,7 @@ overflow: auto;
 float:left;
 margin:0;
 font-size: 12px;
+line-height:12px;
 padding:0;
 }
 .submit-row p.deletelink-box a{
@@ -154,5 +207,4 @@ text-decoration: none;
 	background: #0f6705;
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0f6705), color-stop(1, #15c102));
 	background: -moz-linear-gradient(top center, #0f6705 0%, #15c102 100%);
-
 }

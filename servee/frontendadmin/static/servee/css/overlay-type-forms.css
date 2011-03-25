@@ -11,12 +11,13 @@ margin:9px 0 18px;
 
 /*---- overlay forms-----*/
 
-.srv_adminBox label{
+.srv_adminBox form.uniForm label{
 font: normal 12px/12px sans-serif;
 color:#333;
 margin: 12px 0 1px 0;
 display:block;
 width:100%;
+text-align: left;
 }
 .srv_adminBox input.textInput{
 width:100%;
@@ -35,29 +36,56 @@ margin:4px 0 18px 0;
 .srv_adminBox .srv_buttonHolder{
 text-align: right;
 }
+fieldset.module h2{
+font-size: 16px;
+}
+fieldset.module th{
+background:#F2F2F2;
+padding:4px;
+border:1px solid #ccc;
+border-right:0 none;
+border-left:0 none;
+}
 
 
-/*---------- all text inputs, formatted uni-form style-----*/
+/*---------- all text inputs, with overlay and inline inheritance added-----*/
 
 ::-moz-focus-inner {border: 0;}
 input,button,select,textarea {margin: 0;vertical-align: middle;}
 
-textarea,
-select,
-input[type="date"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="email"],
-input[type="month"],
-input[type="number"],
-input[type="password"],
-input[type="search"],
-input[type="tel"],
-input[type="text"],
-input[type="time"],
-input[type="url"],
-input[type="week"],
-.srv_adminBox input{
+.srv_adminBox textarea,
+.srv_adminBox select,
+.srv_adminBox input[type="date"],
+.srv_adminBox input[type="datetime"],
+.srv_adminBox input[type="datetime-local"],
+.srv_adminBox input[type="email"],
+.srv_adminBox input[type="month"],
+.srv_adminBox input[type="number"],
+.srv_adminBox input[type="password"],
+.srv_adminBox input[type="search"],
+.srv_adminBox input[type="tel"],
+.srv_adminBox input[type="text"],
+.srv_adminBox input[type="time"],
+.srv_adminBox input[type="url"],
+.srv_adminBox input[type="week"],
+.srv_adminBox input, 
+
+.frontendadmin textarea,
+.frontendadmin select,
+.frontendadmin input[type="date"],
+.frontendadmin input[type="datetime"],
+.frontendadmin input[type="datetime-local"],
+.frontendadmin input[type="email"],
+.frontendadmin input[type="month"],
+.frontendadmin input[type="number"],
+.frontendadmin input[type="password"],
+.frontendadmin input[type="search"],
+.frontendadmin input[type="tel"],
+.frontendadmin input[type="text"],
+.frontendadmin input[type="time"],
+.frontendadmin input[type="url"],
+.frontendadmin input[type="week"],
+.frontendadmin input{
 	-webkit-appearance: none;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
@@ -82,11 +110,24 @@ input[type="week"],
 	*height: auto;
 }
 
-textarea{
+.srv_adminBox textarea, 
+.frontendadmin textarea{
 height:100px;
 }
 
-input[type="text"]:focus,input[type="text"]:active,select:focus,select:active,textarea:focus,textarea:active {
+.srv_adminBox input[type="text"]:focus,
+.srv_adminBox input[type="text"]:active,
+.srv_adminBox select:focus,
+.srv_adminBox select:active,
+.srv_adminBox textarea:focus,
+.srv_adminBox textarea:active,
+
+.frontendadmin input[type="text"]:focus,
+.frontendadmin input[type="text"]:active,
+.frontendadmin select:focus,
+.frontendadmin select:active,
+.frontendadmin textarea:focus,
+.frontendadmin textarea:active {
 	-moz-box-shadow: 0 0 14px #8facf5;
 	-webkit-box-shadow: 0 0 14px #8facf5;
 	box-shadow: 0 0 14px #8facf5;
@@ -96,8 +137,20 @@ input[type="text"]:focus,input[type="text"]:active,select:focus,select:active,te
 	z-index: 1;
 }
 
+.frontendadmin select[multiple="multiple"]{
+height:150px;
+font-size:12px;
+}
+.frontendadmin input[type="checkbox"]{
+margin:0 10px 0 80px;
+}
+.frontendadmin .defaultSkin table#id_content_tbl{
+background:transparent;
+}
+
 /*----------------- green action button------------------*/
-.srv_adminBox input[type="submit"], .srv_adminBox input[type="button"] {
+.srv_adminBox input[type="submit"], 
+.srv_adminBox input[type="button"] {
 	-webkit-appearance: none;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
