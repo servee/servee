@@ -188,3 +188,47 @@ background:transparent;
 	background: -moz-linear-gradient(top center, #0f6705 0%, #15c102 100%);
 
 }
+
+/*------------ secondary action buttons ------*/
+.srv_adminbox .buttonHolder{
+text-align:center;
+}
+.srv_adminbox input[type="submit"].secondary{
+	-webkit-appearance: none;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background: #fefefe;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fefefe), color-stop(1, #c7c7c7));
+	background: -moz-linear-gradient(top center, #fefefe 0%, #c7c7c7 100%);
+	border: 1px solid;
+	border-color: #7a7a7a;
+	cursor: pointer;
+	color: #333;
+	font: bold 12px/1.2 sans-serif;
+	outline: 0;
+	overflow: visible;
+	padding: 4px 12px 4px;
+	text-shadow: 0 1px 0px #fff;
+	width: auto;
+	margin:10px auto 0;
+	height:auto;
+	-moz-box-shadow: 0 0 0 rgba(0,0,0,0.0);
+	-webkit-box-shadow:  0 0 0 rgba(0,0,0,0.0);
+	box-shadow:  0 0 0 rgba(0,0,0,0.0);
+
+	/* IE7 */
+	*padding-top: 2px;
+	*padding-bottom: 0px;
+}
+.srv_adminbox input[type="submit"].secondary:hover{
+	background: #fff;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #dbdbdb));
+	background: -moz-linear-gradient(top center, #fff 0%, #dbdbdb 100%);
+}
+.srv_adminbox input[type="submit"].secondary:active{
+	background: #c7c7c7;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #c7c7c7), color-stop(1, #fefefe));
+	background: -moz-linear-gradient(top center, #c7c7c7 0%, #fefefe 100%);
+
+}

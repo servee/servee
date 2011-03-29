@@ -9,7 +9,7 @@ transition: all 0.15s ease;
 #srv_wysiwyg_tools.out, 
 #srv_CSSstyles.out, #srv_CSSstyles.out ul, 
 #srv_insertMedia.out, #srv_insertMedia.out .srv_mediaList, #srv_insertMedia.out .srv_mediaList, #srv_insertMedia.out .srv_filePane, #srv_insertMedia.out.srv_insertOptions,
-#srv_code_edit.out, #srv_code_edit.out textarea, 
+#srv_code_edit.out, #srv_code_edit #code_container, 
 #srv_link.out
 {
 left:0px;
@@ -29,7 +29,7 @@ left:200px;
 left:150px;
 }
 #srv_wysiwyg_tools.out.srv_insertMedia{
-left:322px;
+left:321px;
 }
 
 #srv_wysiwyg_tools.srv_code_edit.out{
