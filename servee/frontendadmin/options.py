@@ -60,6 +60,28 @@ class ServeeModelAdmin(ModelAdmin):
             "admin/object_history.html",
         ]
     
+
+    def response_add(self, request, obj):
+        """
+        Act differently during frontendadmin(ajax) just reload the page.
+        """
+
+        # in these cases, the redirect is good
+        if list(set(request.POST.keys()) & set(["_addanother", "_continue"])):
+            return super(ServeeModelAdmin, self).response_change(request, obj)
+
+        # we want to override the default save case in the frontend
+        ref = request.META.get("HTTP_REFERER")
+        if ref and (ref.find("/servee/") == -1):
+            if request.is_ajax():
+                return HttpResponse("<script type='text/javascript'>window.location.reload(true);</script>")
+            else:
+                return HttpResponseRedirect(ref)
+
+        # fallback to normal functionality
+        return super(ServeeModelAdmin, self).response_add(request, obj)
+
+
     def response_change(self, request, obj):
         """
         Act differently during frontendadmin(ajax) just reload the page.
