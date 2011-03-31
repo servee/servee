@@ -1,6 +1,6 @@
 {% extends "servee/base_site.html" %}
-{% load adminmedia admin_list i18n %}
-{% load url from future %}
+{% load adminmedia admin_list servee_admin_list i18n %}
+"
 {% block extrastyle %}
   {{ block.super }}
   <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/changelists.css" />
@@ -35,22 +35,6 @@
 
 {% block bodyclass %}change-list{% endblock %}
 
-{% if not is_popup %}
-  {% block breadcrumbs %}
-    <div class="breadcrumbs">
-      <a href="../../">
-        {% trans "Home" %}
-      </a>
-       &rsaquo;
-       <a href="../">
-         {{ app_label|capfirst }}
-      </a>
-      &rsaquo;
-      {{ cl.opts.verbose_name_plural|capfirst }}
-    </div>
-  {% endblock %}
-{% endif %}
-
 {% block coltype %}flex{% endblock %}
 
 {% block content %}
@@ -75,7 +59,7 @@
         {{ cl.formset.non_form_errors }}
     {% endif %}
     <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
-      {% block search %}{% search_form cl %}{% endblock %}
+      {% block search %}{% search_form_servee cl %}{% endblock %}
       {% block date_hierarchy %}{% date_hierarchy cl %}{% endblock %}
 
       {% block filters %}
@@ -87,7 +71,7 @@
         {% endif %}
       {% endblock %}
 
-      <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+      <form id="changelist-form" action="{{ request.path }}" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
       {% if cl.formset %}
         {{ cl.formset.management_form }}
       {% endif %}
@@ -101,4 +85,28 @@
       </form>
     </div>
   </div>
-{% endblock %}
+  <script type="text/javascript">
+  $(document).ready(function(){
+        var $base = $("#changelist");
+        var $par = $base.parent();
+        $par.find("a").click(function(e){
+            $par.load(this.href);
+            e.preventDefault();
+            return false;
+        });
+        $par.find("form").submit(function(e){
+            $form = $(this);
+            $.ajax({
+                url: $form.attr("action"),
+                type: $form.attr("method"),
+                data: $form.serialize(),
+                success: function(data, text){
+                    $par.html(data);
+                }
+            });
+            e.preventDefault();
+            return false;
+        });
+  });
+  </script>
+  {% endblock %}

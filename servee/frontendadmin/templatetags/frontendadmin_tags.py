@@ -2,6 +2,7 @@ from classytags.core import Tag, Options
 from classytags.arguments import Argument
 from django import template
 from django.core.urlresolvers import reverse
+from django.contrib.contenttypes.models import ContentType
 from django.db.models import Model
 from django.db.models.query import QuerySet
 from django.utils.translation import ugettext_lazy as _
@@ -20,14 +21,21 @@ class AddObject(Tag):
     name = "frontendadmin_add"
 
     options = Options(
-        Argument('queryset_instance', required=True),
+        Argument('querysetish', required=True),
         Argument('label', required=False, resolve=False),
         Argument('add_class', required=False, resolve=False)
     )
 
-    def render_tag(self, context, queryset_instance, label=None, add_class=None):
-        if not isinstance(queryset_instance, QuerySet):
-            raise template.TemplateSyntaxError, "'%s' argument must be a queryset" % queryset_instance
+    def render_tag(self, context, querysetish, label=None, add_class=None):
+        if isinstance(querysetish, basestring):
+            app_label, model_name = querysetish.lower().split(".")
+            content_type = ContentType.objects.get(app_label=app_label, model=model_name)
+            model = content_type.model_class()
+            queryset_instance = model._default_manager.get_query_set()
+        elif isinstance(querysetish, QuerySet):
+            queryset_instance = querysetish
+        else:
+            raise template.TemplateSyntaxError, "'%s' argument must be a queryset or string representation" % queryset_instance
 
         user = context["request"].user
         app_label = queryset_instance.model._meta.app_label
@@ -66,7 +74,6 @@ class ChangeObject(Tag):
             return ""
 
         if not label:
-            print "derp"
             label = _("Change")
 
         return '<a class="frontendadmin frontendadmin_edit %s" href="%s">%s</a>' % (
@@ -78,6 +85,49 @@ class ChangeObject(Tag):
             ),
             unicode(label)
         )
+
+
+class ListObjects(Tag):
+    name = "frontendadmin_list"
+
+    options = Options(
+        Argument('modelish', required=True),
+        Argument('label', required=False, resolve=False),
+        Argument('add_class', required=False, resolve=False)
+    )
+
+    def render_tag(self, context, modelish, label=None, add_class=None):
+        if isinstance(modelish, basestring):
+            app_label, model_name = modelish.lower().split(".")
+            content_type = ContentType.objects.get(app_label=app_label, model=model_name)
+            model = content_type.model_class()
+        elif isinstance(modelish, QuerySet):
+            model = modelish.model
+        elif isinstance(modelish, Model):
+            model = modelish
+        else:
+            raise template.TemplateSyntaxError, "'%s' argument must be a model-instance, queryset, or string representation" % modelish
+
+        user = context["request"].user
+        app_label = model._meta.app_label
+        model_name = model._meta.module_name
+
+        if not check_permission(user, "change", app_label, model_name):
+            return ""
+
+        if not label:
+            label = _("List")
+
+        return '<a class="frontendadmin frontendadmin_list %s" href="%s">%s</a>' % (
+            add_class,
+            reverse("servee:%s_%s_changelist" % (
+                    app_label,
+                    model_name,
+                )
+            ),
+            unicode(label)
+        )
+
 
 class DeleteObject(Tag):
     name = "frontendadmin_delete"
@@ -115,3 +165,4 @@ class DeleteObject(Tag):
 register.tag(AddObject)
 register.tag(ChangeObject)
 register.tag(DeleteObject)
+register.tag(ListObjects)

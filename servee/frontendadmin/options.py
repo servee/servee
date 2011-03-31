@@ -1,5 +1,20 @@
 from django.contrib.admin.options import ModelAdmin, StackedInline, TabularInline
+from django.contrib.admin.views.main import ChangeList
+from django.contrib.admin.util import quote
 from django.http import HttpResponse, HttpResponseRedirect
+
+class ServeeChangeList(ChangeList):
+    """
+    I need full path links everywhere in the admin, so I subclassed the changelist
+    """
+    
+    def url_for_result(self, result):    
+        return "/servee/%s/%s/%s/" % (
+            self.model._meta.app_label,
+            self.model._meta.object_name.lower(),
+            quote(getattr(result, self.pk_attname)),
+        )
+
 
 class ServeeModelAdmin(ModelAdmin):
     """
@@ -124,6 +139,9 @@ class ServeeModelAdmin(ModelAdmin):
             "form_url": "herp"
         })
         return super(ServeeModelAdmin, self).add_view(*args, **kwargs)
+
+    def get_changelist(self, request, **kwargs):
+        return ServeeChangeList
 
 
 class ServeeStackedInline(StackedInline):

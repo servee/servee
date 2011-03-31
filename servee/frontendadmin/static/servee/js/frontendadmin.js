@@ -2,29 +2,82 @@ $(document).ready(function(){
 	
 	/* Frontendadmin buttons add, edit, delete */
 	$("a.frontendadmin_edit:not(.modal)").hover(
-	    function(){$(this).parent().addClass("pre-edit");},
-	    function(){$(this).parent().removeClass("pre-edit");}
+	    function(){
+	        if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
+    		    $par = $(servee.selector);
+    		}
+    		else {
+    		    $par = $link.parent();
+    		}
+    		$par.addClass("pre-edit");
+    	},
+	    function(){
+	        if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
+    		    $par = $(servee.selector);
+    		}
+    		else {
+    		    $par = $link.parent();
+    		}
+    		$par.removeClass("pre-edit");
+    	}
 	);
 	$("a.frontendadmin_delete:not(.modal)").hover(
-	    function(){$(this).parent().addClass("pre-delete");},
-	    function(){$(this).parent().removeClass("pre-delete");}
+	    function(){
+	        if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
+    		    $par = $(servee.selector);
+    		}
+    		else {
+    		    $par = $link.parent();
+    		}
+    		$par.addClass("pre-delete");
+    	},
+	    function(){
+	        if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
+    		    $par = $(servee.selector);
+    		}
+    		else {
+    		    $par = $link.parent();
+    		}
+    		$par.removeClass("pre-delete");
+    	}
 	);
 	
 
 	$("a.frontendadmin_add").live("click", function(e){
-		var $base, $link = $(this), $par = $link.parent();
+		var $base, $link = $(this);
+		
+		if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
+		    $par = $(servee.selector);
+		}
+		else {
+		    $par = $link.parent();
+		}
 
 	    $.ajax({
 	        url: this.href,
 	        success: function(data, text){
-	            if ($link.hasClass("modal")){
-	                $.fancybox({
-	                    content: data,
-	                });
-	            }
-	            else {
-    	            $par.html(data);	                
-	            }
+    	        $par.html(data);
+	        }
+	    });
+	    e.preventDefault();
+	    return false;
+	});
+	
+
+	$("a.frontendadmin_list").live("click", function(e){
+		var $base, $link = $(this);
+		
+		if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
+		    $par = $(servee.selector);
+		}
+		else {
+		    $par = $link.parent();
+		}
+
+	    $.ajax({
+	        url: this.href,
+	        success: function(data, text){
+    	        $par.html(data);
 	        }
 	    });
 	    e.preventDefault();
@@ -35,18 +88,18 @@ $(document).ready(function(){
 	$("a.frontendadmin_edit").live("click", function(e){
 		var $base, $link = $(this), $par = $link.parent();
 
+        if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
+		    $par = $(servee.selector);
+		}
+		else {
+		    $par = $link.parent();
+		}
+
 	    $par.css("outline", "");
 	    $.ajax({
 	        url: this.href,
 	        success: function(data, text){
-	            if ($link.hasClass("modal")){
-	                $.fancybox({
-	                    content: data,
-	                });
-	            }
-	            else {
-    	            $par.html(data);	                
-	            }
+	            $par.html(data);
 	        }
 	    });
 	    e.preventDefault();
@@ -90,7 +143,6 @@ $(document).ready(function(){
 		$.ajax({
             url: $link.attr("href"),
             success: function(data, text){
-                console.log(data);
                 $(".srv_insertOptions").remove();
                 $(".srv_filePane").after(
                     "<div id='srv_"+ currentInsert +"_insertOptions' class='srv_insertOptions'>"

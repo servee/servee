@@ -1,8 +1,7 @@
 {% load insert_tags %}
-{% load uni_form_tags %}
 <form id="srv_upload_image" method="POST" enctype="multipart/form-data" class="servee uniform" action="{% url servee:insert_sample_image_insert_image_add %}">
     {% csrf_token %}
-    {{ form|as_uni_form }}
+    {{ form.as_p }}
     <div class="buttonHolder">
         <input type="submit" class="srv_button insert button" id="srv_upload_image_action" value="Upload">
     </div>
