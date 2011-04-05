@@ -188,6 +188,12 @@ $(document).ready(function(){
 		e.preventDefault();
 		return false;
 	});
+	
+	$("p.collapse a").click(function(e){
+	    srv_hide_all_adminBox();
+	    e.preventDefault();
+	    return false;
+	})
 });
 
 //This object defines the widths for our animations
