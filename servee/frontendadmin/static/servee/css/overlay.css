@@ -30,7 +30,7 @@ border:0 none;
 }
 
 /* -- small drop shadows --*/
-.srv_filePane li img, #srv_insertMedia img{
+.srv_filePane li img, .srv_insertOptions img{
 -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 box-shadow: 0 1px 4px rgba(0,0,0,0.3);
@@ -138,9 +138,11 @@ height:22px;
 display:block;
 text-align: center;
 color:#222;
-padding-top:39px;
+padding:39px 0 0 0;
+margin:0;
 font-size:11px;
 text-decoration: none;
+border-bottom:0 none;
 }
 .srv_mediaList li.active a, .srv_mediaList li a:hover{
 opacity: 1.0;
@@ -182,7 +184,7 @@ display:block;
 	width:9px;
 	height:9px;
 }
-#srv_insertmedia .uploadifyQueueItem img{
+.uploadifyQueueItem img{
 	-moz-box-shadow: 0 0 0 transparent;
 	-webkit-box-shadow:  0 0 0 transparent;
 	box-shadow:  0 0 0 transparent;
@@ -280,7 +282,8 @@ div.srv_insertPanel{
 /*----- gallery pane ----*/
 
 ul.ui-sortable{
-margin-top:18px;
+margin:18px 0 0 0;
+list-style: none;
 }
 ul.ui-sortable li{
 float:left;
@@ -439,3 +442,43 @@ width:180px;
 position: fixed;
 padding:10px;
 }
+
+/*----- experimental scrollbars in webkit ----*/
+
+/* http://almaer.com/scrollbar/debug.html */
+
+div.srv_adminBox ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    margin-right:6px;
+}
+
+div.srv_adminBox ::-webkit-scrollbar-button:start:decrement,
+div.srv_adminBox ::-webkit-scrollbar-button:end:increment {
+    display: block;
+    height: 5px;
+    background: transparent;
+}
+
+div.srv_adminBox ::-webkit-scrollbar-button:vertical:increment {
+    background-color: transparent;
+}
+
+div.srv_adminBox ::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+    -webkit-border-radius: 3px;
+}
+
+div.srv_adminBox ::-webkit-scrollbar-thumb:vertical {
+    height: 50px;
+    background-color: rgba(0,0,0,0.2);
+    -webkit-border-radius: 3px;
+}
+
+div.srv_adminBox ::-webkit-scrollbar-thumb:horizontal {
+    width: 50px;
+    background-color: rgba(0,0,0,0.2);
+    -webkit-border-radius: 3px;
+}
+
+/* @end */

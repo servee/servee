@@ -39,3 +39,14 @@ left:400px;
 #srv_wysiwyg_tools.srv_link.out{
 left:200px;
 }
+
+#srv_wysiwyg_tools p.collapse{
+display: none;
+}
+
+#srv_wysiwyg_tools.out.srv_CSSstyles p.collapse, 
+#srv_wysiwyg_tools.out.srv_insertMedia p.collapse, 
+#srv_wysiwyg_tools.srv_code_edit.out p.collapse, 
+#srv_wysiwyg_tools.srv_link.out p.collapse{
+display: block;
+}
