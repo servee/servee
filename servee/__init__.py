@@ -1,5 +1,5 @@
 VERSION = (0, 6, 0, "a", 1)  # following PEP 386
-DEV_N = "19"
+DEV_N = "20"
 
 
 # cribbed from pinax
