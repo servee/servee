@@ -251,6 +251,7 @@ function srv_toggle_adminBox(ab){
 		srv_hide_adminBox(ab);
 	}
 	else{
+	    srv_hide_all_adminBox();
 		srv_show_adminBox(ab);
 	}
 }
@@ -260,7 +261,7 @@ function srv_hide_adminBox(ab, move_wysiwyg){
     /**
     Animation Hide
     **/
-	$("#"+ab).removeClass("out");
+	$("#"+ab).removeClass("out").find("*").removeClass("out");
 	$("#srv_wysiwyg_tools").removeClass(ab);
 	srv_admin_boxes[ab].shown = false;
 	if(move_wysiwyg){
