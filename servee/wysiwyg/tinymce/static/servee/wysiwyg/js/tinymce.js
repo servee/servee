@@ -43,6 +43,7 @@ function load_wysiwyg($par){
 			    $par.find("input, textarea").focus(function(e) {
 					$('#srv_wysiwyg_tools, .srv_adminBox').removeClass('out');
 			    });
+                a = ed;
 			});
 		}
 	});

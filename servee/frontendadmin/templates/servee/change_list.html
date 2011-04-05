@@ -1,6 +1,6 @@
 {% extends "servee/base_site.html" %}
 {% load adminmedia admin_list servee_admin_list i18n %}
-"
+
 {% block extrastyle %}
   {{ block.super }}
   <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/changelists.css" />
@@ -9,7 +9,7 @@
   {% endif %}
   {% if cl.formset or action_form %}
     {% url 'admin:jsi18n' as jsi18nurl %}
-    <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/' }}"></script>
+    <script type="text/javascript" src="{{ jsi18nurl|default:'/admin/jsi18n/' }}"></script>
   {% endif %}
   {{ media.css }}
   {% if not actions_on_top and not actions_on_bottom %}

@@ -1,10 +1,9 @@
 {% extends "servee/base_site.html" %}
 {% load i18n admin_modify servee_admin_modify adminmedia %}
-"
 
 {% block extrahead %}{{ block.super }}
 {% url 'admin:jsi18n' as jsi18nurl %}
-<script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
+<script type="text/javascript" src="{{ jsi18nurl|default:"/admin/jsi18n/" }}"></script>
 {{ media }}
 {% endblock %}
 
@@ -27,7 +26,7 @@
 <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ request.path }}" method="post" id="{{ opts.module_name }}_form" class="frontendadmin">{% csrf_token %}{% block form_top %}{% endblock %}
 <div>
 {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
-{% if save_on_top %}{% submit_row %}{% endif %}
+{% if save_on_top %}{% submit_row_frontendadmin %}{% endif %}
 {% if errors %}
     <p class="errornote">
     {% blocktrans count errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
