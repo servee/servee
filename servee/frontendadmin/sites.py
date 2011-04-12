@@ -44,7 +44,6 @@ class ServeeAdminSite(AdminSite):
         
         if self.insert_classes.get(insert_class.base_url()):
             self.insert_classes.pop(insert_class.base_url())
-        
     
     def get_urls(self):
         """Add our custom views to the admin urlconf."""
@@ -65,9 +64,12 @@ class ServeeAdminSite(AdminSite):
         return urls
     
     def __init__(self, *args, **kwargs):
+        """
+        Servee is not currently safely namespaced, it _really_ expects
+        to be at /servee/, so don't #$%^ that up.
+        """
         super(ServeeAdminSite, self).__init__(*args, **kwargs)
         
-        ##@@ TODO Fix so that this can be properly namespaced
         self.name = "servee"
         self.app_name = "servee"
         self.uses_wysiwyg = "servee.wysiwyg" in settings.INSTALLED_APPS
@@ -79,6 +81,9 @@ class ServeeAdminSite(AdminSite):
         self.password_change_done_template = ["servee/password_change_done.html", "admin/password_change_done.html"]
 
     def app_index(self, request, app_label, extra_context=None):
+        """
+        Yet another mini-view hack to override the template list.
+        """
         self.app_index_template = (
             "servee/%s/app_index.html" % app_label,
             "servee/app_index.html",

@@ -88,6 +88,12 @@ class ChangeObject(Tag):
 
 
 class ListObjects(Tag):
+    """
+    ListObjects is by far the weakest tag/area of servee.  No tests, no permalinks,
+    
+    If you must use it, write documentation, help me solidify the API.
+    """
+    
     name = "frontendadmin_list"
 
     options = Options(

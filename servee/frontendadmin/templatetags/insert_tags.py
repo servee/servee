@@ -1,3 +1,6 @@
+"""
+Some lame tags so that we can get urls.  This can be sorted out properly in 1.3, it's just not.
+"""
 from classytags.core import Tag, Options
 from classytags.arguments import Argument
 from django import template

@@ -5,7 +5,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 class ServeeChangeList(ChangeList):
     """
-    I need full path links everywhere in the admin, so I subclassed the changelist
+    I need full path links everywhere in the admin,
+    so I subclassed the changelist.  This makes me a sad
+    panda.
     """
     
     def url_for_result(self, result):    

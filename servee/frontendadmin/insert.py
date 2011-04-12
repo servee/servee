@@ -1,6 +1,6 @@
 from django.forms.models import modelform_factory
 from django.conf import settings
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
 from django.contrib.admin.util import unquote
 from django.http import HttpResponse
@@ -17,7 +17,7 @@ class BaseInsert(object):
     """
     Insert classes are the things that go on the wysiwyg tools under 'Insert'.
     
-    Some Examples might include (a few are in contrib):
+    Some Examples might include [and we have written a few plugins already]:
     * Pictures
     * Video
     * Documents
@@ -25,8 +25,8 @@ class BaseInsert(object):
     * Other Model Representations
     * oEmbed Links
     
-    ModelInsert is what you should use if you are creating an Insert from a Django Model, otherwise use BaseInsert and extend from there.
-    
+    ModelInsert is what you should use if you are creating an Insert from a
+    Django Model, otherwise use BaseInsert and extend from there.
     """
     def __init__(self, admin_site, add_form=None):
         
@@ -88,6 +88,9 @@ class ModelInsert(BaseInsert):
         """
         self.model should be set before calling super(<NewClass>, self).__init__...
         """
+        if not self.model:
+            raise ImproperlyConfigured("Model must be set before super(%s, self).__init__ is called" % self.__class__.__name__)
+        
         self.item_panel_template = [
             "servee/wysiwyg/insert/%s/%s/_panel.html" % (self.model._meta.app_label, self.model._meta.module_name),
             "servee/wysiwyg/insert/%s/_panel.html" % (self.model._meta.app_label),            
@@ -123,18 +126,16 @@ class ModelInsert(BaseInsert):
     
     def get_object(self, object_id):
         """
-        Returns an instance matching the primary key provided. ``None``  is
-        returned if no match is found (or the object_id failed validation
-        against the primary key field).
+        Returns an instance matching the primary key provided.
         """
         model = self.model
-        try:
-            object_id = model._meta.pk.to_python(object_id)
-            return self.queryset().get(pk=object_id)
-        except (model.DoesNotExist, ValidationError):
-            return None
+        object_id = model._meta.pk.to_python(object_id)
+        return self.queryset().get(pk=object_id)
     
     def queryset(self, ordering=None):
+        """
+        The queryset method is provided so that it can be overridden.
+        """
         qs = self.model._default_manager.get_query_set()
         if not ordering:
             ordering = self.ordering or () # otherwise we might try to *None, which is bad ;)
@@ -168,6 +169,9 @@ class ModelInsert(BaseInsert):
         return self.items()
     
     def nav_title(self):
+        """
+        A string representation of the ModelInsert to be used in the markup of our editor.
+        """
         return self.model._meta.module_name.title()
     
     def get_urls(self):
@@ -206,6 +210,11 @@ class ModelInsert(BaseInsert):
     @property
     def urls(self):
         return self.get_urls()
+    
+    # Several methods for getting a view (from a templatetag) can be cleaned up using {% with %}
+    # and 1.3 style {% url %} tags which accept a variable.
+    # I am happy about this, but it is a ##@@TODO, preferrably before release, so that I can start
+    # without worrying about regressions.
     
     def panel_view(self, request):
         return render_to_response(self.item_panel_template, {"insert": self},
@@ -289,7 +298,8 @@ class ModelInsert(BaseInsert):
         This view is csrf_exempt, which aparently conflicts with django's admin_view wrapper.
         This is problematic, as it exposes this view to anybody who knows the URL. @@TODO
         
-        Uploadify doesn't properly pass the csrf_token.
+        Uploadify doesn't properly pass the csrf_token, hopefully this is fixed in the release version of
+        Uploadify.
         """
         instance_form = self.get_minimal_add_form()
         form = instance_form(request.POST, request.FILES)
@@ -313,7 +323,8 @@ class ModelInsert(BaseInsert):
     
     def delete_view(self, request, object_id):
         """
-        This view isn't really safe to cross-site attacks, some sort of post confirmation with CSRF would be better.
+        This view isn't really safe to cross-site attacks,
+        some sort of post confirmation with CSRF would be better.
         """
         obj = self.get_object(unquote(object_id))
         obj.delete()
