@@ -1,0 +1,5 @@
+Using Servee with django 1.2 is not straightforward, and won't really be supported, that being said
+I've made it work, and you can too.
+
+* Django-staticifles is required, and must be configured to pull from directories named `static`
+* You must write new templates for anything that begins {% url 'x' ... and replace it with {% url x ...

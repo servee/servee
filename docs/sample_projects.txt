@@ -1,14 +1,16 @@
 .. _ref-sample_projects
 
 =======
-Sample Projects
+Example Project
 =======
 
-Sample projects should get you started with a working version of servee.
+The Example Project will get you started with a working version of servee.
+It includes a sample image plugin, and django-flatpage support.  Both of these
+are simple implementations to help you understand how you could make your own
+ModelInsert plugins or how to convert your own models to be FrontendAdmin editable.
 
-
-Bare Essentials
-===============
+Running it.
+===========
 
 This is a bare django project + flatpages + required settings and installed apps for servee.
 
@@ -27,4 +29,3 @@ Creating the Project::
 Login at http://localhost:8000/
 
 Go to http://localhost:8000/ to edit it.
-

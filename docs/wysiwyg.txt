@@ -7,7 +7,8 @@ WYSIWYG
 The goal of the wysiwyg components of servee is to best emulate the final version of the site.
 The included engine is built on tinyMCE, which is already in the source tree.
 
-The wysiwyg tools abstract the function calls of the engine so that it should be fairly simple to swap out the rendering engine if you prefer something like FCKeditor or WYMeditor.
+The wysiwyg tools abstract the function calls of the engine so that it should be fairly simple to
+swap out the rendering engine if you prefer something like FCKeditor or WYMeditor.
 
 
 Basic Tools
@@ -29,5 +30,6 @@ Basic Tools
 Insert Dialog
 =============
 
-This is how you insert media (pictures, videos, text) or inline representation of a model or models.  You can create your own insert dialogs for things like forms, products, blog posts, or user profiles.  
+This is how you insert media (pictures, videos, text) or inline representation of a model or models.
+You can create your own insert dialogs for things like forms, products, blog posts, or user profiles.  
 This is populated through the inserts

@@ -16,6 +16,7 @@ Contents:
    wysiwyg
    inlines
    sample_projects
+   1.2_considerations
 
 Indices and tables
 ==================
