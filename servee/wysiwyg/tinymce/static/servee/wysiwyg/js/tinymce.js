@@ -4,7 +4,7 @@ function load_wysiwyg($par){
 		script_url : '/site_media/static/tinymce/jscripts/tiny_mce/tiny_mce_src.js',
 
 		// General options
-		extend_valid_elements: 'script[charset|defer|language|src|type],iframe,img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|obj|param|embed],inline[id|ids|type|filter|class|template]',
+		valid_elements: '*[*]',
 		theme : 'advanced',
 		plugins: 'paste,media,autoresize',
 		fix_list_elements : true,
