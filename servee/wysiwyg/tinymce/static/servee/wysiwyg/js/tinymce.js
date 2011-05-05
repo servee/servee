@@ -4,7 +4,7 @@ function load_wysiwyg($par){
 		script_url : '/site_media/static/tinymce/jscripts/tiny_mce/tiny_mce_src.js',
 
         // relative_urls are awful.  I want to never, ever see them.
-        relative_urls : false
+        relative_urls : false,
 
 		// General options
 		valid_elements: '*[*]',
