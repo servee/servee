@@ -1,8 +1,10 @@
 $(document).ready(function(){
 	
 	/* Frontendadmin buttons add, edit, delete */
-	$("a.frontendadmin_edit:not(.modal)").hover(
-	    function(){
+	$("a.frontendadmin_edit:not(.modal)").hover(		
+		function(){
+	    	var $base, $link = $(this), $par = $link.parent();
+    	
 	        if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
     		    $par = $(servee.selector);
     		}
@@ -12,6 +14,8 @@ $(document).ready(function(){
     		$par.addClass("pre-edit");
     	},
 	    function(){
+	    	var $base, $link = $(this), $par = $link.parent();
+    	
 	        if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
     		    $par = $(servee.selector);
     		}
@@ -23,7 +27,9 @@ $(document).ready(function(){
 	);
 	$("a.frontendadmin_delete:not(.modal)").hover(
 	    function(){
-	        if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
+	    	var $base, $link = $(this), $par = $link.parent();
+    	
+    	    if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
     		    $par = $(servee.selector);
     		}
     		else {
@@ -32,6 +38,8 @@ $(document).ready(function(){
     		$par.addClass("pre-delete");
     	},
 	    function(){
+	    	var $base, $link = $(this), $par = $link.parent();
+    	
 	        if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
     		    $par = $(servee.selector);
     		}
