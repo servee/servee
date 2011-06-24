@@ -60,6 +60,9 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+	if(typeof(DateTimeShortcuts) !== "undefined"){
+	   DateTimeShortcuts.init();
+	}
 	$(window).scroll(function(){
 		if  ($(window).scrollTop() > $(".scrollidentifier").offset({ scroll: false }).top){
 		   $(".submit-row").css("position", "fixed");
