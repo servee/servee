@@ -7,3 +7,4 @@ dist/*
 django_servee.egg-info/*
 *dev.db
 *site_media
+/example_project_renamed/

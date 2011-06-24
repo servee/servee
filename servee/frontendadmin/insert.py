@@ -232,7 +232,7 @@ class ModelInsert(BaseInsert):
         
         return render_to_response(self.item_list_template, {
             "insert": self,
-            "form": form(),
+            "form": form(prefix=self.base_url()),
         }, context_instance=RequestContext(request))
     
     def detail_url(self, object_id):
@@ -250,7 +250,7 @@ class ModelInsert(BaseInsert):
         return render_to_response(self.item_detail_template, {
                 "insert": self,
                 "object": obj,
-                "form": form(),
+                "form": form(prefix=self.base_url()),
             }, context_instance=RequestContext(request))
     
     def render_url(self, object_id):
@@ -302,7 +302,7 @@ class ModelInsert(BaseInsert):
         Uploadify.
         """
         instance_form = self.get_minimal_add_form()
-        form = instance_form(request.POST, request.FILES)
+        form = instance_form(request.POST, request.FILES, prefix=self.base_url())
 
         new_instance = None
         if form.is_valid():
