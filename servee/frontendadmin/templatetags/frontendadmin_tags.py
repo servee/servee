@@ -27,7 +27,7 @@ class AddObject(Tag):
     )
 
     def render_tag(self, context, querysetish, label=None, add_class=None):
-        if isinstance(querysetish, basestring):
+        if isinstance(querysetish, basestring) and "." in querysetish:
             app_label, model_name = querysetish.lower().split(".")
             content_type = ContentType.objects.get(app_label=app_label, model=model_name)
             model = content_type.model_class()
@@ -103,7 +103,7 @@ class ListObjects(Tag):
     )
 
     def render_tag(self, context, modelish, label=None, add_class=None):
-        if isinstance(modelish, basestring):
+        if isinstance(modelish, basestring) and "." in modelish:
             app_label, model_name = modelish.lower().split(".")
             content_type = ContentType.objects.get(app_label=app_label, model=model_name)
             model = content_type.model_class()
