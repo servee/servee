@@ -18,6 +18,16 @@ def check_permission(user, action_name, app_label, model_name):
     return user and user.is_active and user.has_perm(p)
 
 class AddObject(Tag):
+    """
+    This tag takes either a queryset or a contenttype label and renders the add object tag
+    if you have proper permissions.::
+    
+        {% frontendadmin_add querysetish [label] [add_class] %}
+    
+    **quertysetish** Required. A string like 'auth.User' or a queryset.
+    **label** Optional. Default "Add", a string like "Add User"
+    **add_class** Optional. Optional class to add to the link.
+    """
     name = "frontendadmin_add"
 
     options = Options(
@@ -54,6 +64,16 @@ class AddObject(Tag):
         )
 
 class ChangeObject(Tag):
+    """
+    The Change Object Tag will take a model instance and render the change link
+    if you have the proper permissions.::
+    
+        {% frontendadmin_change model_instance [label] [add_class] %}
+        
+    **model_instance** Required. an instance of a model.
+    **label** Optional. Default "Change", a string like "Change User"
+    **add_class** Optional. Optional class to add to the link.
+    """
     name = "frontendadmin_change"
 
     options = Options(
@@ -89,9 +109,14 @@ class ChangeObject(Tag):
 
 class ListObjects(Tag):
     """
-    ListObjects is by far the weakest tag/area of servee.  No tests, no permalinks,
+    The List Object Tag will take a model string, an instance, or a queryset and render the link
+    if you have the proper permissions.::
     
-    If you must use it, write documentation, help me solidify the API.
+        {% frontendadmin_list modelish [label] [add_class] %}
+        
+    **modelish** Required. an instance of a model, or a queryset, or a content type string.
+    **label** Optional. Default "List", a string like "List Users"
+    **add_class** Optional. Optional class to add to the link.
     """
     
     name = "frontendadmin_list"
@@ -136,6 +161,16 @@ class ListObjects(Tag):
 
 
 class DeleteObject(Tag):
+    """
+    The Delete Object Tag will take a model instance and render the link
+    if you have the proper permissions.::
+    
+        {% frontendadmin_delete model_instance [label] [add_class] %}
+        
+    **modelish** Required. an instance of a model, or a queryset, or a content type string.
+    **label** Optional. Default "Delete", a string like "Delete User"
+    **add_class** Optional. Optional class to add to the link.
+    """
     name = "frontendadmin_delete"
 
     options = Options(
