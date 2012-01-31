@@ -1,3 +1,4 @@
+from unittest import TestCase as UnittestTestCase
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.flatpages.models import FlatPage
@@ -6,6 +7,20 @@ from django.test import Client, TestCase
 
 # Django 1.3's RequestFactory doesn't run requests through MiddleWare
 from helpers import RequestFactory
+
+
+class SpaceOutTestCase(UnittestTestCase):
+    def test_variants(self):
+        from servee.utils import space_out_camel_case
+
+        self.assertEqual(space_out_camel_case('nospacesanywhere'), 'nospacesanywhere')
+        self.assertEqual(space_out_camel_case('A'), 'A')
+        self.assertEqual(space_out_camel_case('AB'), 'AB')
+        self.assertEqual(space_out_camel_case('Abc'), 'Abc')
+        self.assertEqual(space_out_camel_case('ABc'), 'A Bc')
+        self.assertEqual(space_out_camel_case('AbCd'), 'Ab Cd')
+        self.assertEqual(space_out_camel_case('TypicalCamelCase'), 'Typical Camel Case')
+        self.assertEqual(space_out_camel_case('DMLSServicesOtherBSTextLLC'), 'DMLS Services Other BS Text LLC')
 
 
 class TestTemplateTags(TestCase):
