@@ -40,4 +40,4 @@ It's important to add servee urls, and you probably want to use autodiscover::
     # ...
     url(r"^servee/", include(frontendadmin.site.urls)),
 
-At this point, you're really going to want to get into the `Read The Docs <http://django-servee.readthedocs.org/en/latest/index.html>`_.
+At this point, you're really going to want to get into the `docs <http://django-servee.readthedocs.org/en/latest/index.html>`_.
