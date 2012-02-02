@@ -10,7 +10,7 @@ Servee is a special purpose django-admin for editing content on the front end of
 First you should put servee in your environment:
 
     pip install django-servee
-    
+
 We're also keeping a [dist server of our own][1].
 
 [1]: http://dist.servee.com/dev/
@@ -29,16 +29,16 @@ to wysiwyg areas, and that's awesome (sometimes).
     INSTALLED_APPS += [
         "servee.frontendadmin",
         "servee.wysiwyg",
-        "servee.wysiwyg.tinymce", 
+        "servee.wysiwyg.tinymce",
     ]
 
 Then syncdb.  Servee assumes that you're using either contrib.staticfiles or django-staticfiles (>=1.1)
 Make sure that you collectstatic in production.
 
 It's important to add servee urls, and you probably want to use autodiscover.
-    
+
     from servee import frontendadmin
-    frontendadmin.site.autodiscover()
+    frontendadmin.autodiscover()
     # ...
     url(r"^servee/", include(frontendadmin.site.urls)),
 
