@@ -1,139 +1,107 @@
+
 $(document).ready(function(){
-	
-	/* Frontendadmin buttons add, edit, delete */
-	$("a.frontendadmin_edit:not(.modal)").hover(		
-		function(){
-	    	var $base, $link = $(this), $par = $link.parent();
-    	
-	        if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
-    		    $par = $(servee.selector);
-    		}
-    		else {
-    		    $par = $link.parent();
-    		}
-    		$par.addClass("pre-edit");
-    	},
-	    function(){
-	    	var $base, $link = $(this), $par = $link.parent();
-    	
-	        if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
-    		    $par = $(servee.selector);
-    		}
-    		else {
-    		    $par = $link.parent();
-    		}
-    		$par.removeClass("pre-edit");
-    	}
-	);
-	$("a.frontendadmin_delete:not(.modal)").hover(
-	    function(){
-	    	var $base, $link = $(this), $par = $link.parent();
-    	
-    	    if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
-    		    $par = $(servee.selector);
-    		}
-    		else {
-    		    $par = $link.parent();
-    		}
-    		$par.addClass("pre-delete");
-    	},
-	    function(){
-	    	var $base, $link = $(this), $par = $link.parent();
-    	
-	        if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
-    		    $par = $(servee.selector);
-    		}
-    		else {
-    		    $par = $link.parent();
-    		}
-    		$par.removeClass("pre-delete");
-    	}
-	);
-	
 
-	$("a.frontendadmin_add").live("click", function(e){
-		var $base, $link = $(this);
-		
-		if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
-		    $par = $(servee.selector);
-		}
-		else {
-		    $par = $link.parent();
-		}
-
-	    $.ajax({
-	        url: this.href,
-	        success: function(data, text){
-    	        $par.html(data);
-	        }
-	    });
-	    e.preventDefault();
-	    return false;
-	});
-	
-
-	$("a.frontendadmin_list").live("click", function(e){
-		var $base, $link = $(this);
-		
-		if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
-		    $par = $(servee.selector);
-		}
-		else {
-		    $par = $link.parent();
-		}
-
-	    $.ajax({
-	        url: this.href,
-	        success: function(data, text){
-    	        $par.html(data);
-	        }
-	    });
-	    e.preventDefault();
-	    return false;
-	});
-
-
-	$("a.frontendadmin_edit").live("click", function(e){
-		var $base, $link = $(this), $par = $link.parent();
+    function set_parent($link){
+        var REPLACE_BLOCKS = "div, article, section, aside, header, footer, body";
 
         if ((typeof(servee) != "undefined") && (typeof(servee.selector) != "undefined")){
-		    $par = $(servee.selector);
-		}
-		else {
-		    $par = $link.parent();
-		}
+            return $(servee.selector);
+        }
+        console.log($link.parents(REPLACE_BLOCKS).eq(0));
+        return $link.parents(REPLACE_BLOCKS).eq(0);
+    }
 
-	    $par.css("outline", "");
-	    $.ajax({
-	        url: this.href,
-	        success: function(data, text){
-	            $par.html(data);
-	        }
-	    });
-	    e.preventDefault();
-	    return false;
-	});
 
-	/**************************
-	 * Insert Tools 
-	 **************************/
-	// Clicking of 1st tier, building of 2nd tier
-	$(".srv_mediaList li a").live("click", function(e){
-		var $link = $(this);
-	
-	
-		//@@ TODO currentInsert is a global object.  This is lame,
-		//servee should have only one global object.
-		currentInsert = $link.attr("data-slug");
-	
-		$.ajax({
+    /* Frontendadmin buttons add, edit, delete */
+    $("a.frontendadmin_edit:not(.modal)").hover(
+        function(){
+            var $link = $(this), $par;
+            $par = set_parent($link);
+            $par.addClass("pre-edit");
+        },
+        function(){
+            var $link = $(this), $par;
+            $par = set_parent($link);
+            $par.removeClass("pre-edit");
+        }
+    );
+    $("a.frontendadmin_delete:not(.modal)").hover(
+        function(){
+            var $link = $(this), $par;
+            $par = set_parent($link);
+            $par.addClass("pre-delete");
+        },
+        function(){
+            var $link = $(this), $par;
+            $par = set_parent($link);
+            $par.removeClass("pre-delete");
+        }
+    );
+
+
+    $("a.frontendadmin_add").live("click", function(e){
+        var $link = $(this), $par;
+        $par = set_parent($link);
+        $.ajax({
+            url: this.href,
+            success: function(data, text){
+                $par.html(data);
+            }
+        });
+        e.preventDefault();
+        return false;
+    });
+
+
+    $("a.frontendadmin_list").live("click", function(e){
+        var $link = $(this), $par;
+        $par = set_parent($link);
+        $.ajax({
+            url: this.href,
+            success: function(data, text){
+                $par.html(data);
+            }
+        });
+        e.preventDefault();
+        return false;
+    });
+
+
+    $("a.frontendadmin_edit").live("click", function(e){
+        var $link = $(this), $par;
+        $par = set_parent($link);
+        console.log($par);
+        $par.css("outline", "");
+        $.ajax({
+            url: this.href,
+            success: function(data, text){
+                $par.html(data);
+            }
+        });
+        e.preventDefault();
+        return false;
+    });
+
+    /**************************
+     * Insert Tools
+     **************************/
+    // Clicking of 1st tier, building of 2nd tier
+    $(".srv_mediaList li a").live("click", function(e){
+        var $link = $(this);
+
+
+        //@@ TODO currentInsert is a global object.  This is lame,
+        //servee should have only one global object.
+        currentInsert = $link.attr("data-slug");
+
+        $.ajax({
             url: $link.attr("href"),
             success: function(data, text){
                 console.log(data);
                 $(".srv_filePane").remove();
                 $(".srv_insertOptions").remove();
                 $(".srv_mediaList").after(
-                    "<div id='srv_"+currentInsert+"_filePane' class='srv_filePane'>"
+                    "<div id='srv_" +currentInsert+"_filePane' class='srv_filePane'>"
                     + data
                     + "</div>"
                 );
@@ -141,14 +109,14 @@ $(document).ready(function(){
                 srv_show_adminBox("srv_insertMedia");
             }
         });
-		e.preventDefault();
-		return false;
-	});
+        e.preventDefault();
+        return false;
+    });
 
-	// Clicking of 2nd tier, building of 3rd tier
-	$(".srv_filePane li a").live("click", function(e){
-		var $link = $(this);
-		$.ajax({
+    // Clicking of 2nd tier, building of 3rd tier
+    $(".srv_filePane li a").live("click", function(e){
+        var $link = $(this);
+        $.ajax({
             url: $link.attr("href"),
             success: function(data, text){
                 $(".srv_insertOptions").remove();
@@ -161,8 +129,8 @@ $(document).ready(function(){
                 srv_show_adminBox("srv_insertMedia");
             }
         });
-		e.preventDefault();
-		return false;
-	});
+        e.preventDefault();
+        return false;
+    });
 
 });
