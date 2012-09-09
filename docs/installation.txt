@@ -5,6 +5,7 @@ Installation
 First you should put servee in your environment::
 
     pip install django-servee
+    pip install django-uni-form
 
 or download and::
 
@@ -20,7 +21,7 @@ to wysiwyg areas, and that's awesome (sometimes)::
     INSTALLED_APPS += [
         "servee.frontendadmin",
         "servee.wysiwyg",
-        "uni_form" # Required, and installed by servee
+        "uni_form" # Required
     ]
 
 Then syncdb.  Servee assumes that you're using either contrib.staticfiles or django-staticfiles (>=1.1)
