@@ -11,13 +11,16 @@
     </head>
     <body class="{% block bodyclass %}{% endblock %}">
         <header>
-            {% block header %}{% endblock %}
+            {% block header %}<h1>A Servee sample site</h1>{% endblock %}
         </header>
         <div id="content">
-            {% block body %}{% endblock %}
+            {% block body %}
+                {% block content %}
+                {% endblock %}
+            {% endblock %}
         </div>
         <footer>
-            {% block footer %}{% endblock %}
+            <p>Servee is a product of <a href="http://www.kellycreativetech.com">Kelly Creative Tech</a></p>
         </footer>
     </body>
 </html>

@@ -6,16 +6,20 @@
 Welcome to Servee's documentation!
 ==================================
 
+Servee is a content-editing system for the front-end of your django based website.
+
+Information is available by emailing issac@servee.com or visiting irc.freenode.net#servee
+
 Contents:
 
 .. toctree::
    :maxdepth: 2
-   
+
    intro
    installation
+   sample_projects
    wysiwyg
    inlines
-   sample_projects
    1.2_considerations
 
 Indices and tables

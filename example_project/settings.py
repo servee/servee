@@ -95,31 +95,30 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.admin",
     "django.contrib.admindocs",
-    
+
     # We're going to assume flatpages is
-    # Installed, and that is the app that 
+    # Installed, and that is the app that
     # you want to be editable.
     "django.contrib.flatpages",
-    
+
     # servee dependancies
     "uni_form",
 
     # servee
-    "servee",
     "servee.frontendadmin",
     "servee.wysiwyg",
-    
+
     # tinymce is currently the only
     # supported wysiwyg backend.
     # I'd like to support a "none (plain html)" backend
     # and also possibly a markdown backend.
     # There are other cool editors poping up as well,
     # Aloha, Dojo, and classics like FCK.  Please contribute.
-    "servee.wysiwyg.tinymce",
+    "servee_tinymce",
 
     # sample insert, a nieve image placer.
     "sample_image_insert",
-    
+
     # minimal app that is used to write servee forms/registrations
     # for the flatpages app.  This is the convention for adding servee
     # frontend editing to 3rd party apps.
