@@ -1,10 +1,13 @@
 Primary
 -------
-Issac Kelly <issac@servee.com>
-Kasey Kelly <kasey@servee.com>
-Josh Boles <josh@servee.com>
-John Debs <john@typeish.com>
+Issac Kelly (issackelly) <issac@servee.com>
+Kasey Kelly (kkellydesign) <kasey@servee.com>
+Josh Boles (joshboles) <josh@servee.com>
+John Debs (johnthedebs)
+
 
 Contributors
 ------------
-Vasil Vangelovski <github.com/vvangelovski>
+Vasil Vangelovski (vvangelovski)
+Jeff Tripplett (jefftripplett)
+Daniel Lindsley (toastdriven)
