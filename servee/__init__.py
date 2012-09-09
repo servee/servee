@@ -1,5 +1,5 @@
-VERSION = (0, 6, 0, "a", 2)  # following PEP 386
-DEV_N = 5
+VERSION = (0, 7, 0, "a", 1)  # following PEP 386
+DEV_N = 1
 
 
 # cribbed from pinax

@@ -125,6 +125,5 @@ setup(
         'Programming Language :: Python',
         'Topic :: Internet :: WWW/HTTP',
     ],
-    #test_suite='compressor.tests.runtests.runtests',
     zip_safe = False,
 )
