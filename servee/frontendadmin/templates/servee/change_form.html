@@ -1,5 +1,5 @@
 {% extends "servee/base_site.html" %}
-{% load i18n admin_modify servee_admin_modify adminmedia %}
+{% load i18n admin_modify servee_admin_modify admin_static %}
 
 {% block extrahead %}{{ block.super }}
 {% url 'admin:jsi18n' as jsi18nurl %}
@@ -7,7 +7,7 @@
 {{ media }}
 {% endblock %}
 
-{% block extrastyle %}{{ block.super }}{% comment %}<link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />{% endcomment %}{% endblock %}
+{% block extrastyle %}{{ block.super }}{% comment %}<link rel="stylesheet" type="text/css" href="{% static "css/forms.css" %}" />{% endcomment %}{% endblock %}
 
 {% block coltype %}{% if ordered_objects %}colMS{% else %}colM{% endif %}{% endblock %}
 
@@ -68,13 +68,13 @@ $(document).ready(function(){
 		   $(".submit-row").css("position", "fixed");
 		   $(".submit-row").css("bottom", "0");
 		}
-		
+
 		if  ($(window).scrollTop() <= $(".scrollidentifier").offset({ scroll: false }).top){
 		   $(".submit-row").css("position", "relative");
 		   $(".submit-row").css("bottom", $(".scrollidentifier").offset());
 		}
 	});
-	
+
 	var $base = $("#{{ opts.module_name }}_form");
     var $par = $base.parent();
     load_wysiwyg($base);
@@ -86,15 +86,15 @@ $(document).ready(function(){
                 "data": $base.serialize(),
                 success: function(data, text){
                     //Fracking tinymce destroy bug....
-                    
+
                     t = {};
                     t.keyNav = {};
                     t.keyNav.destroy = function(){};
-                    
+
                     $par.html(data);
                 },
             });
-            
+
             e.preventDefault();
             return false;
         }

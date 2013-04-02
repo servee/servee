@@ -1,11 +1,11 @@
 {% extends "servee/base_site.html" %}
-{% load adminmedia admin_list servee_admin_list i18n %}
+{% load admin_static admin_list servee_admin_list i18n %}
 
 {% block extrastyle %}
   {{ block.super }}
-  <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/changelists.css" />
+  <link rel="stylesheet" type="text/css" href="{% static "css/changelists.css" %}" />
   {% if cl.formset %}
-    {% comment %}<link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />{% endcomment %}
+    {% comment %}<link rel="stylesheet" type="text/css" href="{% static "css/forms.css" %}" />{% endcomment %}
   {% endif %}
   {% if cl.formset or action_form %}
     {% url 'admin:jsi18n' as jsi18nurl %}
