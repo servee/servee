@@ -1,6 +1,14 @@
 
 $(document).ready(function(){
 
+    function createThumbs(){
+        $('.file-upload').each(function(){
+            var thumbURL = $(this).children('a').attr('href');
+            if (thumbURL){
+                $(this).prepend('<img src="' + thumbURL + '" style="max-width:180px;margin-bottom:10px;display:block;">');
+            }
+        });
+    }
     function set_parent($link){
         var REPLACE_BLOCKS = "div, article, section, aside, header, footer, body";
 
@@ -10,7 +18,6 @@ $(document).ready(function(){
         console.log($link.parents(REPLACE_BLOCKS).eq(0));
         return $link.parents(REPLACE_BLOCKS).eq(0);
     }
-
 
     /* Frontendadmin buttons add, edit, delete */
     $("a.frontendadmin_edit:not(.modal)").hover(
@@ -38,8 +45,7 @@ $(document).ready(function(){
         }
     );
 
-
-    $("a.frontendadmin_add").live("click", function(e){
+    $("a.frontendadmin_add").on("click", function(e){
         var $link = $(this), $par;
         $par = set_parent($link);
         $.ajax({
@@ -52,8 +58,7 @@ $(document).ready(function(){
         return false;
     });
 
-
-    $("a.frontendadmin_list").live("click", function(e){
+    $("a.frontendadmin_list").on("click", function(e){
         var $link = $(this), $par;
         $par = set_parent($link);
         $.ajax({
@@ -62,12 +67,12 @@ $(document).ready(function(){
                 $par.html(data);
             }
         });
+
         e.preventDefault();
         return false;
     });
 
-
-    $("a.frontendadmin_edit").live("click", function(e){
+    $("a.frontendadmin_edit").on("click", function(e){
         var $link = $(this), $par;
         $par = set_parent($link);
         console.log($par);
@@ -78,57 +83,7 @@ $(document).ready(function(){
                 $par.html(data);
             }
         });
-        e.preventDefault();
-        return false;
-    });
-
-    /**************************
-     * Insert Tools
-     **************************/
-    // Clicking of 1st tier, building of 2nd tier
-    $(".srv_mediaList li a").live("click", function(e){
-        var $link = $(this);
-
-
-        //@@ TODO currentInsert is a global object.  This is lame,
-        //servee should have only one global object.
-        currentInsert = $link.attr("data-slug");
-
-        $.ajax({
-            url: $link.attr("href"),
-            success: function(data, text){
-                console.log(data);
-                $(".srv_filePane").remove();
-                $(".srv_insertOptions").remove();
-                $(".srv_mediaList").after(
-                    "<div id='srv_" +currentInsert+"_filePane' class='srv_filePane'>"
-                    + data
-                    + "</div>"
-                );
-                //Once the dom is rebuilt, slide it in.
-                srv_show_adminBox("srv_insertMedia");
-            }
-        });
-        e.preventDefault();
-        return false;
-    });
-
-    // Clicking of 2nd tier, building of 3rd tier
-    $(".srv_filePane li a").live("click", function(e){
-        var $link = $(this);
-        $.ajax({
-            url: $link.attr("href"),
-            success: function(data, text){
-                $(".srv_insertOptions").remove();
-                $(".srv_filePane").after(
-                    "<div id='srv_"+ currentInsert +"_insertOptions' class='srv_insertOptions'>"
-                    + data
-                    + "</div>"
-                );
-                //Once the dom is rebuilt, slide it in.
-                srv_show_adminBox("srv_insertMedia");
-            }
-        });
+        createThumbs();
         e.preventDefault();
         return false;
     });
