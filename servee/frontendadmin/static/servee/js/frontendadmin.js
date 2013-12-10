@@ -1,14 +1,5 @@
-
 $(document).ready(function(){
 
-    function createThumbs(){
-        $('.file-upload').each(function(){
-            var thumbURL = $(this).children('a').attr('href');
-            if (thumbURL){
-                $(this).prepend('<img src="' + thumbURL + '" style="max-width:180px;margin-bottom:10px;display:block;">');
-            }
-        });
-    }
     function set_parent($link){
         var REPLACE_BLOCKS = "div, article, section, aside, header, footer, body";
 
@@ -83,9 +74,17 @@ $(document).ready(function(){
                 $par.html(data);
             }
         });
-        createThumbs();
         e.preventDefault();
         return false;
     });
 
+});
+
+$( document ).ajaxComplete(function() {
+    $('.file-upload').each(function(){
+        var thumbURL = $(this).children('a').attr('href');
+        if (thumbURL){
+            $(this).prepend('<img src="' + thumbURL + '" style="max-width:180px;margin-bottom:10px;display:block;">');
+        }
+    });
 });
