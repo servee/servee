@@ -114,7 +114,7 @@ INSTALLED_APPS = [
     # and also possibly a markdown backend.
     # There are other cool editors poping up as well,
     # Aloha, Dojo, and classics like FCK.  Please contribute.
-    "servee_tinymce",
+    "servee_redactor",
 
     # sample insert, a nieve image placer.
     "sample_image_insert",

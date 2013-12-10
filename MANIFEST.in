@@ -4,7 +4,4 @@ include AUTHORS.txt
 recursive-include servee *
 recursive-include servee/frontendadmin/templates *
 recursive-include servee/frontendadmin/static *
-recursive-include servee/wysiwyg *
-recursive-include servee/wysiwyg/tinymce/static *
-recursive-include servee/wysiwyg/tinymce/templates *
 recursive-include docs *

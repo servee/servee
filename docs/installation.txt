@@ -14,8 +14,8 @@ or download and::
 Then add servee to your installed apps.
 
 At a minimum, you want to install `servee.frontendadmin`.  This is
-the admin site.  You probably also want our wysiwyg tools, and the tinymce
-backend (only supported wysiwyg editor at the moment) This converts your textareas
+the admin site.  You probably also want our wysiwyg tools, and this
+particular branch runs Redactor. This converts your textareas
 to wysiwyg areas, and that's awesome (sometimes)::
 
     INSTALLED_APPS += [
@@ -36,7 +36,7 @@ It's important to add servee urls, and you probably want to use autodiscover::
 
 You probably want several other packages as well::
 
-    pip install django-servee-tinymce
+    pip install django-servee-redactor
     pip install django-servee-uploadify
     pip install django-servee-image
     pip install django-servee-gallery
@@ -44,9 +44,9 @@ You probably want several other packages as well::
 Add those to INSTALLED_APPS::
 
     # before servee.wysiwyg, for static files finding
-    "servee_tinymce",
+    "servee_redactor",
 
-    "servee_uploadify",
+    "servee_document",
     "servee_image",
     "servee_gallery",
 

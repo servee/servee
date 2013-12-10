@@ -8,4 +8,5 @@ built with non-technical users in mind.  Many aspects of servee are intentionall
 to keep dependencies down so it can be used across a very wide variety of projects.
 
 It's also meant to be tightly coupled with wysiwyg components for content
-editing. Right now TinyMCE is supported.
+editing. Right now TinyMCE is supported in Open Source, and we have a Redactor build
+as well.
