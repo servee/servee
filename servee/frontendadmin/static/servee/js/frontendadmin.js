@@ -72,19 +72,17 @@ $(document).ready(function(){
             url: this.href,
             success: function(data, text){
                 $par.html(data);
+                $('.file-upload').each(function(){
+                    var thumbURL = $(this).children('a').attr('href');
+                    if (thumbURL){
+                        $(this).prepend('<img src="' + thumbURL + '" style="max-width:180px;margin-bottom:10px;display:block;">');
+                    }
+                });
             }
         });
+
         e.preventDefault();
         return false;
     });
 
-});
-
-$( document ).ajaxComplete(function() {
-    $('.file-upload').each(function(){
-        var thumbURL = $(this).children('a').attr('href');
-        if (thumbURL){
-            $(this).prepend('<img src="' + thumbURL + '" style="max-width:180px;margin-bottom:10px;display:block;">');
-        }
-    });
 });
