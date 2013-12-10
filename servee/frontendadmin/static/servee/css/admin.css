@@ -812,7 +812,10 @@ textarea.input-group-sm > .input-group-btn > .btn {
     margin-left: 25%;
   }
 }
-.frontendadmin_edit {
+.frontendadmin,
+.frontendadmin_edit,
+.frontendadmin_add,
+.frontendadmin_delete {
   font-family: 'Source Sans Pro', sans-serif;
   padding: 0 6px;
   font-size: 12px;
@@ -820,7 +823,10 @@ textarea.input-group-sm > .input-group-btn > .btn {
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
-.frontendadmin_edit:hover {
+.frontendadmin:hover,
+.frontendadmin_edit:hover,
+.frontendadmin_add:hover,
+.frontendadmin_delete:hover {
   background: #fff;
   text-decoration: none;
 }
