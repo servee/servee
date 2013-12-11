@@ -81,8 +81,8 @@
         vertical-align: middle;
         margin:10px
       }
-
     }
+    .original p{display:none} //hack to remove a bad django field
     p.help{
       .make-xs-column(8);
       .make-xs-column-offset(3);
@@ -95,6 +95,15 @@
       font-size:13px;
       font-weight:400;
       font-style:italic;
+    }
+    fieldset.module table {
+      width:100%;
+      thead{
+        text-align:left;
+      }
+      .dynamic-images{
+        border-bottom:1px solid #eee;
+      }
     }
   }
 }
