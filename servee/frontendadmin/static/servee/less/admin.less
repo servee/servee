@@ -1,12 +1,16 @@
 @import "variables.less";
 @import "mixins.less";
+@servee-font-family: 'Source Sans Pro', sans-serif;
+
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic);
+
+
 #servee_container{ // namespacing the whole file
 @import "buttons.less";
 @import "forms.less";
 @import "input-groups.less";
 @import "overlay-ui.less";
-@servee-font-family: 'Source Sans Pro', sans-serif;
+
 
 .form-row {
   margin-bottom:20px;
@@ -94,21 +98,6 @@
     }
   }
 }
-a.frontendadmin,
-a.frontendadmin_edit,
-a.frontendadmin_add,
-a.frontendadmin_delete{
-  font-family: @servee-font-family;
-  padding:0 6px;
-  font-size:12px;
-  display:inline-block;
-  background:rgba(255,255,255,0.5);
-  border:1px solid rgba(0,0,0,0.1);
-  &:hover{
-    background:#fff;
-    text-decoration: none;
-  }
-}
 .submit-row{
   background:#fff;
   border:1px solid #ddd;
@@ -131,3 +120,22 @@ a.frontendadmin_delete{
 }
 @import "calendar-clock-ui.less";
 } //end of #servee_container namespace
+
+// this goes anywhere on the site, and will be affected by other
+// site styles
+
+a.frontendadmin,
+a.frontendadmin_edit,
+a.frontendadmin_add,
+a.frontendadmin_delete{
+  font-family: @servee-font-family;
+  padding:0 6px;
+  font-size:12px;
+  display:inline-block;
+  background:rgba(255,255,255,0.5);
+  border:1px solid rgba(0,0,0,0.1);
+  &:hover{
+    background:#fff;
+    text-decoration: none;
+  }
+}
