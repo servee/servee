@@ -1,0 +1,133 @@
+@import "variables.less";
+@import "mixins.less";
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic);
+#servee_container{ // namespacing the whole file
+@import "buttons.less";
+@import "forms.less";
+@import "input-groups.less";
+@import "overlay-ui.less";
+@servee-font-family: 'Source Sans Pro', sans-serif;
+
+.form-row {
+  margin-bottom:20px;
+  > div{
+    .make-row();
+    label{
+      .make-xs-column(3);
+      .make-sm-column(4);
+      .make-md-column(3);
+      font-family: @servee-font-family;
+      font-size:14px;
+      font-weight:400;
+      .box-sizing(border-box);
+      &.vCheckboxLabel{
+        .make-xs-column(6);
+        .make-sm-column(6);
+        .make-md-column(6);
+        padding-left:4px;
+      }
+    }
+    [type=text],
+    .file-upload,
+    > [type=file]{
+      .make-xs-column(8);
+      .make-sm-column(6);
+      .make-md-column(6);
+      font-family: @servee-font-family;
+      font-size:13px;
+    }
+    .file-upload,
+    > [type=file]{
+      padding:0;
+      .clearable-file-input{
+        float:right;
+        text-align: right;
+        label{
+          padding:0;
+          width:auto;
+          margin:0;
+          display:inline-block;
+          float:none;
+        }
+        [type=checkbox]{
+          width:auto;
+          display:inline-block;
+          margin-right:4px;
+        }
+      }
+    }
+    > [type=checkbox]{
+      float:left;
+      margin-left:25%;
+      @media (min-width: @screen-sm) {margin-left:33.33333333333333%;}
+      @media (min-width: @screen-md){margin-left:25%;}
+    }
+    .redactor_box{
+      .box-sizing(border-box);
+      .make-xs-column(12);
+      .make-sm-column(12);
+      .make-md-column(12);
+    }
+    p.datetime{
+      float:left;
+      width:70%;
+      input{
+        float:none;
+        display:inline-block;
+        vertical-align: middle;
+        margin:10px
+      }
+
+    }
+    p.help{
+      .make-xs-column(8);
+      .make-xs-column-offset(3);
+      .make-sm-column(6);
+      .make-sm-column-offset(4);
+      .make-md-column(9);
+      .make-md-column-offset(3);
+      padding-left:0;
+      font-family: @servee-font-family;
+      font-size:13px;
+      font-weight:400;
+      font-style:italic;
+    }
+  }
+}
+a.frontendadmin,
+a.frontendadmin_edit,
+a.frontendadmin_add,
+a.frontendadmin_delete{
+  font-family: @servee-font-family;
+  padding:0 6px;
+  font-size:12px;
+  display:inline-block;
+  background:rgba(255,255,255,0.5);
+  border:1px solid rgba(0,0,0,0.1);
+  &:hover{
+    background:#fff;
+    text-decoration: none;
+  }
+}
+.submit-row{
+  background:#fff;
+  border:1px solid #ddd;
+  padding:10px;
+  .clearfix();
+  [type=submit]{
+    .btn();
+    .button-variant(#fff; @brand-success; @brand-success);
+    font-family: @servee-font-family;
+    font-size:13px;
+    float:right;
+  }
+}
+#servee_content{
+  > h1{
+    font-size:16px;
+    font-family: @servee-font-family;
+    font-weight:300;
+  }
+}
+@import "calendar-clock-ui.less";
+} //end of #servee_container namespace
