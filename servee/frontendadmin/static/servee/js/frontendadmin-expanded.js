@@ -75,7 +75,7 @@ $(document).ready(function(){
                 $('.file-upload').each(function(){
                     var thumbURL = $(this).children('a').attr('href');
                     if (thumbURL){
-                        $(this).prepend('<img src="' + thumbURL + '" style="max-width:180px;margin-bottom:10px;display:block;">');
+                        $(this).prepend('<img src="' + thumbURL + '" style="max-width:180px;max-height:100px;margin-bottom:10px;display:block;">');
                     }
                 });
                 // hide galleries, because they make the form crazy long
