@@ -78,10 +78,18 @@ $(document).ready(function(){
                         $(this).prepend('<img src="' + thumbURL + '" style="max-width:180px;margin-bottom:10px;display:block;">');
                     }
                 });
+                // hide galleries, because they make the form crazy long
+                $('#gallery_set-group').before("<a href='#' id='gallery_dropdown'>Expand</a>");
+                $('#gallery_set-group').hide();
             }
         });
 
         e.preventDefault();
+        return false;
+    });
+    $('#gallery_dropdown').on("click", function(e){
+       $('#gallery_set-group').toggle();
+       e.preventDefault();
         return false;
     });
 

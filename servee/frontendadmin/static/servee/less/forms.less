@@ -81,7 +81,22 @@ input[type="number"] {
     height: auto;
   }
 }
-
+input[type=file]{
+  width:160px;
+  font-size:12px;
+  font-family:'Source Sans Pro',sans-serif;
+  margin-bottom:10px;
+  &::-webkit-file-upload-button{
+    font-size:11px;
+    font-family:'Source Sans Pro',sans-serif;
+    margin-left:0px;
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius: 0;
+    cursor: pointer;
+    &:hover{background:#eee;}
+  }
+}
 // Adjust output element
 output {
   display: block;
@@ -123,6 +138,22 @@ output {
 // input[type="tel"]
 // input[type="color"]
 
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
 .form-control {
   display: block;
   width: 100%;

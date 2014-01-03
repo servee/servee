@@ -1,0 +1,59 @@
+.inline-group{
+  font-family:'Source Sans Pro',sans-serif;
+  font-size:14px;
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  table{
+    width:100%;
+    th, td{
+      vertical-align: top;
+      padding:10px 8px 10px 0;
+    }
+    td{
+      position: relative;
+      padding-left: 25%;
+      &:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 20%;
+        padding-right: 10px;
+
+      }
+      &:nth-of-type(1) { display:none; }
+      &:nth-of-type(1):before { content: ""; }
+      &:nth-of-type(2):before { content: "Image Path"; }
+      &:nth-of-type(3):before { content: "Thumb override"; }
+      &:nth-of-type(4):before { content: "Image title"; }
+      &:nth-of-type(5):before { content: "Caption"; }
+      &:nth-of-type(6):before { content: "Order"; }
+      &:nth-of-type(7):before { content: "Delete"; }
+    }
+    tr.add-row{
+      td:nth-of-type(1) { display:block; }
+    }
+    thead tr { //hiding the header, because I'm repeating it with CSS below.
+      position: absolute;
+      font:0/0 a;
+      color:transparent;
+    }
+    tr{
+      border-top:20px solid #eee;
+    }
+    .field-order input{width:30px;}
+    .field-caption{
+      .redactor_box{
+        min-height:100px;
+        margin-bottom:0;
+        padding:4px;
+      }
+      .redactor_editor{margin-bottom:10px;}
+    }
+    .file-upload img{
+      max-height:100px;
+    }
+  }
+}

@@ -10,6 +10,7 @@
 @import "forms.less";
 @import "input-groups.less";
 @import "overlay-ui.less";
+@import "gallery-form-elements.less";
 
 
 .form-row {
@@ -133,6 +134,20 @@ fieldset.module table {
     font-weight:300;
   }
 }
+.errorlist{
+  list-style: none;
+  border: 1px solid #cc181e;
+  padding: 10px;
+  margin: 20px 0;
+  color: #cc181e;
+  background: #f1c7c9;
+  font-family: @servee-font-family;
+  font-size:14px;
+  line-height:20px;
+  font-weight:400;
+}
+
+
 } //end of #servee_container namespace
 
 @import "calendar-clock-ui.less";
@@ -149,6 +164,9 @@ a.frontendadmin_delete{
   display:inline-block;
   background:rgba(255,255,255,0.5);
   border:1px solid rgba(0,0,0,0.1);
+  line-height:18px;
+  font-weight:400;
+  font-style: normal;
   &:hover{
     background:#fff;
     text-decoration: none;
