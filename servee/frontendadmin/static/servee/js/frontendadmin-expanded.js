@@ -79,10 +79,10 @@ $(document).ready(function(){
                     }
                 });
                 // hide galleries, because they make the form crazy long
-                $('#gallery_set-group').before("<a href='#' id='gallery_dropdown'>Edit the gallery for this page ▾</a>");
-                $('#gallery_set-group').hide();
+                $('#images-group').before("<a href='#' id='gallery_dropdown'>Edit the gallery for this page <span>›</span></a>");
+                $('#images-group').hide();
                 $('#gallery_dropdown').on("click", function(e){
-                   $('#gallery_set-group').toggle();
+                   $('#images-group').toggle();
                    e.preventDefault();
                     return false;
                 });
