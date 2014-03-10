@@ -110,9 +110,9 @@ $(document).ready(function(){
     var head9 = $("#servee_container .module th:nth-of-type(9)").text();
     var head10 = $("#servee_container .module th:nth-of-type(10)").text();
 
-    $("#servee_container .module td:nth-of-type(1)").each().attr('data-content', head1 );
-    $("#servee_container .module td:nth-of-type(2)").each().attr('data-content', head2 );
-    $("#servee_container .module td:nth-of-type(3)").each().attr('data-content', head3 );
+    $("#servee_container .module td:nth-of-type(1)").attr('data-content', head1 );
+    $("#servee_container .module td:nth-of-type(2)").attr('data-content', head2 );
+    $("#servee_container .module td:nth-of-type(3)").attr('data-content', head3 );
     $("#servee_container .module td:nth-of-type(4)").attr('data-content', head4 );
     $("#servee_container .module td:nth-of-type(5)").attr('data-content', head5 );
     $("#servee_container .module td:nth-of-type(6)").attr('data-content', head6 );
