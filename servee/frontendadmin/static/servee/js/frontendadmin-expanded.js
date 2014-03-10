@@ -83,8 +83,39 @@ $(document).ready(function(){
                 $('#images-group').hide();
                 $('#gallery_dropdown').on("click", function(e){
                    $('#images-group').toggle();
+
+                    // I changed the django "module" table into a vertical form display using some
+                    // CSS trickery. Here, I take the labels from the table display and insert
+                    // them into the right places with CSS. Since pseudo-elements can't be applied
+                    // inline, this is sort of complicated. The CSS is taking the text from the
+                    // data-content attribute, which I'm adding below. --KK
+
+                    var head1 = $("#servee_container .module th:nth-of-type(1)").text();
+                    var head2 = $("#servee_container .module th:nth-of-type(2)").text();
+                    var head3 = $("#servee_container .module th:nth-of-type(3)").text();
+                    var head4 = $("#servee_container .module th:nth-of-type(4)").text();
+                    var head5 = $("#servee_container .module th:nth-of-type(5)").text();
+                    var head6 = $("#servee_container .module th:nth-of-type(6)").text();
+                    var head7 = $("#servee_container .module th:nth-of-type(7)").text();
+                    var head8 = $("#servee_container .module th:nth-of-type(8)").text();
+                    var head9 = $("#servee_container .module th:nth-of-type(9)").text();
+                    var head10 = $("#servee_container .module th:nth-of-type(10)").text();
+
+                    $("#servee_container .module td:nth-of-type(1)").attr('data-content', head1 );
+                    $("#servee_container .module td:nth-of-type(2)").attr('data-content', head2 );
+                    $("#servee_container .module td:nth-of-type(3)").attr('data-content', head3 );
+                    $("#servee_container .module td:nth-of-type(4)").attr('data-content', head4 );
+                    $("#servee_container .module td:nth-of-type(5)").attr('data-content', head5 );
+                    $("#servee_container .module td:nth-of-type(6)").attr('data-content', head6 );
+                    $("#servee_container .module td:nth-of-type(7)").attr('data-content', head7 );
+                    $("#servee_container .module td:nth-of-type(8)").attr('data-content', head8 );
+                    $("#servee_container .module td:nth-of-type(9)").attr('data-content', head9 );
+                    $("#servee_container .module td:nth-of-type(10)").attr('data-content', head10 );
+
+
+
                    e.preventDefault();
-                    return false;
+                   return false;
                 });
             }
         });
@@ -92,34 +123,4 @@ $(document).ready(function(){
         e.preventDefault();
         return false;
     });
-
-    // I changed the django "module" table into a vertical form display using some
-    // CSS trickery. Here, I take the labels from the table display and insert
-    // them into the right places with CSS. Since pseudo-elements can't be applied
-    // inline, this is sort of complicated. The CSS is taking the text from the
-    // data-content attribute, which I'm adding below. --KK
-
-    var head1 = $("#servee_container .module th:nth-of-type(1)").text();
-    var head2 = $("#servee_container .module th:nth-of-type(2)").text();
-    var head3 = $("#servee_container .module th:nth-of-type(3)").text();
-    var head4 = $("#servee_container .module th:nth-of-type(4)").text();
-    var head5 = $("#servee_container .module th:nth-of-type(5)").text();
-    var head6 = $("#servee_container .module th:nth-of-type(6)").text();
-    var head7 = $("#servee_container .module th:nth-of-type(7)").text();
-    var head8 = $("#servee_container .module th:nth-of-type(8)").text();
-    var head9 = $("#servee_container .module th:nth-of-type(9)").text();
-    var head10 = $("#servee_container .module th:nth-of-type(10)").text();
-
-    $("#servee_container .module td:nth-of-type(1)").attr('data-content', head1 );
-    $("#servee_container .module td:nth-of-type(2)").attr('data-content', head2 );
-    $("#servee_container .module td:nth-of-type(3)").attr('data-content', head3 );
-    $("#servee_container .module td:nth-of-type(4)").attr('data-content', head4 );
-    $("#servee_container .module td:nth-of-type(5)").attr('data-content', head5 );
-    $("#servee_container .module td:nth-of-type(6)").attr('data-content', head6 );
-    $("#servee_container .module td:nth-of-type(7)").attr('data-content', head7 );
-    $("#servee_container .module td:nth-of-type(8)").attr('data-content', head8 );
-    $("#servee_container .module td:nth-of-type(9)").attr('data-content', head9 );
-    $("#servee_container .module td:nth-of-type(10)").attr('data-content', head10 );
-
-
 });
