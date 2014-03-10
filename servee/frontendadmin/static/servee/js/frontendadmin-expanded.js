@@ -111,6 +111,7 @@ $(document).ready(function(){
                     $("#servee_container .module td:nth-of-type(9)").attr('data-content', head8 );
                     $("#servee_container .module td:nth-of-type(10)").attr('data-content', head9 );
                     $("#servee_container .module td:nth-of-type(11)").attr('data-content', head10 );
+                    $("#servee_container .module thead").hide();
 
 
 
