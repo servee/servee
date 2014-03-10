@@ -168,6 +168,9 @@ input[type="color"],
   border-radius: @input-border-radius;
   .box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
   .transition(~"border-color ease-in-out .15s, box-shadow ease-in-out .15s");
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;
 
   // Customize the `:focus` state to imitate native WebKit styles.
   .form-control-focus();

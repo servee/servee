@@ -12,7 +12,10 @@
 @import "overlay-ui.less";
 @import "gallery-form-elements.less";
 
-
+p{
+  font-family: @servee-font-family;
+  font-size:13px;
+}
 .form-row {
   margin-bottom:20px;
   > div{
@@ -43,7 +46,8 @@
       font-family: @servee-font-family;
       font-size:13px;
       padding:4px 6px;
-      height:20px;
+      min-height:20px;
+      height:auto;
     }
     select{
       height:30px;
@@ -60,6 +64,8 @@
           margin:0;
           display:inline-block;
           float:none;
+          text-align: left;
+          vertical-align: bottom;
         }
         [type=checkbox]{
           width:auto;
