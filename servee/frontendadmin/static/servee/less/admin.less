@@ -12,10 +12,6 @@
 @import "overlay-ui.less";
 @import "gallery-form-elements.less";
 
-p{
-  font-family: @servee-font-family;
-  font-size:13px;
-}
 .form-row {
   margin-bottom:20px;
   > div{
@@ -97,6 +93,13 @@ p{
       }
     }
 
+    p.help,
+    p.file-upload{
+      font-family: @servee-font-family;
+      font-size:13px;
+      font-weight:400;
+      font-style:italic;
+    }
     p.help{
       .make-xs-column(8);
       .make-xs-column-offset(3);
@@ -105,10 +108,6 @@ p{
       .make-md-column(9);
       .make-md-column-offset(3);
       padding-left:0;
-      font-family: @servee-font-family;
-      font-size:13px;
-      font-weight:400;
-      font-style:italic;
     }
   }
 }
