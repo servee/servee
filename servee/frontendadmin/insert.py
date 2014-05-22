@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.template.loader import select_template
 from django.shortcuts import render_to_response
-from django.utils.functional import update_wrapper
+from functools import update_wrapper
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
