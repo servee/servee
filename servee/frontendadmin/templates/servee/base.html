@@ -14,8 +14,7 @@
 
 
 {% if not request.is_ajax %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.5.1.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}servee/js/frontendadmin.js"></script>
+    <script type="text/javascript" src="{% static 'servee/js/frontendadmin.js' %}"></script>
 {% endif %}
 {% include "wysiwyg/_wysiwyg_of_choice.html" %}
 
