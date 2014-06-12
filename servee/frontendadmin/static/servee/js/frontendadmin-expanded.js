@@ -81,16 +81,14 @@ $(document).ready(function(){
                 // hide galleries, because they make the form crazy long
                 $('#images-group').before("<a href='#' id='gallery_dropdown'>Edit the gallery for this page <span>›</span></a>");
                 $('#images-group').hide();
-                $('#gallery_dropdown').on("click", function(e){
-                   $('#images-group').toggle();
 
-                    // I changed the django "module" table into a vertical form display using some
-                    // CSS trickery. Here, I take the labels from the table display and insert
-                    // them into the right places with CSS. Since pseudo-elements can't be applied
-                    // inline, this is sort of complicated. The CSS is taking the text from the
-                    // data-content attribute, which I'm adding below. --KK
-
+                function labelTables(){
                     $('#servee_container .module table').each(function(){
+                        // I changed the django "module" table into a vertical form display using some
+                        // CSS trickery. Here, I take the labels from the table display and insert
+                        // them into the right places with CSS. Since pseudo-elements can't be applied
+                        // inline, this is sort of complicated. The CSS is taking the text from the
+                        // data-content attribute, which I'm adding below. --KK
                         var head1 = $(this).find("th:nth-of-type(1)").text();
                         var head2 = $(this).find("th:nth-of-type(2)").text();
                         var head3 = $(this).find("th:nth-of-type(3)").text();
@@ -117,7 +115,13 @@ $(document).ready(function(){
                         e.preventDefault();
                         return false;
                     });
+
+                };
+                $('#gallery_dropdown').on("click", function(e){
+                   $('#images-group').toggle();
+                   labelTables();
                 });
+                labelTables();
             }
         });
 
