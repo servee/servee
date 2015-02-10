@@ -10,7 +10,7 @@
 .btn() {
   display: inline-block;
   padding: @padding-base-vertical @padding-base-horizontal;
-  margin-bottom: 0; // For input.btn
+  margin: 0; // For input.btn
   font-size: @font-size-base;
   font-weight: @btn-font-weight;
   line-height: @line-height-base;
@@ -22,6 +22,7 @@
   white-space: nowrap;
   .user-select(none);
   background-image:none;
+  box-shadow: none;
 
   &:focus {
     .tab-focus();
