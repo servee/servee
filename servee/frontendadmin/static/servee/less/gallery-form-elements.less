@@ -26,6 +26,9 @@
     //&:nth-of-type(1) { visibility:hidden }
     &:before { content: attr(data-content); }
     }
+    &:empty:before{
+      content: "";
+    }
     tr.add-row{
       td:nth-of-type(1) { display:block; }
     }
@@ -36,7 +39,9 @@
       color:transparent;
     }
     tr{
-      border-top:20px solid #eee;
+      &:nth-child(odd){
+        background-color: rgba(0,0,0,0.05);
+      }
     }
     .field-order input{width:80px;}
     .field-caption{
