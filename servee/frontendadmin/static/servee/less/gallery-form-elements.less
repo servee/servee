@@ -23,12 +23,13 @@
         padding-right: 10px;
 
       }
-    //&:nth-of-type(1) { visibility:hidden }
-    &:before { content: attr(data-content); }
+      //&:nth-of-type(1) { visibility:hidden }
+      &:before { content: attr(data-content); }
+      &:empty:before{
+        content: "";
+      }
     }
-    &:empty:before{
-      content: "";
-    }
+
     tr.add-row{
       td:nth-of-type(1) { display:block; }
     }
