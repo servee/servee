@@ -7,9 +7,9 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.template.loader import select_template
 from django.shortcuts import render_to_response
-from django.utils.functional import update_wrapper
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from functools import update_wrapper
 
 from servee.frontendadmin.forms import AddForm
 from servee.utils import space_out_camel_case
@@ -180,7 +180,7 @@ class ModelInsert(BaseInsert):
         """
         Returns urls to get the panel, get/filter list, add/upload, delete and get rendered output.
         """
-        from django.conf.urls.defaults import patterns, url
+        from django.conf.urls import patterns, url
 
         def wrap(view):
             def wrapper(*args, **kwargs):
