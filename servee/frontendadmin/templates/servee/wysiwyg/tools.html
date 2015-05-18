@@ -20,16 +20,16 @@
 	        <li><a href="#" class="srv_code" title="Edit HTML Source">Edit Source</a></li>
 	        {% if insert_classes %}<li class="srv_insert"><a href="#" class="srv_insert">Insert</a></li>{% endif %}
 			<hr />
-	
+
 	    </ul>
 	    <p class="collapse bottom"><a href="#">Collapse tools</a></p>
 
 	</div>
-	
+
 	<div id="srv_insertMedia" class="srv_adminBox">
-	  
+
 	  <ul class="srv_mediaList">
-	    {% for slug, class in insert_classes.iteritems %}
+	    {% for slug, class in insert_classes.items %}
 	    	<li>
 				<a href="{{ class.list_url }}" title="{{ class.title }}" data-slug="{{ class.base_url }}" class="{{ class.base_url }}">
 			    {{ class.nav_title }}
@@ -37,9 +37,9 @@
 	    	</li>
 	    {% endfor %}
 	  </ul>
-	
+
 	</div><!--end srv_insertMedia -->
-	
+
 	<div id="srv_code_edit" class="srv_adminBox">
 		<form id="srv_code_edit_form">
 		<div id="code_container">
@@ -48,7 +48,7 @@
 			<input type="submit" class="srv_button" id="srv_code_edit_action" value="Update"/>
 		</form>
 	</div>
-	
+
 	<div id="srv_link" class="srv_adminBox">
 		<form id="srv_link_form" class="uniForm">
 		  <fieldset>
@@ -56,19 +56,19 @@
 		      <label for="">URL</label>
 		      <input type="text" id="srv_link_url" value="http://" size="35" class="textInput">
 		    </div>
-	
+
 		    <div class="srv_ctrlHolder">
 		      <label for="">Title</label>
 		      <input type="text" id="srv_link_title" size="35" class="textInput">
 		      <p class="formHint">Link Text, if none selected</p>
 		    </div>
 		    <div class="srv_buttonHolder"><input type="submit" class="srv_button primaryAction" value="Add/Edit Link" /></div>
-		
+
 		  </fieldset>
 		</form>
 	</div>
-	
-	
+
+
 	<div id="srv_CSSstyles" class="srv_adminBox">
 	  <ul class="srv_solidBox">
 	    <li>
@@ -135,7 +135,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		return false;
 	});
-	
+
 	//INSERT DIALOG
 	$('li.srv_insert a').click(function(e){
 		srv_toggle_adminBox('srv_insertMedia');
@@ -150,7 +150,7 @@ $(document).ready(function(){
 		$(this).parent().addClass('active');
 	});
 
-	
+
 	//StyleChooser
 	$('li.srv_styles a').click(function(e){
      	srv_toggle_adminBox('srv_CSSstyles');
@@ -171,14 +171,14 @@ $(document).ready(function(){
 		e.preventDefault();
 		return false;
 	});
-	
+
 	$("a.srv_link").click(function(e){
 		srv_toggle_adminBox('srv_link');
 		$("#srv_link_url").val(srv_get_link_url());
 		$("#srv_link_text").val(srv_get_link_text());
-	
+
 		//get window status
-	
+
 		e.preventDefault();
 		return false;
 	});
@@ -188,7 +188,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		return false;
 	});
-	
+
 	$("p.collapse a").click(function(e){
 	    srv_hide_all_adminBox();
 	    e.preventDefault();

@@ -45,7 +45,7 @@ class AddObject(Tag):
         elif isinstance(querysetish, QuerySet):
             queryset_instance = querysetish
         else:
-            raise template.TemplateSyntaxError, "'%s' argument must be a queryset or string representation, got %s" % (querysetish, type(querysetish))
+            raise template.TemplateSyntaxError("'%s' argument must be a queryset or string representation, got %s" % (querysetish, type(querysetish)))
 
         user = context["request"].user
         app_label = queryset_instance.model._meta.app_label
@@ -84,7 +84,7 @@ class ChangeObject(Tag):
 
     def render_tag(self, context, model_instance, label=None, add_class=None):
         if not isinstance(model_instance, Model):
-            raise template.TemplateSyntaxError, "'%s' argument must be a model-instance" % model_instance
+            raise template.TemplateSyntaxError("'%s' argument must be a model-instance" % model_instance)
 
         user = context["request"].user
         app_label = model_instance._meta.app_label
@@ -137,7 +137,7 @@ class ListObjects(Tag):
         elif isinstance(modelish, Model):
             model = modelish
         else:
-            raise template.TemplateSyntaxError, "'%s' argument must be a model-instance, queryset, or string representation" % modelish
+            raise template.TemplateSyntaxError("'%s' argument must be a model-instance, queryset, or string representation" % modelish)
 
         user = context["request"].user
         app_label = model._meta.app_label
@@ -181,7 +181,7 @@ class DeleteObject(Tag):
 
     def render_tag(self, context, model_instance, label=None, add_class=None):
         if not isinstance(model_instance, Model):
-            raise template.TemplateSyntaxError, "'%s' argument must be a model-instance" % model_instance
+            raise template.TemplateSyntaxError("'%s' argument must be a model-instance" % model_instance)
 
         user = context["request"].user
         app_label = model_instance._meta.app_label

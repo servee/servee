@@ -180,7 +180,7 @@ class ModelInsert(BaseInsert):
         """
         Returns urls to get the panel, get/filter list, add/upload, delete and get rendered output.
         """
-        from django.conf.urls.defaults import patterns, url
+        from django.conf.urls import patterns, url
 
         def wrap(view):
             def wrapper(*args, **kwargs):
