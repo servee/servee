@@ -49,7 +49,7 @@ class AddObject(Tag):
 
         user = context["request"].user
         app_label = queryset_instance.model._meta.app_label
-        model_name = queryset_instance.model._meta.module_name
+        model_name = queryset_instance.model._meta.model_name
 
         if not check_permission(user, "add", app_label, model_name):
             return ""
@@ -88,7 +88,7 @@ class ChangeObject(Tag):
 
         user = context["request"].user
         app_label = model_instance._meta.app_label
-        model_name = model_instance._meta.module_name
+        model_name = model_instance._meta.model_name
 
         if not check_permission(user, "change", app_label, model_name):
             return ""
@@ -141,7 +141,7 @@ class ListObjects(Tag):
 
         user = context["request"].user
         app_label = model._meta.app_label
-        model_name = model._meta.module_name
+        model_name = model._meta.model_name
 
         if not check_permission(user, "change", app_label, model_name):
             return ""
@@ -185,7 +185,7 @@ class DeleteObject(Tag):
 
         user = context["request"].user
         app_label = model_instance._meta.app_label
-        model_name = model_instance._meta.module_name
+        model_name = model_instance._meta.model_name
 
         if not check_permission(user, "delete", app_label, model_name):
             return ""

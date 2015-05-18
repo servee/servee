@@ -23,7 +23,7 @@
 {% endif %}{% endblock %}
 
 {% block content %}<div id="content-main">
-<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ request.path }}" method="post" id="{{ opts.module_name }}_form" class="frontendadmin">{% csrf_token %}{% block form_top %}{% endblock %}
+<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ request.path }}" method="post" id="{{ opts.model_name }}_form" class="frontendadmin">{% csrf_token %}{% block form_top %}{% endblock %}
 <div>
 {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
 {% if save_on_top %}{% submit_row_frontendadmin %}{% endif %}
@@ -68,14 +68,15 @@ $(document).ready(function(){
 		   $(".submit-row").css("position", "fixed");
 		   $(".submit-row").css("bottom", "0");
 		}
-		
+
 		if  ($(window).scrollTop() <= $(".scrollidentifier").offset({ scroll: false }).top){
 		   $(".submit-row").css("position", "relative");
 		   $(".submit-row").css("bottom", $(".scrollidentifier").offset());
 		}
 	});
-	
-	var $base = $("#{{ opts.module_name }}_form");
+
+	var $base = $("#{{ opts.model_name }}_form");
+
     var $par = $base.parent();
     load_wysiwyg($base);
     $base.submit(function(e){
@@ -86,15 +87,15 @@ $(document).ready(function(){
                 "data": $base.serialize(),
                 success: function(data, text){
                     //Fracking tinymce destroy bug....
-                    
+
                     t = {};
                     t.keyNav = {};
                     t.keyNav.destroy = function(){};
-                    
+
                     $par.html(data);
                 },
             });
-            
+
             e.preventDefault();
             return false;
         }

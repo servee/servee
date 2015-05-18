@@ -59,7 +59,7 @@ class ServeeAdminSite(AdminSite):
         # Inserts
         for insert_model_lookup, insert in self.insert_classes.iteritems():
             urls += patterns("",
-                (r"^insert/%s/%s/" % (insert.model._meta.app_label, insert.model._meta.module_name), include(insert.urls))
+                (r"^insert/%s/%s/" % (insert.model._meta.app_label, insert.model._meta.model_name), include(insert.urls))
             )
         return urls
     
