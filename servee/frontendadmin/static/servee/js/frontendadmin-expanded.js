@@ -72,16 +72,6 @@ $(document).ready(function(){
             url: this.href,
             success: function(data, text){
                 $par.html(data);
-                $('.file-upload a').not("[href*='.pdf'], [href*='.doc'], [href*='.mp3']").each(function(){
-                    var thumbURL = $(this).attr('href');
-                    if (thumbURL){
-                        $(this).prepend('<img src="' + thumbURL + '" style="max-width:180px;max-height:100px;margin-bottom:10px;display:block;">');
-                    }
-                });
-                // hide galleries, because they make the form crazy long
-                $('#images-group').before("<a href='#' id='gallery_dropdown'>Edit the image gallery for this page <span>›</span></a>");
-                $('#images-group').hide();
-
                 function labelTables(){
                     $('#servee_container .module table').each(function(){
                         // I changed the django "module" table into a vertical form display using some
@@ -122,6 +112,17 @@ $(document).ready(function(){
                    labelTables();
                 });
                 labelTables();
+
+                //debugging, so moving this around
+                $('.file-upload a').not("[href*='.pdf'], [href*='.doc'], [href*='.mp3']").each(function(){
+                    var thumbURL = $(this).attr('href');
+                    if (thumbURL){
+                        $(this).prepend('<img src="' + thumbURL + '" style="max-width:180px;max-height:100px;margin-bottom:10px;display:block;">');
+                    }
+                });
+                // hide galleries, because they make the form crazy long
+                $('#images-group').before("<a href='#' id='gallery_dropdown'>Edit the image gallery for this page <span>›</span></a>");
+                $('#images-group').hide();
             }
         });
 
