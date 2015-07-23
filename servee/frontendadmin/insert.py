@@ -94,32 +94,32 @@ class ModelInsert(BaseInsert):
             raise ImproperlyConfigured("Model must be set before super(%s, self).__init__ is called" % self.__class__.__name__)
 
         self.item_panel_template = [
-            "servee/wysiwyg/insert/%s/%s/_panel.html" % (self.model._meta.app_label, self.model._meta.module_name),
+            "servee/wysiwyg/insert/%s/%s/_panel.html" % (self.model._meta.app_label, self.model._meta.model_name),
             "servee/wysiwyg/insert/%s/_panel.html" % (self.model._meta.app_label),
             "servee/wysiwyg/insert/_panelt.html",
         ]
         self.item_display_template = [
-            "servee/wysiwyg/insert/%s/%s/_list.html" % (self.model._meta.app_label, self.model._meta.module_name),
+            "servee/wysiwyg/insert/%s/%s/_list.html" % (self.model._meta.app_label, self.model._meta.model_name),
             "servee/wysiwyg/insert/%s/_list.html" % (self.model._meta.app_label),
             "servee/wysiwyg/insert/_item_list.html",
         ]
         self.item_detail_template = [
-            "servee/wysiwyg/insert/%s/%s/_detail.html" % (self.model._meta.app_label, self.model._meta.module_name),
+            "servee/wysiwyg/insert/%s/%s/_detail.html" % (self.model._meta.app_label, self.model._meta.model_name),
             "servee/wysiwyg/insert/%s/_detail.html" % (self.model._meta.app_label),
             "servee/wysiwyg/insert/_item_detail.html",
         ]
         self.item_list_template = [
-            "servee/wysiwyg/insert/%s/%s/_list.html" % (self.model._meta.app_label, self.model._meta.module_name),
+            "servee/wysiwyg/insert/%s/%s/_list.html" % (self.model._meta.app_label, self.model._meta.model_name),
             "servee/wysiwyg/insert/%s/_list.html" % (self.model._meta.app_label),
             "servee/wysiwyg/insert/_item_list.html",
         ]
         self.item_render_template = [
-            "servee/wysiwyg/insert/%s/%s/_render.html" % (self.model._meta.app_label, self.model._meta.module_name),
+            "servee/wysiwyg/insert/%s/%s/_render.html" % (self.model._meta.app_label, self.model._meta.model_name),
             "servee/wysiwyg/insert/%s/_render.html" % (self.model._meta.app_label),
             "servee/wysiwyg/insert/_item_render.html",
         ]
         self.item_add_template = [
-            "servee/wysiwyg/insert/%s/%s/_add.html" % (self.model._meta.app_label, self.model._meta.module_name),
+            "servee/wysiwyg/insert/%s/%s/_add.html" % (self.model._meta.app_label, self.model._meta.model_name),
             "servee/wysiwyg/insert/%s/_add.html" % (self.model._meta.app_label),
             "servee/wysiwyg/insert/_item_add.html",
         ]
@@ -174,7 +174,7 @@ class ModelInsert(BaseInsert):
         """
         A string representation of the ModelInsert to be used in the markup of our editor.
         """
-        return self.model._meta.module_name.title()
+        return self.model._meta.model_name.title()
 
     def get_urls(self):
         """
@@ -187,7 +187,7 @@ class ModelInsert(BaseInsert):
                 return self.admin_site.admin_view(view)(*args, **kwargs)
             return update_wrapper(wrapper, view)
 
-        info = (self.model._meta.app_label, self.model._meta.module_name)
+        info = (self.model._meta.app_label, self.model._meta.model_name)
 
         return patterns("",
             url(r"^panel/$",
@@ -227,7 +227,7 @@ class ModelInsert(BaseInsert):
         return reverse("%s:insert_%s_%s_list" % (
             self.admin_site.name,
             self.model._meta.app_label,
-            self.model._meta.module_name
+            self.model._meta.model_name
         ))
 
     def list_view(self, request):
@@ -242,7 +242,7 @@ class ModelInsert(BaseInsert):
         return reverse("%s:insert_%s_%s_detail" % (
             self.admin_site.name,
             self.model._meta.app_label,
-            self.model._meta.module_name
+            self.model._meta.model_name
         ), args=(object_id,))
 
     def detail_view(self, request, object_id):
@@ -263,7 +263,7 @@ class ModelInsert(BaseInsert):
         return reverse("%s:insert_%s_%s_render" % (
             self.admin_site.name,
             self.model._meta.app_label,
-            self.model._meta.module_name
+            self.model._meta.model_name
         ), args=(object_id,))
 
     def render_view(self, request, object_id):
