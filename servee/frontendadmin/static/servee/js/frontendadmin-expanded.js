@@ -117,6 +117,8 @@ $(document).ready(function(){
                 $('#gallery_dropdown').on("click", function(e){
                    $('#images-group').toggle();
                    labelTables();
+                   e.preventDefault();
+                   return false;
                 });
                 labelTables();
             }

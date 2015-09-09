@@ -17,14 +17,15 @@
         /* Now like a table header */
         position: absolute;
         /* Top/left values mimic padding */
-        top: 6px;
+        top: 0px;
         left: 6px;
+        line-height: 1;
         width: 20%;
         padding-right: 10px;
-
+        content: attr(data-content);
+        font-size: 16px;
       }
       //&:nth-of-type(1) { visibility:hidden }
-      &:before { content: attr(data-content); }
       &:empty:before{
         content: "";
       }
