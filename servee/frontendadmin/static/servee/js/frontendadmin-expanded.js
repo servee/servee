@@ -81,6 +81,8 @@ $(document).ready(function(){
                 // hide galleries, because they make the form crazy long
                 $('#images-group').before("<a href='#' id='gallery_dropdown'>Edit the image gallery for this page <span>›</span></a>");
                 $('#images-group').hide();
+                $('#items-group').before("<a href='#' id='gallery_dropdown'>Edit the image gallery for this project <span>›</span></a>");
+                $('#items-group').hide();
 
                 function labelTables(){
                     $('#servee_container .module table').each(function(){
@@ -116,6 +118,7 @@ $(document).ready(function(){
                 };
                 $('#gallery_dropdown').on("click", function(e){
                    $('#images-group').toggle();
+                   $('#items-group').toggle();
                    labelTables();
                    e.preventDefault();
                    return false;
