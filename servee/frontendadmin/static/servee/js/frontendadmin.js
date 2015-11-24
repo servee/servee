@@ -39,7 +39,7 @@ $(document).ready(function(){
     );
 
 
-    $("a.frontendadmin_add").live("click", function(e){
+    $("a.frontendadmin_add").on("click", function(e){
         var $link = $(this), $par;
         $par = set_parent($link);
         $.ajax({
@@ -53,7 +53,7 @@ $(document).ready(function(){
     });
 
 
-    $("a.frontendadmin_list").live("click", function(e){
+    $("a.frontendadmin_list").on("click", function(e){
         var $link = $(this), $par;
         $par = set_parent($link);
         $.ajax({
@@ -67,7 +67,7 @@ $(document).ready(function(){
     });
 
 
-    $("a.frontendadmin_edit").live("click", function(e){
+    $("a.frontendadmin_edit").on("click", function(e){
         var $link = $(this), $par;
         $par = set_parent($link);
         console.log($par);
@@ -86,7 +86,7 @@ $(document).ready(function(){
      * Insert Tools
      **************************/
     // Clicking of 1st tier, building of 2nd tier
-    $(".srv_mediaList li a").live("click", function(e){
+    $(".srv_mediaList li a").on("click", function(e){
         var $link = $(this);
 
 
@@ -114,7 +114,7 @@ $(document).ready(function(){
     });
 
     // Clicking of 2nd tier, building of 3rd tier
-    $(".srv_filePane li a").live("click", function(e){
+    $(".srv_filePane li a").on("click", function(e){
         var $link = $(this);
         $.ajax({
             url: $link.attr("href"),

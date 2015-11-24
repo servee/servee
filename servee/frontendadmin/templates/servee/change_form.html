@@ -48,10 +48,6 @@
 
 {% submit_row_frontendadmin %}
 
-{% if adminform and add %}
-   <script type="text/javascript">document.getElementById("{{ adminform.first_field.id_for_label }}").focus();</script>
-{% endif %}
-
 {# JavaScript for prepopulated fields #}
 {% prepopulated_fields_js %}
 
@@ -59,7 +55,7 @@
 </form></div>
 
 <script type="text/javascript">
-$(document).ready(function(){
+  $(document).ready(function(){
 	if(typeof(DateTimeShortcuts) !== "undefined"){
 	   DateTimeShortcuts.init();
 	}
