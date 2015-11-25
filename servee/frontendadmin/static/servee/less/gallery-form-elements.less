@@ -1,0 +1,58 @@
+.inline-group{
+  font-family:'Source Sans Pro',sans-serif;
+  font-size:14px;
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  table{
+    width:100%;
+    th, td{
+      vertical-align: top;
+      padding:10px 8px 10px 0;
+    }
+    td{
+      position: relative;
+      padding-left: 25%;
+      &:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 0px;
+        left: 6px;
+        line-height: 1;
+        width: 20%;
+        padding-right: 10px;
+        content: attr(data-content);
+        font-size: 16px;
+      }
+      //&:nth-of-type(1) { visibility:hidden }
+      &:empty:before{
+        content: "";
+      }
+    }
+
+    tr.add-row{
+      td:nth-of-type(1) { display:block; }
+    }
+    tr.empty-form{display:none;}
+    thead tr { //hiding the header, because I'm repeating it with CSS below.
+      position: absolute;
+      font:0/0 a;
+      color:transparent;
+    }
+    tr{
+      &:nth-child(odd){
+        background-color: rgba(0,0,0,0.05);
+      }
+    }
+    .field-order input{width:80px;}
+    .field-caption{
+      .redactor_box{
+        min-height:100px;
+        margin-bottom:0;
+        padding:4px;
+      }
+      .redactor_editor{margin-bottom:10px;}
+    }
+  }
+}

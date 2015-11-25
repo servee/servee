@@ -1,0 +1,138 @@
+.srv-reset{
+  font: 400 13px/20px @servee-font-family;
+  color:#222;
+  .list{
+    z-index:1000;
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    width:150px;
+    background:#f0f0f0;
+    background:rgba(240,240,240,0.98);
+    border-right:1px solid #ddd;
+    @media (max-width: 590px) {
+      width:auto;
+      right:0;
+      bottom:auto;
+    }
+    ul{
+      list-style:none;
+      margin:20px 0;
+      padding:0;
+      @media (max-width: 590px) {margin:0;}
+      li{
+        @media (max-width: 590px) {
+          display:inline-block;
+          zoom:1;
+          *display:block;
+          vertical-align: baseline;
+        }
+        &.active{background-color:#fff;}
+      }
+      a{
+        display:block;
+        padding:6px 0 6px 10px;
+        @media (max-width: 590px) {
+          padding:6px 10px;
+        }
+        &:hover{
+          background-color:#fff;
+          background-color:rgba(255,255,255,0.8);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .display{
+    z-index:1000;
+    position:fixed;
+    top:0;
+    bottom:0;
+    right:0;
+    left:150px;
+    background:#fff;
+    background:rgba(255,255,255,0.98);
+    overflow:auto;
+    @media (max-width: 590px) {
+      top:64px;
+      left:0;
+    }
+    @media (max-width: 320px) {
+      top:95px;
+    }
+  }
+  .tab{
+    margin:30px 0 0 30px;
+    width:600px;
+    display:none;
+    @media (max-width: 790px) {width:500px;}
+    @media (max-width: 690px) {width:400px;}
+    @media (max-width: 590px) {width:100%; padding-right:60px;}
+    &.active{
+      display:block;
+    }
+  }
+  h1{
+    color:#222;
+    font: 300 26px/30px @servee-font-family;
+    margin:10px 0;
+  }
+}
+.pages,
+.posts,
+.editor{
+  position: fixed;
+  top:20px;
+  left:170px;
+  bottom:20px;
+  width:250px;
+  border:1px solid #eee;
+  padding:10px;
+  background:#fff;
+  overflow:auto;
+  @media (max-width: 767px) {
+    width:auto;
+    position:static;
+    margin-bottom:20px;
+  }
+  ul{
+    list-style: none;
+    margin:0 -10px;
+    padding:0;
+    li{
+      padding:0 4px 0 10px;
+      &:hover{
+        background:#eee;
+        .delete{
+          display:block;
+        }
+      }
+    }
+    small{
+      width:50px;
+      display:inline-block;
+      vertical-align: baseline;
+      zoom:1;
+      *display:inline;
+    }
+    .delete{
+      float:right;
+      display:none;
+      color:#666;
+    }
+  }
+}
+.posts{
+  left: 440px;
+  width: auto;
+  right:20px;
+}
+.editor{
+  position:fixed;
+  top:20px !important;
+  left:150px !important;
+  right: 20px !important;
+  bottom:20px !important;
+  width:auto !important;
+}
