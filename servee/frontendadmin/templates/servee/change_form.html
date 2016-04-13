@@ -1,5 +1,5 @@
 {% extends "servee/base_site.html" %}
-{% load i18n admin_modify servee_admin_modify admin_static %}
+{% load i18n admin_modify servee_admin_modify staticfiles %}
 
 {% block extrahead %}{{ block.super }}
 {% url 'admin:jsi18n' as jsi18nurl %}
