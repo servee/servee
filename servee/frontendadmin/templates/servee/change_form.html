@@ -1,5 +1,5 @@
 {% extends "servee/base_site.html" %}
-{% load i18n admin_modify servee_admin_modify staticfiles %}
+{% load i18n admin_modify servee_admin_modify %}
 
 {% block extrahead %}{{ block.super }}
 {% url 'admin:jsi18n' as jsi18nurl %}
@@ -7,7 +7,7 @@
 {{ media }}
 {% endblock %}
 
-{% block extrastyle %}{{ block.super }}{% comment %}<link rel="stylesheet" type="text/css" href="{% static "css/forms.css" %}" />{% endcomment %}{% endblock %}
+{% block extrastyle %}{{ block.super }}{% comment %}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/forms.css" />{% endcomment %}{% endblock %}
 
 {% block coltype %}{% if ordered_objects %}colMS{% else %}colM{% endif %}{% endblock %}
 
