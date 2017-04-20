@@ -138,7 +138,7 @@ class ModelInsert(BaseInsert):
         """
         The queryset method is provided so that it can be overridden.
         """
-        qs = self.model._default_manager.get_query_set()
+        qs = self.model._default_manager.get_queryset()
         if not ordering:
             ordering = self.ordering or ()  # otherwise we might try to *None, which is bad ;)
         if ordering:

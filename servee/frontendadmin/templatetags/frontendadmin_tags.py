@@ -41,7 +41,7 @@ class AddObject(Tag):
             app_label, model_name = querysetish.lower().split(".")
             content_type = ContentType.objects.get(app_label=app_label, model=model_name)
             model = content_type.model_class()
-            queryset_instance = model._default_manager.get_query_set()
+            queryset_instance = model._default_manager.get_queryset()
         elif isinstance(querysetish, QuerySet):
             queryset_instance = querysetish
         else:
