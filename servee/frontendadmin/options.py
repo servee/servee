@@ -1,6 +1,6 @@
 from django.contrib.admin.options import ModelAdmin, StackedInline, TabularInline
 from django.contrib.admin.views.main import ChangeList
-from django.contrib.admin.util import quote
+from django.contrib.admin.utils import quote
 from django.http import HttpResponse, HttpResponseRedirect
 
 class ServeeChangeList(ChangeList):
@@ -9,8 +9,8 @@ class ServeeChangeList(ChangeList):
     so I subclassed the changelist.  This makes me a sad
     panda.
     """
-    
-    def url_for_result(self, result):    
+
+    def url_for_result(self, result):
         return "/servee/%s/%s/%s/" % (
             self.model._meta.app_label,
             self.model._meta.object_name.lower(),
@@ -24,12 +24,12 @@ class ServeeModelAdmin(ModelAdmin):
     templates.  First it uses the template specifically registered with the ModelAdmin (normal behavior)
     the difference is the fallback, where normally it would check admin/...  it first checks servee/...
     """
-        
+
     def __init__(self, *args, **kwargs):
         super(ServeeModelAdmin, self).__init__(*args, **kwargs)
         opts = self.model._meta
         app_label = opts.app_label
-        
+
         self.change_form_template =  [
             "servee/%s/%s/change_form.html" % (app_label, opts.object_name.lower()),
             "servee/%s/change_form.html" % app_label,
@@ -76,7 +76,7 @@ class ServeeModelAdmin(ModelAdmin):
             "admin/%s/object_history.html" % app_label,
             "admin/object_history.html",
         ]
-    
+
 
     def response_add(self, request, obj):
         """
@@ -103,11 +103,11 @@ class ServeeModelAdmin(ModelAdmin):
         """
         Act differently during frontendadmin(ajax) just reload the page.
         """
-        
+
         # in these cases, the redirect is good
         if list(set(request.POST.keys()) & set(["_addanother", "_saveasnew", "_continue"])):
             return super(ServeeModelAdmin, self).response_change(request, obj)
-        
+
         # we want to override the default save case in the frontend
         ref = request.META.get("HTTP_REFERER")
         if ref and (ref.find("/servee/") == -1):
@@ -115,10 +115,10 @@ class ServeeModelAdmin(ModelAdmin):
                 return HttpResponse("<script type='text/javascript'>window.location.reload(true);</script>")
             else:
                 return HttpResponseRedirect(ref)
-        
+
         # fallback to normal functionality
         return super(ServeeModelAdmin, self).response_change(request, obj)
-    
+
     def change_view(self, *args, **kwargs):
         """
         Add the insert_classes to the template context.
@@ -129,7 +129,7 @@ class ServeeModelAdmin(ModelAdmin):
             "insert_classes": self.admin_site.insert_classes,
         })
         return super(ServeeModelAdmin, self).change_view(*args, **kwargs)
-    
+
     def add_view(self, *args, **kwargs):
         """
         Add the insert_classes to the template context.
