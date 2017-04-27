@@ -52,15 +52,15 @@ class ServeeAdminSite(AdminSite):
 
         # Custom Views
         for path, view, name in self.custom_views:
-            urls += patterns('',
+            urls += [
                 url(r'^%s$' % path, self.admin_view(view)),
-            )
+            ]
 
         # Inserts
         for insert_model_lookup, insert in self.insert_classes.items():
-            urls += patterns("",
-                (r"^insert/%s/%s/" % (insert.model._meta.app_label, insert.model._meta.model_name), include(insert.urls))
-            )
+            urls += [
+                url(r"^insert/%s/%s/" % (insert.model._meta.app_label, insert.model._meta.model_name), include(insert.urls))
+            ]
         return urls
 
     def __init__(self, *args, **kwargs):

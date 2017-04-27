@@ -189,7 +189,7 @@ class ModelInsert(BaseInsert):
 
         info = (self.model._meta.app_label, self.model._meta.model_name)
 
-        return patterns("",
+        return [
             url(r"^panel/$",
                 wrap(self.panel_view),
                 name="insert_%s_%s_panel" % info),
@@ -208,7 +208,7 @@ class ModelInsert(BaseInsert):
             url(r"^(.+)/delete/$",
                 wrap(self.delete_view),
                 name="insert_%s_%s_delete" % info),
-        )
+        ]
 
     @property
     def urls(self):
