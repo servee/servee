@@ -48,7 +48,7 @@ class ServeeAdminSite(AdminSite):
     def get_urls(self):
         """Add our custom views to the admin urlconf."""
         urls = super(ServeeAdminSite, self).get_urls()
-        from django.conf.urls import patterns, url, include
+        from django.conf.urls import url, include
 
         # Custom Views
         for path, view, name in self.custom_views:

@@ -1,8 +1,8 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 import frontendadmin
 import frontendadmin_registry
 
 
-urlpatterns = patterns("",
+urlpatterns = [
     url(r"^servee/", include(frontendadmin.site.urls)),
-)
+]
