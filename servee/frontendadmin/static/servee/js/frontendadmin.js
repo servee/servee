@@ -105,16 +105,16 @@ $(document).ready(function(){
                         var head9 = $(this).find("th:nth-of-type(9)").text();
                         var head10 = $(this).find("th:nth-of-type(10)").text();
 
-                        $("td:nth-of-type(2)").attr('data-content', head1 );
-                        $("td:nth-of-type(3)").attr('data-content', head2 );
-                        $("td:nth-of-type(4)").attr('data-content', head3 );
-                        $("td:nth-of-type(5)").attr('data-content', head4 );
-                        $("td:nth-of-type(6)").attr('data-content', head5 );
-                        $("td:nth-of-type(7)").attr('data-content', head6 );
-                        $("td:nth-of-type(8)").attr('data-content', head7 );
-                        $("td:nth-of-type(9)").attr('data-content', head8 );
-                        $("td:nth-of-type(10)").attr('data-content', head9 );
-                        $("td:nth-of-type(11)").attr('data-content', head10 );
+                        $("td:nth-of-type(2)").attr('data-content', head2 );
+                        $("td:nth-of-type(3)").attr('data-content', head3 );
+                        $("td:nth-of-type(4)").attr('data-content', head4 );
+                        $("td:nth-of-type(5)").attr('data-content', head5 );
+                        $("td:nth-of-type(6)").attr('data-content', head6 );
+                        $("td:nth-of-type(7)").attr('data-content', head7 );
+                        $("td:nth-of-type(8)").attr('data-content', head8 );
+                        $("td:nth-of-type(9)").attr('data-content', head9 );
+                        $("td:nth-of-type(10)").attr('data-content', head10 );
+                        $("td:nth-of-type(11)").attr('data-content', head11 );
                         $("thead").hide();
                     });
 
